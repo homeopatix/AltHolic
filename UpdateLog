@@ -1,0 +1,394 @@
+Update V1.44
+(French)
+Rajout d'une fenetre pour gerer les quetes epique
+(English)
+Addition of a window to manage epic quests
+(Deutsche)
+Hinzufügen eines Fensters zum Verwalten epischer Quests
+
+Update V1.41
+(French)
+Afficher le cash du joueur et le total du cash de tous les alts
+(English)
+Display the cash of the player and the total cash of all the alts
+(Deutsche)
+Zeigen Sie das Geld des Spielers und das Gesamtgeld aller Alts an
+
+Update V1.40
+(French)
+Corriger des fautes d'hortographes dans l'anglais et l'allemand
+(English)
+Correct spelling mistakes in English and German
+(Deutsche)
+Rechtschreibfehler in Englisch und Deutsch korrigieren
+
+Update V1.39
+(French)
+Possibilité d'afficher le sac a dos, le coffre et le stockage partagé par lignes ou par icones
+Cosmetique ajustement dans le sac a dos, le coffre et le stockage partagé
+(English)
+Possibility to display the backpack, the vault, the shared storage by lines or by icons
+Cosmetic fit in backpack, vault and shared storage
+(Deutsche)
+Möglichkeit, den Rucksack, den Tresor, den gemeinsam genutzten Speicher nach Linien oder Symbolen anzuzeigen
+Kosmetische Passform in Rucksack, Tresor und gemeinsamem Stauraum
+
+Update V1.38
+(French)
+Possibilité d'afficher la recherche par lignes ou par icones
+(English)
+Possibility to display the search by lines or by icons
+(Deutsche)
+Möglichkeit, die Suche nach Linien oder Symbolen anzuzeigen
+
+Update V1.36
+(French)
+Gère les sacs d'or, d'argent et de bronze dans le porte-monnaie
+(English)
+Manage bags of gold, silver and bronze in the wallet
+(Deutsche)
+Verwalten Sie Taschen mit Gold, Silber und Bronze in der Brieftasche
+
+Update V1.35
+(French)
+Mise a jour de la fenetre de recherche pour offrir plus d'options de recherche
+(English)
+Updated the search window to provide more search options
+(Deutsche)
+Das Suchfenster wurde aktualisiert, um weitere Suchoptionen bereitzustellen
+
+Update V1.34
+(French)
+Cosmetique et traduction correction
+(English)
+Cosmetics and translation correction
+(Deutsche)
+Kosmetik- und Übersetzungskorrektur
+
+Update V1.33
+(French)
+Corriger un bug d'affichage si vous avez le niveau maximum dans une profession
+Diminuer un petit peu la taille du resultat de la recherche pour etre plus lisible
+(English)
+Fix a display bug if you have the maximum level in a profession
+Decrease the size of the search result a little to be more readable
+(Deutsche)
+Beheben Sie einen Anzeigefehler, wenn Sie die maximale Stufe in einem Beruf haben
+Verringern Sie die Größe des Suchergebnisses ein wenig, um besser lesbar zu sein
+
+Update V1.32
+(French)
+Corriger un bug dans les lignes de commandes
+(English)
+Fix a bug in the command lines
+(Deutsche)
+Beheben Sie einen Fehler in den Befehlszeilen
+
+Update V1.31
+(French)
+Cosmetique et traduction correction
+(English)
+Cosmetics and translation correction
+(Deutsche)
+Kosmetik- und Übersetzungskorrektur
+
+Update V1.29
+(French)
+Corriger un bug quand on est en monsterplay
+(English)
+Correct a bug when in monsterplay
+(Deutsche)
+Korrigiere einen Fehler im Monsterspiel
+
+Update V1.27
+(French)
+Corriger un bug qui affichait uniquement les stats du personnage connecte
+(English)
+Fixed a bug that only displayed the stats of the connected character
+(Deutsche)
+Es wurde ein Fehler behoben, durch den nur die Statistiken des verbundenen Charakters angezeigt wurden
+
+Update V1.26
+(French)
+rajout d'un label sur l'icon de vocation qui affiche le niveau des professions
+(English)
+addition of a label on the vocation icon which displays the level of professions
+(Deutsche)
+Hinzufügen eines Etiketts auf dem Berufungssymbol, das die Ebene der Berufe anzeigt
+
+Update V1.25
+(French)
+correction d'un bug qui changeait le sexe du personnage a la connection
+Mise a jour de la fenetre des statistiques comme suggére par jbusnengo
+(English)
+fixed a bug that changed the gender of the character at connection
+Update statistics window as suggested by jbusnengo
+(Deutsche)
+Es wurde ein Fehler behoben, durch den das Geschlecht des Charakters bei der Verbindung geändert wurde
+Aktualisieren Sie das Statistikfenster wie von jbusnengo vorgeschlagen
+
+Update V1.24
+(French)
+correction du porte-monnaie qui ne s'actualisait pas en temps reelle pour le personnage connecté
+(English)
+fixed the wallet not updating in real time for the connected character
+(Deutsche)
+Es wurde behoben, dass die Brieftasche für den verbundenen Charakter nicht in Echtzeit aktualisiert wurde
+
+Update V1.23
+(French)
+Mise a jour des statistique pour etre plus en accort avec les stats LOTRO
+Correction d'un bug qui sauvegardait mal l'argent du personnage
+Ajout d'une fonction qui permet en cliquant sur l'icon d'un object equipe d'en definir le niveau et l'armure ou le dps (uniquement avec le personnage connecte)
+Nettoyage de code, et réécroture de la fonction de sauvegarde
+(English)
+Update statistics to be more in line with LOTRO stats
+Fixed a bug that incorrectly saved the character's money
+Added a function that allows by clicking on the icon of an equipped object to define its level and armor or dps (only with the character connected)
+Code cleanup, and re-write the backup function
+(Deutsche)
+Aktualisieren Sie die Statistiken, um sie besser an die HdRO-Statistiken anzupassen
+Es wurde ein Fehler behoben, durch den das Geld des Charakters fälschlicherweise gespart wurde
+Es wurde eine Funktion hinzugefügt, die es ermöglicht, durch Klicken auf das Symbol eines ausgerüsteten Objekts dessen Level und Rüstung oder Schaden zu definieren (nur wenn der Charakter verbunden ist).
+Bereinigen Sie den Code und schreiben Sie die Sicherungsfunktion neu
+
+Update V1.22
+(French)
+Ajout de plus de statistique
+Fonctionne aussi pour le monsterPlay
+(English)
+Added more statistics
+Also works for monsterPlay
+(Deutsche)
+Weitere Statistiken hinzugefügt
+Funktioniert auch für monsterPlay
+
+Update V1.21
+(French)
+Corriger un bug dans la derniere mise a jour
+(English)
+Correct a bug in the last update
+(Deutsche)
+Beheben Sie einen Fehler im letzten Update
+
+Update V1.20
+(French)
+Ajout des statistiques de chaque personnage avec un click sur l'icone de race
+Ajout d'une options pour afficher la couleur de l'usure des objets dans la fenetre d'equipement
+Ajout des pieces LOTRO dans le porte-monnaie
+Nettoyage et cosmetic
+(English)
+Addition of statistics for each character with a click on the race icon
+Added an option to display the wear color of items in the equipment window
+Adding LOTRO coins to the wallet
+Cleaning and cosmetic
+(Deutsche)
+Hinzufügen von Statistiken für jeden Charakter mit einem Klick auf das Rennsymbol
+Es wurde eine Option hinzugefügt, um die Verschleißfarbe von Gegenständen im Ausrüstungsfenster anzuzeigen
+Hinzufügen von HdRO-Münzen zur Brieftasche
+Reinigung und Kosmetik
+
+Update V1.19
+(French)
+Corriger un bug dans la version englaise et allemande
+Finaliser les pop up equipement
+(English)
+Correct a bug in the English and German version
+Finalize the pop-up equipment
+(Deutsche)
+Beheben Sie einen Fehler in der englischen und deutschen Version
+Finalisieren Sie die Popup-Ausrüstung
+
+Update V1.18
+(French)
+Rajout d'une command pour effacer un personnage ou tous les personnages
+Preparation pour le mouse over sur les object avec l'équipement
+Corriger un bug dans la commande d'aide
+Ajout des points de destinées dans le porte-monnaie
+Nettoyage et cosmetic
+(English)
+Addition of a command to delete a character or all the characters
+Preparation for mouse over on objects with equipment
+Fix a bug in the help command
+Addition of destiny points in the wallet
+Cleaning and cosmetic
+(Deutsche)
+Hinzufügen eines Befehls zum Löschen eines Zeichens oder aller Zeichen
+Vorbereitung zum Überfahren von Objekten mit Ausrüstung
+Behebung eines Fehlers im Hilfebefehl
+Hinzufügen von Schicksalspunkten in der Brieftasche
+Reinigung und Kosmetik
+
+Update V1.14
+(French)
+Mise a jour de nettoyage et cosmetic
+(English)
+Cleaning and cosmetic update
+(Deutsche)
+Reinigung und kosmetisches Update
+
+Update V1.13
+(French)
+Affiche maintenant une fenetre d'aide pour la recherche
+Permet de definir le sexe de vos personnages
+Affiche le porte-monnaie de vos alts
+(English)
+Now displays a help window for searching
+Allows you to define the gender of your characters
+Shows your alts wallet
+(Deutsche)
+Zeigt nun ein Hilfefenster für die Suche an
+Ermöglicht es Ihnen, das Geschlecht Ihrer Charaktere zu definieren
+Zeigt Ihre Alts Brieftasche
+
+Update V1.12
+(French)
+rajout d'une fenetre pour afficher l'argent de tous les personnages
+trie le saca dos, le coffre et le stockage partagé par ordre alphabetique
+trie les personnage de la fenetre pricipale par ordre alphabetique
+ajout d'une option pour afficher ou non l'argent de session
+ajout d'une option pour afficher ou non le sac a dos de classe
+changer l'icone du coffre
+ajout du score d'objects de l'equipement
+(English)
+addition of a window to display the money of all the characters
+sorts the backpack, vault and shared storage in alphabetical order
+sort the characters in the main window in alphabetical order
+addition of an option to display or not the session money
+added an option to display or not the class backpack
+change the vault icon
+added equipment item score
+(Deutsche)
+Hinzufügen eines Fensters, um das Geld aller Charaktere anzuzeigen
+sortiert den Rucksack, den Tresor und den gemeinsamen Speicher in alphabetischer Reihenfolge
+Sortieren Sie die Zeichen im Hauptfenster in alphabetischer Reihenfolge
+Hinzufügen einer Option zum Anzeigen oder Nicht-Anzeigen des Sitzungsgeldes
+Es wurde eine Option hinzugefügt, um den Klassenrucksack anzuzeigen oder nicht
+Ändern Sie das Tresorsymbol
+Punktzahl für Ausrüstungsgegenstände hinzugefügt
+
+Update V1.11
+(French)
+Correction d'un bug dans le coffre qui affichait la taille du coffre avant de l'avoir créér
+(English)
+Fixed a bug in the vault that displayed the size of the vault before creating it
+(Deutsche)
+Es wurde ein Fehler im Tresor behoben, der die Größe des Tresors vor dem Erstellen anzeigte
+
+Update V1.10
+(French)
+Affiche l'argent du joueur si la souris survole la classe du personnage
+Terminer la traduction
+Correction d'un bug qui affichait la fausse taile du coffre
+(English)
+Displays the player's money if the mouse hovers over the character's class
+Finish translation
+Fixed a bug that displayed the wrong size of the chest
+(Deutsche)
+Zeigt das Geld des Spielers an, wenn sich die Maus über der Klasse des Charakters befindet
+Beenden Sie die Übersetzung
+Es wurde ein Fehler behoben, der die falsche Größe der Truhe anzeigte
+
+Update V1.09
+(French)
+Correction d'un bug qui enregistrait le coffre-fort et le stockage partagé s'il n'était pas mis à jour
+(English)
+Corrected un bug that prevent saving thw vault and the sharedstorage if it was not updated
+(Deutsche)
+Ein Fehler wurde behoben, durch den der Tresor und der gemeinsam genutzte Speicher gespeichert wurden, wenn er nicht aktualisiert wurde
+
+Update V1.08
+(French)
+Comme proposé par jbusnengo la fenetre ne pop plus quand vous ouvrer votre coffre ou votre stockage partagé
+(English)
+As proposed by jbusnengo the window no longer pops when you open your safe or shared storage
+(Deutsche)
+Wie von jbusnengo vorgeschlagen, wird das Fenster nicht mehr geöffnet, wenn Sie Ihren sicheren oder gemeinsam genutzten Speicher öffnen
+
+Update V1.07
+(French)
+Corriger un bug dans la gestion de l'argent
+Ajout d'une option pour afficher l'argent dépensé
+(English)
+Correct a bug in money management
+Added option to display money spent
+(Deutsche)
+Beheben Sie einen Fehler im Geldmanagement
+Option hinzugefügt, um ausgegebenes Geld anzuzeigen
+
+Update V1.06
+(French)
+Rajout d'une fonction de recherche
+(English)
+Addition of a search function
+(Deutsche)
+Hinzufügen einer Suchfunktion
+
+Update V1.05
+(French)
+Corriger un bug dans la traduction allemande et anglaise
+(English)
+Fix a bug in the German and English translation
+(Deutsche)
+Behebung eines Fehlers in der deutschen und englischen Übersetzung
+
+Update V1.04
+(French)
+Ajout du stockage partagé
+Optimisation du code
+(English)
+Adding shared storage
+Code optimization
+(Deutsche)
+Gemeinsamen Speicher hinzufügen
+Codeoptimierung
+
+Update V1.03
+(French)
+Corriger le cash de session qui affichait un chiffre erroné
+Touche alt enfoncé pour déplacer l'icone
+(English)
+Correct the session cash which displayed an incorrect number
+Alt key pressed to move the icon
+(Deutsche)
+Korrigieren Sie das Sitzungsgeld, bei dem eine falsche Nummer angezeigt wurde
+Alt-Taste gedrückt, um das Symbol zu verschieben
+
+Update V1.02
+(French)
+Rajout d'une icon cliquable pour afficher le coffre de chaque personnage
+Reecrit toutes la partie sauvegarder pour crééer plusieurs fichiers
+Ajout d'une fenetre d'options
+Nettoyage du code
+Traduction en français
+(English)
+Addition of a clickable icon to display the vault of each character
+Rewrite all the save part to create multiple files
+Adding an options window
+Code cleaning
+English translation
+(Deutsche)
+Hinzufügen eines anklickbaren Symbols, um den Tresor jedes Charakters anzuzeigen
+Schreiben Sie den gesamten Speicherteil neu, um mehrere Dateien zu erstellen
+Hinzufügen eines Optionsfensters
+Code-Reinigung
+Deutsche Übersetzung
+
+Update V1.01 - Beta 1
+(French)
+Rajout d'une icon cliquable pour afficher le sac de chaque personnage
+Fonctionne aussi avec le Monster play
+(English)
+Addition of a clickable icon to display the bag of each character
+Also works with Monster play
+(Deutsche)
+Hinzufügen eines anklickbaren Symbols, um die Tasche jedes Charakters anzuzeigen
+Funktioniert auch mit Monsterspiel
+
+V1.0 Première version
+(French)
+Première version
+(English)
+Initial release
+(Deutsche)
+Erstveröffentlichung
