@@ -1,4 +1,29 @@
 
+
+UPDATE V2.09
+(French)
+Rajout des deux nouvelles réputations de la mise à jour U29
+(English)
+Addition of the two new reputations of the U29 update
+(Deutsche)
+Hinzufügung der beiden neuen Reputationen des U29-Updates
+
+UPDATE V2.08
+(French)
+Corriger un bug qui ne diminuait pas reputation dans certains cas et qui doublait les point de reputations gagné en utilisant un tome d'acceleration
+(English)
+Fixed a bug which did not decrease reputation in some cases and which doubled the reputation points gained by using an Acceleration Tome
+(Deutsche)
+Es wurde ein Fehler behoben, durch den die Reputation in einigen Fällen nicht beeinträchtigt und die durch die Verwendung eines Beschleunigungsbandes erzielten Reputationspunkte verdoppelt wurden
+
+UPDATE V2.07
+(French)
+Corriger un bug qui n'affichait pas le sac à dos si vous n'avez pas choisit de profession et que vous voulez afficher les sac à dos de professions
+(English)
+Fixed a bug that did not display the backpack if you did not choose a profession and you want to display the backpacks of professions
+(Deutsche)
+Es wurde ein Fehler behoben, durch den der Rucksack nicht angezeigt wurde, wenn Sie keinen Beruf gewählt hatten und die Rucksäcke von Berufen anzeigen möchten
+
 UPDATE V2.04
 (French)
 Corriger un bug dans l'affichage des reputations
