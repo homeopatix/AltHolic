@@ -1,5 +1,24 @@
 
 
+UPDATE V2.14
+(French)
+Rajout de la traduction pour les deux nouvelles commandes
+(English)
+Added translation for the two new commands
+(Deutsche)
+Übersetzung für die beiden neuen Befehle hinzugefügt
+
+UPDATE V2.13
+(French)
+Rajout de 2 commandes
+Corriger l'affichage lorsqu'on presse F12
+(English)
+Addition of 2 command-line
+Correct display when pressing F12
+(Deutsche)
+Hinzufügen von 2 Befehlszeilen
+Richtige Anzeige beim Drücken von F12
+
 UPDATE V2.12
 (French)
 Corriger un bug d'affichage avec la faction des chasseur de poulet
