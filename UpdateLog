@@ -1,5 +1,42 @@
 
 
+UPDATE V2.20
+(French)
+Corriger des noms de réputations en Français
+(English)
+Correct names of reputations in French
+(Deutsche)
+Richtige Namen von Reputationen auf Französisch
+
+UPDATE V2.17
+(French)
+Oublié d'enlever les code de debuggage
+nettoyage
+(English)
+Forgot to remove the debug code
+cleaning
+(Deutsche)
+Ich habe vergessen, den Debug-Code zu entfernen
+Reinigung
+
+UPDATE V2.16
+(French)
+Readapté la fenetre à la taille de l'écran et ajout d'une scrollbar si besoin
+Possibilité d'avoir un nombre ilimité de personnages
+(English)
+Readapt the window to the screen size and add a scrollbar if necessary
+Possibility of having an unlimited number of characters
+(Deutsche)
+Passen Sie das Fenster erneut an die Bildschirmgröße an und fügen Sie bei Bedarf eine Bildlaufleiste hinzu
+Möglichkeit einer unbegrenzten Anzahl von Zeichen
+
+UPDATE V2.15
+(French)
+Terminé la traduction des reputations en français, il ne manque plus que l'allemand
+(English)
+Completed the translation of reputations in French, only German is missing
+(Deutsche)
+Die Übersetzung des Rufs ins Französische abgeschlossen, fehlt nur Deutsch
 UPDATE V2.14
 (French)
 Rajout de la traduction pour les deux nouvelles commandes
