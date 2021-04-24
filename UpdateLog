@@ -1,5 +1,43 @@
 
 
+UPDATE V2.25
+(French)
+Corriger un bug qui n'affichait pas correctement les reputation de guilde au niveau maxmum
+(English)
+Fixed a bug that did not display guild reputation correctly at max level
+(Deutsche)
+Es wurde ein Fehler behoben, durch den der Ruf der Gilde auf maximaler Ebene falsch angezeigt wurde
+
+UPDATE V2.24
+(French)
+Rajout de la possibilité de scroller avec la molette de la souris
+Dans les différentes fenêtres, stockage partagé, coffre, sac à dos, réputation, livres épiques et portefeuilles
+Correction d'un bug lors de la suppression d'une entrée dans Epic Books
+(English)
+Addition of the possibility of scrolling with the mouse wheel
+In the different windows shared storage, chest, backpack, reputation, epic books and wallets
+Fix a bug when deleting an entry in Epic Books
+(Deutsche)
+Hinzufügung der Möglichkeit zum Scrollen mit dem Mausrad
+In den verschiedenen Fenstern teilen sich Aufbewahrung, Truhe, Rucksack, Ruf, epische Bücher und Brieftaschen
+Behebung eines Fehlers beim Löschen eines Eintrags in Epic Books
+
+UPDATE V2.22
+(French)
+Corriger des noms de réputations
+(English)
+Correct names of reputations
+(Deutsche)
+Richtige Namen von Reputationen
+
+UPDATE V2.21
+(French)
+Corriger des noms de réputations
+(English)
+Correct names of reputations
+(Deutsche)
+Richtige Namen von Reputationen
+
 UPDATE V2.20
 (French)
 Corriger des noms de réputations en Français
