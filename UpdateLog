@@ -1,4 +1,48 @@
+UPDATE V2.31
+(French)
+Correction d'un bug mineur
+(English)
+Minor bug fixed
+(Deutsche)
+Kleiner Fehler behoben
 
+UPDATE V2.30
+(French)
+Mise a jour de la traduction allemande, un enorme merci à NADIA pour son travail
+(English)
+German translation update, a huge thank you to NADIA for their work
+(Deutsche)
+Deutsches Übersetzungs-Update, ein großes Dankeschön an NADIA für ihre Arbeit
+
+UPDATE V2.29
+(French)
+Reparation du livre de quetes epiques
+(English)
+Epic Quest Book Repair
+(Deutsche)
+Epische Quest Buchreparatur
+
+UPDATE V2.28
+(French)
+Rajout d'une ligne de commande pour activer la touche alt pour le deplacement de l'icone
+(English)
+Addition of a command line to activate the alt key for moving the icon
+(Deutsche)
+Hinzufügen einer Befehlszeile zum Aktivieren der Alt-Taste zum Verschieben des Symbols
+
+UPDATE V2.27
+(French)
+Garde en mémoire si on choisit l'affichage par lignes ou par icones
+Rajout d'une fenetre pour définir des information sur un personnage (en cliquant sur son nom) et affiche les infos en survol de la souris
+Rajout d'une options pour afficher une icones principale plus petite
+(English)
+Keeps in memory if you choose the display by lines or by icons
+Addition of a window to define information on a character (by clicking on his name) and displays the information when hovering the mouse
+Addition of an option to display a smaller main icon
+(Deutsche)
+Wird gespeichert, wenn Sie die Anzeige nach Linien oder Symbolen auswählen
+Hinzufügen eines Fensters zum Definieren von Informationen zu einem Zeichen (durch Klicken auf seinen Namen) und Anzeigen der Informationen beim Bewegen der Maus
+Hinzufügen einer Option zum Anzeigen eines kleineren Hauptsymbols
 
 UPDATE V2.25
 (French)
