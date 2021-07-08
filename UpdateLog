@@ -1,3 +1,30 @@
+UPDATE V2.52
+(French)
+Nettoyage et optimisation du code
+(English)
+Code cleaning and optimization
+(Deutsche)
+Codebereinigung und -optimierung
+
+UPDATE V2.51
+(French)
+Corriger un bug dans les réputations qui commence par etranger
+(English)
+Fix a bug in reputations that starts with foreigner
+(Deutsche)
+Reputationsfehler behoben, der mit Ausländer beginnt
+
+UPDATE V2.50
+(French)
+Corriger une erreur de texte dans les nouvelle reputation en francais
+Redimentione automatiquement certaines fenetres si la resolution d'ecran est plus petite
+(English)
+Correct a text error in the new French reputation
+Automatically resizes some windows if the screen resolution is smaller
+(Deutsche)
+Korrigieren Sie einen Textfehler im neuen französischen Ruf
+Ändert automatisch die Größe einiger Fenster, wenn die Bildschirmauflösung kleiner ist
+
 UPDATE V2.49
 (French)
 Rajout des nouvelle réputation de l'update 30
