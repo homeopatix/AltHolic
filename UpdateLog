@@ -1,3 +1,36 @@
+UPDATE V2.56
+(French)
+Correction d'un bug d'affichage de la fenetre de profession si beaucoup de characters
+Definition d'un timer pour la sauvegarde du sac a dos et du stockage partagé
+Rajout d'un controle de sauvegarde uniquement si pas en combat
+(English)
+Fixed a display bug in the profession window if a lot of characters
+Definition of a timer for backing up the backpack and shared storage
+Addition of a save control only if not in combat
+(Deutsche)
+Anzeigefehler im Berufsfenster behoben, wenn viele Charaktere
+Definition eines Timers zum Sichern des Rucksacks und gemeinsamen Speichers
+Hinzufügen einer Speicherkontrolle nur, wenn nicht im Kampf
+
+UPDATE V2.54
+(French)
+Correction d'un bug d'affichage si la résolution d'ecran est trop petite
+pour la fenetre du stockage partagé et pour la fenetre des livres epiques
+(English)
+Fixed a display bug if the screen resolution is too small
+for the shared storage window and for the epic books window
+(Deutsche)
+Anzeigefehler bei zu kleiner Bildschirmauflösung behoben
+für das gemeinsame Speicherfenster und für das epische Bücherfenster
+
+UPDATE V2.53
+(French)
+Correction d'un bug avec les reputations
+(English)
+Fixed a bug with reputations
+(Deutsche)
+Fehler mit Reputationen behoben
+
 UPDATE V2.52
 (French)
 Nettoyage et optimisation du code
