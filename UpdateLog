@@ -1,3 +1,37 @@
+UPDATE V2.67
+(French)
+Corriger une erreur d'affichage dans le fenetre d'argent
+Corriger une erreur d'affichage dans le fenetre des quetes epiques
+Corriger une erreur d'affichage de l'argent possédé par le joueur
+Corriger la taille des fenetre qui ne s'ajustait pas correctement au nombre de personnage
+Corriger une erreur d'affichage du boutons des quetes epique
+Corriger une erreur d'affichage du bouton de recherche
+(English)
+Correct a display error in the money window
+Correct a display error in the epic quest window
+Correct an error in displaying the money owned by the player
+Correct the window size that did not fit correctly to the number of characters
+Correct an error in the display of the epic quest buttons
+Correct a search button display error
+(Deutsche)
+Korrigieren Sie einen Anzeigefehler im Geldfenster
+Korrigiere einen Anzeigefehler im epischen Questfenster
+Korrigieren Sie einen Fehler bei der Anzeige des Geldes des Spielers
+Korrigieren Sie die Fenstergröße, die nicht richtig auf die Anzahl der Zeichen passte
+Korrigiere einen Fehler in der Anzeige der epischen Quest-Buttons
+Korrigieren Sie einen Anzeigefehler der Suchschaltfläche
+
+UPDATE V2.66
+(French)
+Rajout d'une options pour afficher les différents serveurs
+Permet de trier l'affichage par serveur
+(English)
+Addition of an option to display the different servers
+Allows you to sort the display by server
+(Deutsche)
+Hinzufügen einer Option zur Anzeige der verschiedenen Server
+Ermöglicht die Sortierung der Anzeige nach Server
+
 UPDATE V2.65
 (French)
 Corrections de bugs
