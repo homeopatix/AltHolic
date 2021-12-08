@@ -1,3 +1,27 @@
+UPDATE V2.73
+(French)
+Corriger un bogues de gestion de la touche F12 pour cacher entièrement le HUD
+(English)
+Fix a bug in the handling of the F12 key to completely hide the HUD
+(Deutsche)
+Behebung eines Fehlers bei der Handhabung der F12-Taste, um das HUD vollständig auszublenden
+
+UPDATE V2.72
+(French)
+Corriger un bogues d'affichage pour les nom de joueur très long
+(English)
+Fix a display bug for very long player names
+(Deutsche)
+Behebung eines Anzeigefehlers für sehr lange Spielernamen
+
+UPDATE V2.71
+(French)
+Rajout d'une fenetre de validation pour ne pas effacer un personnage par accident
+(English)
+Addition of a validation window to not delete a character by accident
+(Deutsche)
+Hinzufügen eines Validierungsfensters, um ein Zeichen nicht versehentlich zu löschen
+
 UPDATE V2.70
 (French)
 Rajout d'une options pour afficher une icone de suppresion de personnage
