@@ -1,4 +1,45 @@
 
+UPDATE V3.14
+(French)
+Rajout d'une fenetre pour afficher l'experience des autres personnages
+(English)
+Addition of a window to display the experience of other characters
+(Deutsche)
+Hinzufügen eines Fensters, um die Erfahrung anderer Charaktere anzuzeigen
+
+UPDATE V3.13
+(French)
+Corrigé un bogues dans la gestion de la reputation dans la fenetre de reputation
+Correction de bogues
+Ajustement de la barre de defilement dans la fenetre des livres epiques
+(English)
+Fixed a bug in reputation management in the reputation window
+Bug fixes
+Adjusted the scroll bar in the Epic Books window
+(Deutsche)
+Fehler im Reputationsmanagement im Reputationsfenster behoben
+Fehlerbehebung
+Bildlaufleiste im Fenster Epic Books angepasst
+
+UPDATE V3.12
+(French)
+Corrigé un bogues dans la gestion de la reputation dans la fenetre de reputation
+(English)
+Fixed a bug in reputation management in the reputation window
+(Deutsche)
+Fehler im Reputationsmanagement im Reputationsfenster behoben
+
+UPDATE V3.11
+(French)
+Supprimer le sensible a la casse dans la recherche
+Rajout d'une barre de defilement dans la fenetre du stockage partagé
+(English)
+Remove case sensitive from search
+Addition of a scroll bar in the shared storage window
+(Deutsche)
+Groß-/Kleinschreibung aus der Suche entfernen
+Hinzufügen einer Bildlaufleiste im Shared Storage-Fenster
+
 UPDATE V3.10
 (French)
 Quelques correction de bogues sur la barre
