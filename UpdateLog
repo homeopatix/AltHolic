@@ -1,4 +1,23 @@
 
+UPDATE V3.18
+(French)
+Optimisation de la fenetre de recherche, pour un résultat de recherche plus rapide
+(English)
+Optimization of the search window, for a faster search result
+(Deutsche)
+Optimierung des Suchfensters, für ein schnelleres Suchergebnis
+
+UPDATE V3.17
+(French)
+Rajout d'une options pour fermer la fenetre serveur avec double clique sur l'icone
+Correction d'un bug d'affichage du texte dans la fenetre d'option de la barre
+(English)
+Addition of an option to close the server window with double click on the icon
+Fixed a text display bug in the toolbar option window
+(Deutsche)
+Hinzufügen einer Option zum Schließen des Serverfensters mit Doppelklick auf das Symbol
+Fehler bei der Textanzeige im Optionsfenster der Symbolleiste behoben
+
 UPDATE V3.16
 (French)
 Correction d'un bogues dans le fichier de FCT
