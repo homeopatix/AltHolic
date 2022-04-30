@@ -1,4 +1,37 @@
 
+UPDATE V4.02
+(French)
+Corrections de bugs
+Optimisation de codes
+(English)
+Bug fixes
+Code optimization
+(Deutsche)
+Fehlerbehebungen
+Code-Optimierung
+
+UPDATE V4.01
+(French)
+Mise à jour de l'auto Update de la bar AltHolic
+(English)
+AltHolic Bar Auto Update Update
+(Deutsche)
+Automatische Aktualisierung der AltHolic-Leiste
+
+UPDATE V4.0
+(French)
+Réécriture de la gestion des fenetres lors de l'appui sur F12
+Diverses corrections de bugs
+Quelques optimisation de codes
+(English)
+Rewrite of window management when pressing F12
+Various bug fixes
+Some code optimization
+(Deutsche)
+Umschreiben der Fensterverwaltung beim Drücken von F12
+Diverse Fehlerbehebungen
+Etwas Code-Optimierung
+
 UPDATE V3.23 - V3.24
 (French)
 Rajout d'une explication dans le fichier init pour sauvegarder uniquement par server
