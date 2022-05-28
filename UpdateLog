@@ -1,4 +1,31 @@
 
+UPDATE V4.05
+(French)
+Correction d'un bug d'affichage de la bar lors du changements d'options
+(English)
+Fixed bar display bug when changing options
+(Deutsche)
+Fehler bei der Balkenanzeige beim Ändern von Optionen behoben
+
+UPDATE V4.04
+(French)
+Correction d'un bug d'affichage des fenetres depuis la bar
+(English)
+Fixed a window display bug from the bar
+(Deutsche)
+Ein Fehler bei der Fensteranzeige in der Leiste wurde behoben
+
+UPDATE V4.03
+(French)
+Corrections de bugs
+Optimisation de codes
+(English)
+Bug fixes
+Code optimization
+(Deutsche)
+Fehlerbehebungen
+Code-Optimierung
+
 UPDATE V4.02
 (French)
 Corrections de bugs
