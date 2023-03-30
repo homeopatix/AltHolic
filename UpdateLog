@@ -1,4 +1,20 @@
 
+UPDATE V4.17
+(French)
+Modification d'un fonction de separation de string dans la fontion Split
+(English)
+Modification of a string separation function in the Split function
+(Deutsche)
+Modifikation einer String-Trennfunktion in der Split-Funktion
+
+UPDATE V4.16
+(French)
+Modification du positionnement de la fenetre d'affichage des professions, elle s'adapte a la position de l'addon sur l'ecran
+(English)
+Modification of the position of the display window of professions, it adapts to the position of the addon on the screen
+(Deutsche)
+Änderung der Position des Anzeigefensters von Berufen, es passt sich der Position des Addons auf dem Bildschirm an
+
 UPDATE V4.15
 (French)
 Modification du positionnement de la fenetre d'affichage des professions
