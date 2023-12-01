@@ -1,3 +1,33 @@
+UPDATE V4.32
+(French)
+Corriger un bug, qui ne chargeai pas correctement la vocation choisie dans la fenêtre d'option
+(English)
+Fix a bug, which did not correctly load the chosen vocation in the option window
+(Deutsche)
+Behebung eines Fehlers, der dazu führte, dass der ausgewählte Beruf nicht korrekt im Optionsfenster geladen wurde
+
+UPDATE V4.31
+(French)
+Ajout de fenêtres d'aide pour définir le genre et la vocation de votre personnage
+Correction de fautes d'orthographe dans la version allemande
+(English)
+Addition of help windows for defining the gender and vocation of your character
+Fixed spelling errors in the German version
+(Deutsche)
+Hinzufügung von Hilfefenstern zum Definieren des Geschlechts und der Berufung Ihres Charakters
+Rechtschreibfehler in der deutschen Version behoben
+
+UPDATE V4.30
+(French)
+Ajout de nouvelle réputation
+Correction d'un bug de lecture du chat qui ne mettais pas a jour les réputation correctement
+(English)
+Added new reputation
+Fixed a chat reading bug that did not update reputations correctly
+(Deutsche)
+Neuer Ruf hinzugefügt
+Es wurde ein Fehler beim Chat-Lesen behoben, der dazu führte, dass der Ruf nicht korrekt aktualisiert wurde
+
 UPDATE V4.29
 (French)
 Ajout d'une option pour définir la vocation courante
