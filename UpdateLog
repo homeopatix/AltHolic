@@ -1,3 +1,11 @@
+UPDATE V4.33
+(French)
+Corriger un bug, qui empêchai le plugin de se charger correctement
+(English)
+Fixed a bug that prevented the plugin from loading properly
+(Deutsche)
+Es wurde ein Fehler behoben, der verhinderte, dass das Plugin richtig geladen wurde
+
 UPDATE V4.32
 (French)
 Corriger un bug, qui ne chargeai pas correctement la vocation choisie dans la fenêtre d'option
