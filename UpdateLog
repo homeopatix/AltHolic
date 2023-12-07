@@ -1,3 +1,38 @@
+UPDATE V4.37
+(French)
+Correction des fautes d'orthographe dans la version anglaise et allemande
+(English)
+Corrected spelling errors in the English and German version
+(Deutsche)
+Rechtschreibfehler in der englischen und deutschen Version korrigiert
+
+UPDATE V4.36
+(French)
+Ajouter des parenthèses autour du bonus de réputation
+(English)
+Add parentheses around reputation bonus
+(Deutsche)
+Setzen Sie Klammern um den Reputationsbonus
+
+UPDATE V4.35
+(French)
+Corrigé un bug qui affichait une erreur si une réputation non définis recevais des points
+(English)
+Fixed a bug that caused an error to display if an undefined reputation received points
+(Deutsche)
+Es wurde ein Fehler behoben, der dazu führte, dass ein Fehler angezeigt wurde, wenn eine undefinierte Reputation Punkte erhielt.
+
+UPDATE V4.34
+(French)
+Corriger un bug, qui ne sauvegardai pas correctement la vocation choisie
+Corriger une bug qui continuai d'afficher le gain de reputation bonus, lorsque terminé
+(English)
+Fixed a bug that didn't correctly save the chosen vocation
+Fixed a bug that kept showing the bonus reputation gain when completed
+(Deutsche)
+Es wurde ein Fehler behoben, durch den der gewählte Beruf nicht korrekt gespeichert wurde.
+Es wurde ein Fehler behoben, durch den der Bonus-Rufgewinn immer wieder angezeigt wurde, wenn er abgeschlossen wurde.
+
 UPDATE V4.33
 (French)
 Corriger un bug, qui empêchai le plugin de se charger correctement
