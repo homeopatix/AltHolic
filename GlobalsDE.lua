@@ -9,7 +9,7 @@ _G.T = {};
 ------------------------------------------------------------------------------------------
 T[ "PluginName" ] = "AltHolic";
 T[ "Loaded" ] = "Geladen";
-T[ "Unactivated" ] = "Deaktiviert";
+T[ "Unactivated" ] = "Beendet";
 T[ "PluginText" ] = "Von Homeopatix";
 T[ "PluginEscEnable" ] = "Escape-Taste aktiviert";
 T[ "PluginEscDesable" ] = "Escape-Taste deaktiviert";
@@ -30,20 +30,20 @@ T[ "PluginDateUpdate" ] = "06.02.2024";
 ------------------------------------------------------------------------------------------
 -- ServerName window --
 ------------------------------------------------------------------------------------------
-T[ "ServerNameWindow" ] = "Servername von";
+T[ "ServerNameWindow" ] = "Server von";
 T[ "ServerNamesAll" ] = "Alle Server";
 ------------------------------------------------------------------------------------------
 -- Delete character window --
 ------------------------------------------------------------------------------------------
-T[ "DeleteWindowName" ] = "L\195\182sche den Charakter";
-T[ "DeleteYes" ] = "JAWOHL";
+T[ "DeleteWindowName" ] = "Charakter l\195\182schen";
+T[ "DeleteYes" ] = "JA";
 T[ "DeleteNo" ] = "NEIN";
-T[ "DeleteTextAndName" ] = "Bist du sicher zu l\195\182schen\n";
+T[ "DeleteTextAndName" ] = "Folgender Charakter wird gel\195\182scht: ";
 T[ "DeleteTextAll" ] = "Sind Sie sicher, alle Eintr\195\164ge zu l\195\182schen";
 ------------------------------------------------------------------------------------------
 -- vocations --
 ------------------------------------------------------------------------------------------
-T[ "PluginVocation" ] = "Keine Berufung";
+T[ "PluginVocation" ] = "Kein Handwerk";
 T[ "PluginVocation1" ] = "Entdecker";
 T[ "PluginVocation2" ] = "Kesselflicker";
 T[ "PluginVocation3" ] = "Freibauer";
@@ -51,22 +51,22 @@ T[ "PluginVocation4" ] = "Historiker";
 T[ "PluginVocation5" ] = "Waffenbauer";
 T[ "PluginVocation6" ] = "Waldh\195\188ter";
 T[ "PluginVocation7" ] = "R\195\188stungsschmied";
-T[ "PluginVocation8" ] = "Beruf";
-T[ "PluginVocation9" ] = "W\195\164hlen Sie die aktuelle Berufung"; -- new in U38
+T[ "PluginVocation8" ] = "Handwerkskunst";
+T[ "PluginVocation9" ] = "W\195\164hle die aktuelle Handwerkskunst aus:"; -- new in U38
 ------------------------------------------------------------------------------------------
 -- professions --
 ------------------------------------------------------------------------------------------
-T[ "PluginProfession" ] = "Kein gew\195\164hlter Beruf";
+T[ "PluginProfession" ] = "Keine Handwerkskunst gelernt";
 T[ "PluginProfession1" ] = "Bauer";
 T[ "PluginProfession2" ] = "F\195\182rster";
-T[ "PluginProfession3" ] = "Prospektor";
-T[ "PluginProfession4" ] = "Kochen";
-T[ "PluginProfession5" ] = "Juwelier";
-T[ "PluginProfession6" ] = "Metallschmied";
-T[ "PluginProfession7" ] = "Gelehrte";
+T[ "PluginProfession3" ] = "Sch\195\188rfer";
+T[ "PluginProfession4" ] = "Koch";
+T[ "PluginProfession5" ] = "Goldschmied";
+T[ "PluginProfession6" ] = "Schmied";
+T[ "PluginProfession7" ] = "Gelehrter";
 T[ "PluginProfession8" ] = "Schneider";
 T[ "PluginProfession9" ] = "Waffenschmied";
-T[ "PluginProfession10" ] = "Holzarbeiter";
+T[ "PluginProfession10" ] = "Drechsler";
 ------------------------------------------------------------------------------------------
 -- help --
 ------------------------------------------------------------------------------------------
@@ -84,42 +84,42 @@ T[ "PluginHelp11" ] = "/Alt alt - ALT-Taste gedr\195\188ckt halten, um das Symbo
 T[ "PluginHelp12" ] = "/Alt optionsbar - Zeigen Sie das Optionsfenster f\195\188r die Leiste an.\n";
 T[ "PluginCloseButton" ] = "Fenster schlie\195\159en";
 T[ "PluginVaultSaved" ] = "Bank gespeichert";
-T[ "PluginBagSaved" ] = "Rucksack gespeichert";
+T[ "PluginBagSaved" ] = "Inventar gespeichert";
 T[ "PluginSharedStorageSaved" ] = "Gemeinsamer Lagerraum gespeichert";
 T[ "PluginISeeYou" ] = "Ich sehe Dich";
 ------------------------------------------------------------------------------------------
 -- Xp window --
 ------------------------------------------------------------------------------------------
-T[ "PluginXPWindow1" ] = "Spieler XP";
-T[ "PluginXPWindow2" ] = "XP von";
-T[ "PluginXPWindow3" ] = "Tats\195\164chlich XP";
-T[ "PluginXPWindow" ] = "XP aller Charaktere";
+T[ "PluginXPWindow1" ] = "Spieler-Fortschritt";
+T[ "PluginXPWindow2" ] = "Stufe von";
+T[ "PluginXPWindow3" ] = "Tats\195\164chliche Stufe";
+T[ "PluginXPWindow" ] = "Fortschritt aller Charaktere";
 ------------------------------------------------------------------------------------------
 -- info window --
 ------------------------------------------------------------------------------------------
 T[ "PluginInfo1" ] = "Info f\195\188r ";
-T[ "PluginInfo2" ] = "\195\132nderungen \195\188berpr\195\188fen";
-T[ "PluginInfo3" ] = "Alles l\195\182schen";
+T[ "PluginInfo2" ] = "\195\132nderungen speichern";
+T[ "PluginInfo3" ] = "Info l\195\182schen";
 ------------------------------------------------------------------------------------------
 -- search --
 ------------------------------------------------------------------------------------------
 T[ "PluginSearch" ] = "Suchfenster";
 T[ "PluginSearch1" ] = "Gefunden : ";
 T[ "PluginSearch2" ] = "Suche";
-T[ "PluginSearch3" ] = "Rucksack";
+T[ "PluginSearch3" ] = "Inventar";
 T[ "PluginSearch4" ] = "Bank";
-T[ "PluginSearch5" ] = "Gemeinsamer Lagerraum";
+T[ "PluginSearch5" ] = "Gem. Lagerraum";
 T[ "PluginSearch6" ] = "Objekte";
 T[ "PluginSearch7" ] = "Geldbeutel";
-T[ "PluginSearch8" ] = "Vollst\195\164ndige Suche";
-T[ "PluginSearch9" ] = "Wo soll die Suche durchgef\195\188hrt werden";
+T[ "PluginSearch8" ] = "Alles durchsuchen";
+T[ "PluginSearch9" ] = "Wo soll die Suche durchgef\195\188hrt werden?";
 T[ "PluginSearch10" ] = "Nichts gefunden in ";
 T[ "PluginSearch11" ] = "mit der Suche : ";
 T[ "PluginSearch12" ] = "Ausr\195\188stung";
 ------------------------------------------------------------------------------------------
 -- epique --
 ------------------------------------------------------------------------------------------
-T[ "PluginEpiqueWindow1" ] = "Epos Buch";
+T[ "PluginEpiqueWindow1" ] = "Epische Geschichte";
 T[ "PluginAddNewEpique" ] = "Neues Buch hinzuf\195\188gen";
 T[ "PluginAddNewBook" ] = "Neues Buch f\195\188r ";
 T[ "PluginAddNewBookVolume" ] = "Band";
@@ -206,7 +206,7 @@ T[ "PluginHelpWindow26" ] = "Klicken Sie auf die Schaltfl\195\164che Geschlecht 
 T[ "PluginHelpWindow27" ] = "Klicken Sie auf das Kontrollk\195\164stchen für das Geschlecht Ihres Charakters\n\n";
 T[ "PluginHelpWindow28" ] = "Klicken Sie auf die Schaltfl\195\164che Fenster schlie\195\159en.\n";
 T[ "PluginHelpWindow29" ] = "um \195\132nderungen zu speichern\n\n";
-T[ "PluginTitreHelpWindow5" ] = "Hilfe f\195\188r Gendere";
+T[ "PluginTitreHelpWindow5" ] = "Hilfe f\195\188r Geschlecht";
 -- help for Vocation
 T[ "PluginHelpWindow30" ] = "Klicken Sie auf die Schaltfl\195\164che Beruf festlegen\n\n";
 T[ "PluginHelpWindow31" ] = "Klicken Sie auf das Kontrollk\195\164stchen daneben\n\n";
@@ -215,7 +215,7 @@ T[ "PluginHelpWindow33" ] = "Klicken Sie auf die Schaltfl\195\164che \195\132nde
 T[ "PluginHelpWindow34" ] = "Um \195\132nderungen zu speichern\n\n\n";
 T[ "PluginHelpWindow35" ] = "!!! Funktioniert nur f\195\188r den verbundenen Charakter\n\n";
 T[ "PluginHelpWindow36" ] = "Machen Sie dasselbe f\195\188r jeden Charakter, wenn er eine Verbindung herstellt\n\n";
-T[ "PluginTitreHelpWindow6" ] = "Hilfe f\195\188r den Beruf";
+T[ "PluginTitreHelpWindow6" ] = "Hilfe f\195\188r das Handwerk";
 ------------------------------------------------------------------------------------------
 -- vault --
 ------------------------------------------------------------------------------------------
@@ -223,13 +223,13 @@ T[ "PluginVault1" ] = "Bank von ";
 T[ "PluginVault2" ] = "Bankplatz : ";
 T[ "PluginVault3" ] = "Ihr m\195\188sst Eure Bank \195\182ffnen, um zu sehen, was sich darin befindet";
 T[ "PluginSharedStorage1" ] = "Gemeinsamer Lagerraum";
-T[ "PluginSharedStorage2" ] = "Pl\195\164tze des gemeinsamen Lagerraums ";
+T[ "PluginSharedStorage2" ] = "Pl\195\164tze im Gemeinsamen Lagerraum ";
 T[ "PluginSharedStorage3" ] = "Ihr m\195\188sst Euren gemeinsamen Lagerraum \195\182ffnen, um anzuzeigen, was sich darin befindet";
 ------------------------------------------------------------------------------------------
 -- equipement --
 ------------------------------------------------------------------------------------------
 T[ "PluginEquipement1" ] = "Ausr\195\188stung von ";
-T[ "PluginEquipement2" ] = "Ausr\195\188stung fehlt";
+T[ "PluginEquipement2" ] = "Nicht ausger\195\188stet";
 T[ "PluginEquipement3" ] = "Gegenstandsstufe";
 T[ "PluginEquipement4" ] = "R\195\188stung";
 T[ "PluginEquipement5" ] = "Kopf";
@@ -262,7 +262,7 @@ T[ "PluginCashWindow3" ] = "Sitzungssumme ";
 T[ "PluginCashWindow4" ] = "Eingenommen ";
 T[ "PluginCashWindow5" ] = "Ausgegeben ";
 T[ "PluginCashWindow6" ] = "Gesamt ";
-T[ "PluginCashWindow7" ] = "T\195\164gliche Summe";
+T[ "PluginCashWindow7" ] = "Tagessumme";
 ------------------------------------------------------------------------------------------
 -- wallet window --
 ------------------------------------------------------------------------------------------
@@ -277,8 +277,8 @@ T[ "PluginWalletWindow8" ] = "Aktualisieren";
 ------------------------------------------------------------------------------------------
 -- backpack --
 ------------------------------------------------------------------------------------------
-T[ "PluginBag1" ] = "Rucksack von ";
-T[ "PluginBag2" ] = "Rucksack Platz : ";
+T[ "PluginBag1" ] = "Inventar von ";
+T[ "PluginBag2" ] = "Inventar Platz : ";
 ------------------------------------------------------------------------------------------
 -- add new --
 ------------------------------------------------------------------------------------------
@@ -316,7 +316,7 @@ T[ "PluginClasse11" ] = "Schnitter";
 T[ "PluginClasse12" ] = "Saboteur";
 T[ "PluginClasse13" ] = "Weberspinne";
 T[ "PluginClasse14" ] = "Schwarzpfeil";
-T[ "PluginClasse15" ] = "Kreigsanf\195\188hrer";
+T[ "PluginClasse15" ] = "Kriegsanf\195\188hrer";
 T[ "PluginClasse16" ] = "Pirscher";
 T[ "PluginClasse17" ] = "Schl\195\164ger"; -- new class
 T[ "PluginClasse18" ] = "Seefahrer"; -- new class
@@ -333,7 +333,7 @@ T[ "PluginStats6" ] = "Stufe";
 T[ "PluginStats7" ] = "Rasse";
 T[ "PluginStats8" ] = "Klasse";
 T[ "PluginStats9" ] = "Geschlecht";
-T[ "PluginStats10" ] = "Charakter noch nicht gespeichert, bitte einmal einloggen";
+T[ "PluginStats10" ] = "Charakter noch nicht gespeichert, bitte neu einloggen";
 T[ "PluginStats11" ] = "Statistiken";
 T[ "PluginStats12" ] = "Angriff";
 T[ "PluginStats13" ] = "Kritischer Treffer";
@@ -355,9 +355,9 @@ T[ "PluginStats28" ] = "Taktisch";
 T[ "PluginStats29" ] = "Kritische Verteidigung";
 T[ "PluginStats30" ] = "Chance";
 T[ "PluginStats31" ] = "Fernkampf Beherrschung";
-T[ "PluginStats32" ] = "Orc-craft";
-T[ "PluginStats33" ] = "Fell-wrought";
-T[ "PluginStats34" ] = "Verheerende Bewertung";
+T[ "PluginStats32" ] = "Ork-Waffe";
+T[ "PluginStats33" ] = "Hass";
+T[ "PluginStats34" ] = "Zerst\195\182rerischer Treffer";
 T[ "PluginStats35" ] = "Gelb - capped";
 T[ "PluginStats36" ] = "Orange - T2 capped";
 T[ "PluginStats37" ] = "Rot - neu T2 capped";
@@ -365,7 +365,7 @@ T[ "PluginStats38" ] = "Lila - neu T3-5 capped";
 ------------------------------------------------------------------------------------------
 -- gendre window --
 ------------------------------------------------------------------------------------------
-T[ "PluginGendreText" ] = "Geschlecht definieren";
+T[ "PluginGendreText" ] = "Geschlecht festlegen";
 T[ "PluginGendreText1" ] = "Mann";
 T[ "PluginGendreText2" ] = "Frau";
 ------------------------------------------------------------------------------------------
@@ -374,22 +374,22 @@ T[ "PluginGendreText2" ] = "Frau";
 T[ "PluginOptionsBarText" ] = "AltHolic Bar Optionen";
 T[ "PluginOptionBar1" ] = "Zeigen Sie die Symbole an";
 T[ "PluginOptionBar0" ] = "Anzuzeigende Symbole";
-T[ "PluginOptionBar2" ] = " Anzeige des Levels";
-T[ "PluginOptionBar3" ] = " Das Rennen anzeigen";
+T[ "PluginOptionBar2" ] = " Spieler-Werte anzeigen";
+T[ "PluginOptionBar3" ] = " Rasse anzeigen";
 T[ "PluginOptionBar4" ] = " Klasse anzeigen";
-T[ "PluginOptionBar5" ] = " Zeigen Sie den Server an";
-T[ "PluginOptionBar6" ] = " Zeigen Sie das Bargeld an";
-T[ "PluginOptionBar7" ] = " Zeigen Sie die Brieftasche an";
-T[ "PluginOptionBar8" ] = " Zeige die Truhe";
-T[ "PluginOptionBar9" ] = " Zeige den Rucksack";
-T[ "PluginOptionBar10" ] = " Die Berufung anzeigen";
-T[ "PluginOptionBar11" ] = " Zeigen Sie SharedStockage an";
-T[ "PluginOptionBar12" ] = " Zeigen Sie Epique-B\195\188cher an";
-T[ "PluginOptionBar13" ] = " Zeigen Sie das Suchsymbol an";
-T[ "PluginOptionBar14" ] = " Gesamtes Bargeld anzeigen";
-T[ "PluginOptionBar15" ] = " Zeigen Sie die Sitzung Bargeld an";
-T[ "PluginOptionBar16" ] = " Zeigen Sie die XP der Charaktere an";
-T[ "PluginOptionBar20" ] = "Taschengr\195\182\195\159e anzeigen";
+T[ "PluginOptionBar5" ] = " Server anzeigen";
+T[ "PluginOptionBar6" ] = " M\195\188nzen anzeigen";
+T[ "PluginOptionBar7" ] = " Geldbeutel anzeigen";
+T[ "PluginOptionBar8" ] = " Bank anzeigen";
+T[ "PluginOptionBar9" ] = " Inventar anzeigen";
+T[ "PluginOptionBar10" ] = " Handwerk anzeigen";
+T[ "PluginOptionBar11" ] = " Gemeinsamer Lagerraum anzeigen";
+T[ "PluginOptionBar12" ] = " Epische Geschichte anzeigen";
+T[ "PluginOptionBar13" ] = " Suchsymbol anzeigen";
+T[ "PluginOptionBar14" ] = " M\195\188nzen aller Charaktere anzeigen";
+T[ "PluginOptionBar15" ] = " Sitzungssumme anzeigen";
+T[ "PluginOptionBar16" ] = " Fortschritt der Charaktere anzeigen";
+T[ "PluginOptionBar20" ] = " Inventargr\195\182\195\159e anzeigen";
 T[ "PluginOptionBar21" ] = " Gr\195\182\195\159e anzeigen";
 T[ "PluginOptionBarTokens" ] = " Zeigen Sie die Token an";
 ------------------------------------------------------------------------------------------
@@ -400,15 +400,15 @@ T[ "PluginOption1" ] = "Anzeige der Optionen zum Laden und Speichern";
 T[ "PluginOption2" ] = " Benachrichtigungen anzeigen";
 T[ "PluginOption3" ] = "Sitzungssumme anzeigen";
 T[ "PluginOption4" ] = " Anzeige";
-T[ "PluginOption5" ] = "Klassentaschen zeigen";
-T[ "PluginOption6" ] = "Geschlecht definieren";
-T[ "PluginOption7" ] = "\195\164ndert die Hintergrundfarbe f\195\188r die Haltbarkeit der Ausr\195\188stung";
+T[ "PluginOption5" ] = "Inventar-Symbol zeigen";
+T[ "PluginOption6" ] = "Geschlecht festlegen";
+T[ "PluginOption7" ] = "Hintergrundfarbe der Ausr\195\188stung je nach Haltbarkeit \195\164ndern";
 T[ "PluginOption8" ] = "Gesamtsumme anzeigen";
 T[ "PluginOption9" ] = "Verdiente Rufpunkte anzeigen";
 T[ "PluginOption10" ] = "Verdiente HdRO-Punkte anzeigen";
 T[ "PluginOption11" ] = "Ausf\195\188hrlicher Modus";
 T[ "PluginOption12" ] = "Verm\195\182gensanzeige";
-T[ "PluginOption13" ] = "Rucksackanzeige";
+T[ "PluginOption13" ] = "Inventaranzeige";
 T[ "PluginOption14" ] = "Haltbarkeitsanzeige";
 T[ "PluginOption15" ] = "Chat-Anzeige";
 T[ "PluginOption16" ] = "Symbol";
@@ -418,12 +418,12 @@ T[ "PluginOption19" ] = " Winziges Symbol 24x24";
 T[ "PluginOption20" ] = " Winziges Symbol 16x16";
 T[ "PluginOption21" ] = " Standardsymbol";
 T[ "PluginOption22" ] = " Plugins anzeigen";
-T[ "PluginOption23" ] = " Max. LVL anzeigen";
-T[ "PluginOption24" ] = "Zeigen Sie den Servernamen an";
-T[ "PluginOption25" ] = "Zeigen Sie die AltHolic-Leiste an";
-T[ "PluginOption26" ] = "Zeigen Sie die Leiste an";
-T[ "PluginOption27" ] = "Die Berufung definieren"; -- new in U38
-T[ "PluginOptionValidate" ] = "\195\132nderungen vornehmen";
+T[ "PluginOption23" ] = " Maximalstufe anzeigen";
+T[ "PluginOption24" ] = "Charaktere der folgenden Server anzeigen";
+T[ "PluginOption25" ] = "AltHolic-Leiste anzeigen";
+T[ "PluginOption26" ] = "Leiste am oberen Bildschirmrand anzeigen";
+T[ "PluginOption27" ] = "Handwerkskunst festlegen"; -- new in U38
+T[ "PluginOptionValidate" ] = "Speichern";
 T[ "PluginOptionShowWindow" ] = "Optionsfenster anzeigen";
 T[ "PluginOptionShowWindowBar" ] = "Zeigen Sie das Optionsfenster f\195\188r die Leiste an";
 T[ "PluginOptionNotificationsDeactivated" ] = "Benachrichtigungen deaktiviert";
