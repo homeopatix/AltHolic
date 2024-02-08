@@ -2,6 +2,7 @@
 -- GlobalDE file
 -- Written by Homeopatix
 -- 26 january 2021
+-- Help on translation by : Farothhen
 ------------------------------------------------------------------------------------------
 _G.T = {};
 ------------------------------------------------------------------------------------------
@@ -26,7 +27,12 @@ T[ "PluginReleaseAlias" ] = "/Alt toggle";
 T[ "PluginReleaseAliasTokens" ] = "/Tokens toggle";
 T[ "PluginCalcStatVersionText" ] = "Verwendung von CalcStat von Giseldah : Version";
 T[ "PluginCalcStatVersion" ] = "2.3.1";
-T[ "PluginDateUpdate" ] = "06.02.2024";
+T[ "PluginLangUpdateFR" ] = "FR : Homeo";
+T[ "PluginLangUpdateDE" ] = "DE : Farothhen";
+T[ "PluginLangUpdateEN" ] = "EN : Homeo";
+T[ "PluginTranslators" ] = "\195\156bersetzer";
+T[ "PluginLatestUpdate" ] = "Zuletzt aktualisiert";
+T[ "PluginDateUpdate" ] = "08.02.2024";
 ------------------------------------------------------------------------------------------
 -- ServerName window --
 ------------------------------------------------------------------------------------------
