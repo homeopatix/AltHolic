@@ -26,7 +26,12 @@ T[ "PluginReleaseAlias" ] = "/Alt toggle";
 T[ "PluginReleaseAliasTokens" ] = "/Tokens toggle";
 T[ "PluginCalcStatVersionText" ] = "Using CalcStat by Giseldah : Version";
 T[ "PluginCalcStatVersion" ] = "2.3.1";
-T[ "PluginDateUpdate" ] = "06.02.2024";
+T[ "PluginLangUpdateFR" ] = "FR : Homeo";
+T[ "PluginLangUpdateDE" ] = "DE : Farothhen";
+T[ "PluginLangUpdateEN" ] = "EN : Homeo";
+T[ "PluginTranslators" ] = "Translators";
+T[ "PluginLatestUpdate" ] = "Last Updated";
+T[ "PluginDateUpdate" ] = "08.02.2024";
 ------------------------------------------------------------------------------------------
 -- ServerName window --
 ------------------------------------------------------------------------------------------
