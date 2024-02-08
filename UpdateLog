@@ -1,3 +1,53 @@
+UPDATE V4.44
+(French)
+Correction de l’affichage de l’icône du plugin au-dessus du nom du premier personnage
+Correction du grand espace à gauche/à l’icône suivante si le portefeuille était affiché
+Correction : plus aucune icône ne chevauche le nom du joueur.
+Ajout d’infobulles supplémentaires
+(English)
+Corrected the plugin icon is displayed on top of the first character name
+Corrected the big gap to the left/to the next icon if the wallet was displayed
+Corrected no more icon are overlaping the player name
+added some more tooltips
+(Deutsche)
+Korrigiert: Das Plugin-Symbol wird über dem Namen des ersten Charakters angezeigt
+Die große Lücke nach links/zum nächsten Symbol wurde korrigiert, wenn die Brieftasche angezeigt wurde
+Es wurde korrigiert, dass das Symbol den Spielernamen nicht mehr überlappt
+Einige weitere Tooltips hinzugefügt
+
+UPDATE V4.43
+(French)
+Corriger un bug lors de la première connexion avec un nouveau personnage
+Corriger un problème d'affichage de la fenêtre du cash
+Corriger un problème d'affichage de la fenêtre des statistiques
+Corriger un bug d'affichage de la fenêtre des réputations
+(English)
+Fix a bug when logging in with a new character for the first time
+Fix a problem with the display of the cash window
+Fix an issue with the display of the statistics window
+Fix a bug in the display of the reputation window
+(Deutsche)
+Behebung eines Fehlers beim ersten Einloggen mit einem neuen Charakter
+Behebung eines Problems mit der Anzeige des Kassenfensters
+Behebung eines Problems mit der Anzeige des Statistikfensters
+Behebung eines Fehlers in der Anzeige des Reputationsfensters
+
+UPDATE V4.42
+(French)
+Corriger une faute d'orthographe
+(English)
+Correct a spelling mistake
+(Deutsche)
+Korrigieren Sie einen Rechtschreibfehler
+
+UPDATE V4.41
+(French)
+Ajout d'une option no vocation si vous n'en choisissez pas
+(English)
+Adding a no vocation option if you don't choose one
+(Deutsche)
+Hinzufügen einer Option "Keine Berufung", wenn Sie keine auswählen
+
 UPDATE V4.40
 (French)
 Corrigé une faute de frappe
