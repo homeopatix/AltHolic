@@ -624,3 +624,4 @@ T[ "reputname99" ] = "Acc\195\168l\195\168ration de r\195\168putation";
 T[ "reputname100" ] = "Les voies de la bravoure";
 -- new from U38
 T[ "reputname101" ] = "Le Gondor renaissant";
+T[ "reputname102" ] = "Habitants d'Umbar Baharb\195\170l";
