@@ -49,7 +49,7 @@ T[ "DeleteTextAll" ] = "Bist Du sicher, alle Eintr\195\164ge zu l\195\182schen";
 ------------------------------------------------------------------------------------------
 -- vocations --
 ------------------------------------------------------------------------------------------
-T[ "PluginVocation" ] = "Keines";
+T[ "PluginVocation" ] = "Kein Handwerk";
 T[ "PluginVocation1" ] = "Entdecker";
 T[ "PluginVocation2" ] = "Kesselflicker";
 T[ "PluginVocation3" ] = "Freibauer";
@@ -57,12 +57,12 @@ T[ "PluginVocation4" ] = "Historiker";
 T[ "PluginVocation5" ] = "Waffenbauer";
 T[ "PluginVocation6" ] = "Waldh\195\188ter";
 T[ "PluginVocation7" ] = "R\195\188stungsschmied";
-T[ "PluginVocation8" ] = "Handwerkskunst";
-T[ "PluginVocation9" ] = "W\195\164hle die aktuelle Handwerkskunst aus:"; -- new in U38
+T[ "PluginVocation8" ] = "Handwerk";
+T[ "PluginVocation9" ] = "W\195\164hle dein aktuelles Handwerk aus:"; -- new in U38
 ------------------------------------------------------------------------------------------
 -- professions --
 ------------------------------------------------------------------------------------------
-T[ "PluginProfession" ] = "Kein Handwerk gelernt";
+T[ "PluginProfession" ] = "Keinen Beruf gelernt";
 T[ "PluginProfession1" ] = "Bauer";
 T[ "PluginProfession2" ] = "F\195\182rster";
 T[ "PluginProfession3" ] = "Sch\195\188rfer";
@@ -77,17 +77,17 @@ T[ "PluginProfession10" ] = "Drechsler";
 -- help --
 ------------------------------------------------------------------------------------------
 T[ "PluginHelp1" ] = "\n\nListe der Befehle:\n";
-T[ "PluginHelp2" ] = "/Alt help - Hilfefenster anzeigen.\n";
-T[ "PluginHelp3" ] = "/Alt show - Fenster anzeigen.\n";
-T[ "PluginHelp4" ] = "/Alt hide - Fenster ausblenden.\n";
-T[ "PluginHelp5" ] = "/Alt esc - ESC-Taste aktivieren / deaktivieren.\n";
-T[ "PluginHelp6" ] = "/Alt options - Optionsfenster anzeigen.\n";
-T[ "PluginHelp7" ] = "/Alt clear all - Alle Eintr\195\164ge l\195\182schen.\n";
-T[ "PluginHelp8" ] = "/Alt clear CharakterName - Charakter l\195\182schen.\n";
-T[ "PluginHelp9" ] = "/Alt toggle - Fenster anzeigen / ausblenden.\n";
-T[ "PluginHelp10" ] = "/Alt icon - Symbol anzeigen / ausblenden.\n";
-T[ "PluginHelp11" ] = "/Alt alt - ALT-Taste gedr\195\188ckt halten, um das Symbol zu verschieben.\n";
-T[ "PluginHelp12" ] = "/Alt optionsbar - Optionsfenster f\195\188r die Leiste anzeigen.\n";
+T[ "PluginHelp2" ] = "/alt help - Zeigt das Hilfefenster an.\n";
+T[ "PluginHelp3" ] = "/alt show - Zeigt das Fenster an.\n";
+T[ "PluginHelp4" ] = "/alt hide - Blendet das Fenster aus.\n";
+T[ "PluginHelp5" ] = "/alt esc - Aktiviert/Deaktiviert die Escape-Taste, um das Fenster zu schlie\195\159en.\n";
+T[ "PluginHelp6" ] = "/alt options - Zeigt die Optionen an.\n";
+T[ "PluginHelp7" ] = "/alt clear all - L\195\182scht alle Eintr\195\164ge.\n";
+T[ "PluginHelp8" ] = "/alt clear CharakterName - L\195\182scht den Charakter.\n";
+T[ "PluginHelp9" ] = "/alt toggle - Fenster anzeigen/ausblenden.\n";
+T[ "PluginHelp10" ] = "/alt icon - Symbol anzeigen/ausblenden.\n";
+T[ "PluginHelp11" ] = "/alt alt - Alt-Taste gedr\195\188ckt halten, um das Symbol zu verschieben.\n";
+T[ "PluginHelp12" ] = "/alt optionsbar - Zeigt die Optionen f\195\188r die Leiste an.\n";
 T[ "PluginCloseButton" ] = "Fenster schlie\195\159en";
 T[ "PluginVaultSaved" ] = "Bank gespeichert";
 T[ "PluginBagSaved" ] = "Inventar gespeichert";
@@ -214,7 +214,7 @@ T[ "PluginHelpWindow28" ] = "Klicke auf die Schaltfl\195\164che \'Fenster schlie
 T[ "PluginHelpWindow29" ] = "um die Einstellung zu speichern.\n\n";
 T[ "PluginTitreHelpWindow5" ] = "Hilfe f\195\188r das Geschlecht";
 -- help for Vocation
-T[ "PluginHelpWindow30" ] = "Klicke auf die Schaltfl\195\164che \'Handwerkskunst festlegen\'.\n\n";
+T[ "PluginHelpWindow30" ] = "Klicke auf die Schaltfl\195\164che \'Handwerk festlegen\'.\n\n";
 T[ "PluginHelpWindow31" ] = "W\195\164hle das Handwerk des aktuellen Charakters\naus, ";
 T[ "PluginHelpWindow32" ] = "indem du den entsprechenden Haken setzt.\n\n";
 T[ "PluginHelpWindow33" ] = "Klicke auf die Schaltfl\195\164che \'Speichern\', ";
@@ -377,7 +377,7 @@ T[ "PluginGendreText2" ] = "Frau";
 ------------------------------------------------------------------------------------------
 -- option window for Bar --
 ------------------------------------------------------------------------------------------
-T[ "PluginOptionsBarText" ] = "AltHolic Bar Optionen";
+T[ "PluginOptionsBarText" ] = "AltHolic-Leiste Optionen";
 T[ "PluginOptionBar1" ] = "Zeigen Sie die Symbole an";
 T[ "PluginOptionBar0" ] = "Anzuzeigende Symbole";
 T[ "PluginOptionBar2" ] = " Spieler-Werte anzeigen";
@@ -428,9 +428,9 @@ T[ "PluginOption23" ] = " Maximalstufe anzeigen";
 T[ "PluginOption24" ] = "Charaktere der folgenden Server anzeigen";
 T[ "PluginOption25" ] = "AltHolic-Leiste anzeigen";
 T[ "PluginOption26" ] = "Leiste am oberen Bildschirmrand anzeigen";
-T[ "PluginOption27" ] = "Handwerkskunst festlegen"; -- new in U38
+T[ "PluginOption27" ] = "Handwerk festlegen"; -- new in U38
 T[ "PluginOptionValidate" ] = "Speichern";
-T[ "PluginOptionShowWindow" ] = "Optionsfenster anzeigen";
+T[ "PluginOptionShowWindow" ] = "Optionen werden angezeigt";
 T[ "PluginOptionShowWindowBar" ] = "Zeigen Sie das Optionsfenster f\195\188r die Leiste an";
 T[ "PluginOptionNotificationsDeactivated" ] = "Benachrichtigungen deaktiviert";
 T[ "PluginOptionNotificationsActivated" ] = "Benachrichtigungen aktiviert";
@@ -446,7 +446,7 @@ T[ "reputText2" ] = "HdRO-Punkte erh\195\182ht um";
 ------------------------------------------------------------------------------------------
 T[ "reputposition100" ] = "Ruf-Fraktionen";
 T[ "reputposition0" ] = "W\195\164hle den aktuellen Titel";
-T[ "reputposition" ] = "Maximale Geltung erreicht";
+T[ "reputposition" ] = "Maximale Rufstufe erreicht";
 T[ "reputposition1" ] = "Feind";
 T[ "reputposition2" ] = "Au\195\159enseiter";
 T[ "reputposition3" ] = "Neutral";
