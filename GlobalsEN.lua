@@ -624,3 +624,4 @@ T[ "reputname99" ] = "Reputation Acceleration";
 T[ "reputname100" ] = "The Paths of Valour";
 -- new from U38
 T[ "reputname101" ] = "The Renewal of Gondor";
+T[ "reputname102" ] = "Citizens of Umbar Baharb\195\170l";
