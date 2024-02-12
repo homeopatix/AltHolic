@@ -625,4 +625,4 @@ T[ "reputname99" ] = "Rufbeschleunigung";
 T[ "reputname100" ] = "Die Pfade der Tapferkeit";
 -- new from U38
 T[ "reputname101" ] = "Die Erneuerung Gondors";
-T[ "reputname102" ] = "Einwohner von Umbar Baharb\195\170l";
+T[ "reputname102" ] = "B\195\188rger von Umbar Baharb\195\170l";
