@@ -364,10 +364,10 @@ T[ "PluginStats31" ] = "Phys. Fernkampf";
 T[ "PluginStats32" ] = "Ork-Waffe";
 T[ "PluginStats33" ] = "Hass";
 T[ "PluginStats34" ] = "Zerst\195\182rerischer Treffer";
-T[ "PluginStats35" ] = "Gelb - capped";
-T[ "PluginStats36" ] = "Orange - T2 capped";
-T[ "PluginStats37" ] = "Rot - neu T2 capped";
-T[ "PluginStats38" ] = "Lila - neu T3-5 capped";
+T[ "PluginStats35" ] = "Gelb - Limit";
+T[ "PluginStats36" ] = "Orange - T2 Limit";
+T[ "PluginStats37" ] = "Rot - neu T2 Limit";
+T[ "PluginStats38" ] = "Lila - neu T3-5 Limit";
 ------------------------------------------------------------------------------------------
 -- gendre window --
 ------------------------------------------------------------------------------------------
