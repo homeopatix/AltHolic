@@ -1,3 +1,11 @@
+UPDATE V4.48
+(French)
+Corrigé un bug qui n'affichait plus l'argent de session correctement
+(English)
+Fixed a bug that caused session money to no longer display correctly
+(Deutsche)
+Es wurde ein Fehler behoben, der dazu führte, dass das Sitzungsgeld nicht mehr korrekt angezeigt wurde.
+
 UPDATE V4.47
 (French)
 Mise à jour de la version Allemande, merci à Farothhen pour son travail
