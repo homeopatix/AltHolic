@@ -1,3 +1,20 @@
+UPDATE V4.49
+(French)
+Corrigé un bug dans la fenêtre des statistiques
+Changé le texte de la fenêtre des statistiques en Allemand pour une meilleur compréhension
+Changé la font du texte de la fenêtre des statistiques en Allemand pour une meilleur lisibilité
+Merci a Farothhen pour son travail sur l'allemand
+(English)
+Fixed a bug in the stats window
+Changed the text of the statistics window to German for better comprehension
+Changed the text of the statistics window to German for better readability
+Thanks to Farothhen for his work on German
+(Deutsche)
+Ein Fehler im Statistikfenster wurde behoben
+Der Text des Statistikfensters wurde zum besseren Verständnis auf Deutsch umgestellt
+Der Text des Statistikfensters wurde zur besseren Lesbarkeit auf Deutsch geändert
+Danke an Farothhen für seine Arbeit an der deutschen
+
 UPDATE V4.48
 (French)
 Corrigé un bug qui n'affichait plus l'argent de session correctement
