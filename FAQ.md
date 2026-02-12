@@ -28,7 +28,7 @@ Merci de respecter le style Lua du projet.
 
 # 📜 Changelog
 
-Voir `UpdateLog` pour l’historique complet.
+Voir `ChangeLog.md` pour l’historique complet.
 
 ---
 
