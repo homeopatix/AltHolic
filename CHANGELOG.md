@@ -433,3 +433,476 @@
 
 ### 🇩🇪 Deutsch
 - Der neue Ruf der U36-Version wurde hinzugefügt: Die Pfade der Tapferkeit
+
+---
+
+## V4.19
+
+### 🇫🇷 Français
+- Utilise la derniere version du calcstat 2.1.3 de Giseldah que vous pouvez trouver [ici](https://www.lotrointerface.com/downloads/info1022-CalcStat.html)
+
+### 🇬🇧 English
+- Uses the latest version of the Giseldah calcstat 2.1.3 you can find [here](https://www.lotrointerface.com/downloads/info1022-CalcStat.html)
+
+### 🇩🇪 Deutsch
+- Verwendet die neueste Version von Giseldah Calcstat 2.1.3, die Sie [hier](https://www.lotrointerface.com/downloads/info1022-CalcStat.html) finden können
+
+---
+
+## V4.18
+
+### 🇫🇷 Français
+- Utilise la derniere version du calcstat de Giseldah que vous pouvez trouver [ici](https://www.lotrointerface.com/downloads/info1022-CalcStat.html)
+
+### 🇬🇧 English
+- Uses the latest version of the Giseldah calcstat you can find [here](https://www.lotrointerface.com/downloads/info1022-CalcStat.html)
+
+### 🇩🇪 Deutsch
+- Verwendet die neueste Version von Giseldah Calcstat, die Sie [hier](https://www.lotrointerface.com/downloads/info1022-CalcStat.html) finden können
+
+---
+
+## V4.17
+
+### 🇫🇷 Français
+- Modification d'un fonction de separation de string dans la fontion Split
+
+### 🇬🇧 English
+- Modification of a string separation function in the Split function
+
+### 🇩🇪 Deutsch
+- Modifikation einer String-Trennfunktion in der Split-Funktion
+
+---
+
+## V4.16
+
+### 🇫🇷 Français
+- Modification du positionnement de la fenetre d'affichage des professions, elle s'adapte a la position de l'addon sur l'ecran
+
+### 🇬🇧 English
+- Modification of the position of the display window of professions, it adapts to the position of the addon on the screen
+
+### 🇩🇪 Deutsch
+- Änderung der Position des Anzeigefensters von Berufen, es passt sich der Position des Addons auf dem Bildschirm an
+
+---
+
+## V4.15
+
+### 🇫🇷 Français
+- Modification du positionnement de la fenetre d'affichage des professions
+
+### 🇬🇧 English
+- Modification of the positioning of the display window of professions
+
+### 🇩🇪 Deutsch
+- Anpassung der Positionierung des Anzeigefensters der Berufe
+
+---
+
+## V4.14
+
+### 🇫🇷 Français
+- Utilise la derniere version du calcstat de Giseldah que vous pouvez trouver [ici](https://www.lotrointerface.com/downloads/info1022-CalcStat.html)
+
+### 🇬🇧 English
+- Uses the latest version of the Giseldah calcstat you can find [here](https://www.lotrointerface.com/downloads/info1022-CalcStat.html)
+
+### 🇩🇪 Deutsch
+- Verwendet die neueste Version von Giseldah Calcstat, die Sie [hier](https://www.lotrointerface.com/downloads/info1022-CalcStat.html) finden können
+
+---
+
+## V4.13
+
+### 🇫🇷 Français
+- Corriger un bug de mise a jour de l'expérience et du gain de réputation
+
+### 🇬🇧 English
+- Fix a bug with updating experience and gaining reputation
+
+### 🇩🇪 Deutsch
+- Beheben Sie einen Fehler, indem Sie Erfahrung aktualisieren und an Reputation gewinnen
+
+---
+
+## V4.12
+
+### 🇫🇷 Français
+- Rajouter 6 réputations
+
+### 🇬🇧 English
+- Add 6 reputations
+
+### 🇩🇪 Deutsch
+- Füge 6 Rufe hinzu
+
+---
+
+## V4.11
+
+### 🇫🇷 Français
+- Deplacer la fentre pop-up des professions pour les petites résolution
+
+### 🇬🇧 English
+- Move the pop-up window of professions for small resolutions
+
+### 🇩🇪 Deutsch
+- Bewegen Sie das Popup-Fenster der Berufe für kleine Auflösungen
+
+---
+
+## V4.10
+
+### 🇫🇷 Français
+- Corrections de bugs et optimization du code
+
+### 🇬🇧 English
+- Bug fixes and code optimization
+
+### 🇩🇪 Deutsch
+- Fehlerbehebungen und Codeoptimierung
+
+---
+
+## V4.09
+
+### 🇫🇷 Français
+- Corrections d'un bug qui empechait l'affichage correct du nom de Tolkien
+
+### 🇬🇧 English
+- Fixed a bug that prevented Tolkien's name from displaying correctly
+
+### 🇩🇪 Deutsch
+- Es wurde ein Fehler behoben, der verhinderte, dass Tolkiens Name korrekt angezeigt wurde
+
+---
+
+## V4.08
+
+### 🇫🇷 Français
+- Corrections d'un bug qui empechait l'affichage de la fenêtre d'aide
+
+### 🇬🇧 English
+- Fixed a bug that cluttered the display of the help window
+
+### 🇩🇪 Deutsch
+- Es wurde ein Fehler behoben, der die Anzeige des Hilfefensters überladen hat
+
+---
+
+## V4.07
+
+### 🇫🇷 Français
+- Corrections de bugs
+- Optimisation de codes
+
+### 🇬🇧 English
+- Bug fixes
+- Code optimization
+
+### 🇩🇪 Deutsch
+- Fehlerbehebungen
+- Code-Optimierung
+
+---
+
+## V4.06
+
+### 🇫🇷 Français
+- Corrections de bugs
+- Optimisation de codes
+
+### 🇬🇧 English
+- Bug fixes
+- Code optimization
+
+### 🇩🇪 Deutsch
+- Fehlerbehebungen
+- Code-Optimierung
+
+---
+
+## V4.05
+
+### 🇫🇷 Français
+- Correction d'un bug d'affichage de la bar lors du changements d'options
+
+### 🇬🇧 English
+- Fixed bar display bug when changing options
+
+### 🇩🇪 Deutsch
+- Fehler bei der Balkenanzeige beim Ändern von Optionen behoben
+
+---
+
+## V4.04
+
+### 🇫🇷 Français
+- Correction d'un bug d'affichage des fenetres depuis la bar
+
+### 🇬🇧 English
+- Fixed a window display bug from the bar
+
+### 🇩🇪 Deutsch
+- Ein Fehler bei der Fensteranzeige in der Leiste wurde behoben
+
+---
+
+## V4.03
+
+### 🇫🇷 Français
+- Corrections de bugs
+- Optimisation de codes
+
+### 🇬🇧 English
+- Bug fixes
+- Code optimization
+
+### 🇩🇪 Deutsch
+- Fehlerbehebungen
+- Code-Optimierung
+
+---
+
+## V4.02
+
+### 🇫🇷 Français
+- Corrections de bugs
+- Optimisation de codes
+
+### 🇬🇧 English
+- Bug fixes
+- Code optimization
+
+### 🇩🇪 Deutsch
+- Fehlerbehebungen
+- Code-Optimierung
+
+---
+
+## V4.01
+
+### 🇫🇷 Français
+- Mise à jour de l'auto Update de la bar AltHolic
+
+### 🇬🇧 English
+- AltHolic Bar Auto Update Update
+
+### 🇩🇪 Deutsch
+- Automatische Aktualisierung der AltHolic-Leiste
+
+---
+
+## V4.0
+
+### 🇫🇷 Français
+- Réécriture de la gestion des fenetres lors de l'appui sur F12
+- Diverses corrections de bugs
+- Quelques optimisation de codes
+
+### 🇬🇧 English
+- Rewrite of window management when pressing F12
+- Various bug fixes
+- Some code optimization
+
+### 🇩🇪 Deutsch
+- Umschreiben der Fensterverwaltung beim Drücken von F12
+- Diverse Fehlerbehebungen
+- Etwas Code-Optimierung
+
+---
+
+## V3.23 – V3.24
+
+### 🇫🇷 Français
+- Rajout d'une explication dans le fichier init pour sauvegarder uniquement par server
+
+### 🇬🇧 English
+- Added an explanation in the init file to save only by server
+
+### 🇩🇪 Deutsch
+- Eine Erklärung in der Init-Datei hinzugefügt, um nur vom Server zu speichern
+
+---
+
+## V3.22
+
+### 🇫🇷 Français
+- Diverses corrections de bugs
+
+### 🇬🇧 English
+- Various bug fixes
+
+### 🇩🇪 Deutsch
+- Diverse Fehlerbehebungen
+
+---
+
+## V3.21
+
+### 🇫🇷 Français
+- Diverses corrections de bugs
+
+### 🇬🇧 English
+- Various bug fixes
+
+### 🇩🇪 Deutsch
+- Diverse Fehlerbehebungen
+
+---
+
+## V3.20
+
+### 🇫🇷 Français
+- Rajout d'une options pour afficher la taille du sac dans la barre
+
+### 🇬🇧 English
+- Addition of an option to display the size of the bag in the bar
+
+### 🇩🇪 Deutsch
+- Option zur Anzeige der Taschengröße in der Leiste hinzugefügt
+
+---
+
+## V3.19
+
+### 🇫🇷 Français
+- Diverses corrections de bugs
+
+### 🇬🇧 English
+- Various bug fixes
+
+### 🇩🇪 Deutsch
+- Diverse Fehlerbehebungen
+
+---
+
+## V3.18
+
+### 🇫🇷 Français
+- Optimisation de la fenetre de recherche, pour un résultat de recherche plus rapide
+
+### 🇬🇧 English
+- Optimization of the search window, for a faster search result
+
+### 🇩🇪 Deutsch
+- Optimierung des Suchfensters, für ein schnelleres Suchergebnis
+
+---
+
+## V3.17
+
+### 🇫🇷 Français
+- Rajout d'une options pour fermer la fenetre serveur avec double clique sur l'icone
+- Correction d'un bug d'affichage du texte dans la fenetre d'option de la barre
+
+### 🇬🇧 English
+- Addition of an option to close the server window with double click on the icon
+- Fixed a text display bug in the toolbar option window
+
+### 🇩🇪 Deutsch
+- Hinzufügen einer Option zum Schließen des Serverfensters mit Doppelklick auf das Symbol
+- Fehler bei der Textanzeige im Optionsfenster der Symbolleiste behoben
+
+---
+
+## V3.16
+
+### 🇫🇷 Français
+- Correction d'un bogues dans le fichier de FCT
+
+### 🇬🇧 English
+- Fixed a bug in the FCT file
+
+### 🇩🇪 Deutsch
+- Fehler in der FCT-Datei behoben
+
+---
+
+## V3.15
+
+### 🇫🇷 Français
+- Diverses corrections de bugs
+
+### 🇬🇧 English
+- Various bugs fixes
+
+### 🇩🇪 Deutsch
+- Diverse Fehlerbehebungen
+
+---
+
+## V3.14
+
+### 🇫🇷 Français
+- Rajout d'une fenetre pour afficher l'experience des autres personnages
+
+### 🇬🇧 English
+- Addition of a window to display the experience of other characters
+
+### 🇩🇪 Deutsch
+- Hinzufügen eines Fensters, um die Erfahrung anderer Charaktere anzuzeigen
+
+---
+
+## V3.13
+
+### 🇫🇷 Français
+- Corrigé un bogues dans la gestion de la reputation dans la fenetre de reputation
+- Correction de bogues
+- Ajustement de la barre de defilement dans la fenetre des livres epiques
+
+### 🇬🇧 English
+- Fixed a bug in reputation management in the reputation window
+- Bug fixes
+- Adjusted the scroll bar in the Epic Books window
+
+### 🇩🇪 Deutsch
+- Fehler im Reputationsmanagement im Reputationsfenster behoben
+- Fehlerbehebung
+- Bildlaufleiste im Fenster Epic Books angepasst
+
+---
+
+## V3.12
+
+### 🇫🇷 Français
+- Corrigé un bogues dans la gestion de la reputation dans la fenetre de reputation
+
+### 🇬🇧 English
+- Fixed a bug in reputation management in the reputation window
+
+### 🇩🇪 Deutsch
+- Fehler im Reputationsmanagement im Reputationsfenster behoben
+
+---
+
+## V3.11
+
+### 🇫🇷 Français
+- Supprimer le sensible a la casse dans la recherche
+- Rajout d'une barre de defilement dans la fenetre du stockage partagé
+
+### 🇬🇧 English
+- Remove case sensitive from search
+- Addition of a scroll bar in the shared storage window
+
+### 🇩🇪 Deutsch
+- Groß-/Kleinschreibung aus der Suche entfernen
+- Hinzufügen einer Bildlaufleiste im Shared Storage-Fenster
+
+---
+
+## V3.10
+
+### 🇫🇷 Français
+- Quelques correction de bogues sur la barre
+
+### 🇬🇧 English
+- Some bugs fixes on the bar
+
+### 🇩🇪 Deutsch
+- Einige Fehlerbehebungen in der Leiste
+
