@@ -906,3 +906,393 @@
 ### 🇩🇪 Deutsch
 - Einige Fehlerbehebungen in der Leiste
 
+---
+
+## V3.09
+
+### 🇫🇷 Français
+- Quelques correction de bogues
+
+### 🇬🇧 English
+- Some bugs fixes
+
+### 🇩🇪 Deutsch
+- Einige Fehlerbehebungen
+
+---
+
+## V3.08
+
+### 🇫🇷 Français
+- Quelques correction de bogues
+
+### 🇬🇧 English
+- Some bugs fixes
+
+### 🇩🇪 Deutsch
+- Einige Fehlerbehebungen
+
+---
+
+## V3.07
+
+### 🇫🇷 Français
+- Quelques correction de bogues
+
+### 🇬🇧 English
+- Some bugs fixes
+
+### 🇩🇪 Deutsch
+- Einige Fehlerbehebungen
+
+---
+
+## V3.06
+
+### 🇫🇷 Français
+- Quelques correction de bogues
+
+### 🇬🇧 English
+- Some bugs fixes
+
+### 🇩🇪 Deutsch
+- Einige Fehlerbehebungen
+
+---
+
+## V3.05
+
+### 🇫🇷 Français
+- Correction d'un probleme d'affichage de la barre
+
+### 🇬🇧 English
+- Fixed a bar display problem
+
+### 🇩🇪 Deutsch
+- Problem mit der Balkenanzeige behoben
+
+---
+
+## V3.04
+
+### 🇫🇷 Français
+- Correction d'un bug dans le fichier de FCT
+
+### 🇬🇧 English
+- Fixed a bug in the FCT file
+
+### 🇩🇪 Deutsch
+- Fehler in der FCT-Datei behoben
+
+---
+
+## V3.03
+
+### 🇫🇷 Français
+- Correction d'un probleme d'affichage avec la nouvelle barre
+
+### 🇬🇧 English
+- Fixed a display issue with the new bar
+
+### 🇩🇪 Deutsch
+- Anzeigeproblem mit der neuen Leiste behoben
+
+---
+
+## V3.02
+
+### 🇫🇷 Français
+- Quelques correction de bogues
+
+### 🇬🇧 English
+- Some bugs fixes
+
+### 🇩🇪 Deutsch
+- Einige Fehlerbehebungen
+
+---
+
+## V3.01
+
+### 🇫🇷 Français
+- Corriger un bogues de gestion de la touche F12
+
+### 🇬🇧 English
+- Fix a bug in handling the F12 key
+
+### 🇩🇪 Deutsch
+- Behebung eines Fehlers bei der Handhabung der F12-Taste
+
+---
+
+## V3.0
+
+### 🇫🇷 Français
+- Rajout d'une barre affichable dans les options au sommet de l'ecran
+- Quelques correction de bogues
+
+### 🇬🇧 English
+- Addition of a displayable bar in the options at the top of the screen
+- Some bugs fixes
+
+### 🇩🇪 Deutsch
+- Hinzufügen einer anzeigbaren Leiste in den Optionen am oberen Bildschirmrand
+- Einige Fehlerbehebungen
+
+---
+
+## V2.73
+
+### 🇫🇷 Français
+- Corriger un bogues de gestion de la touche F12 pour cacher entièrement le HUD
+
+### 🇬🇧 English
+- Fix a bug in the handling of the F12 key to completely hide the HUD
+
+### 🇩🇪 Deutsch
+- Behebung eines Fehlers bei der Handhabung der F12-Taste, um das HUD vollständig auszublenden
+
+---
+
+## V2.72
+
+### 🇫🇷 Français
+- Corriger un bogues d'affichage pour les nom de joueur très long
+
+### 🇬🇧 English
+- Fix a display bug for very long player names
+
+### 🇩🇪 Deutsch
+- Behebung eines Anzeigefehers für sehr lange Spielernamen
+
+---
+
+## V2.71
+
+### 🇫🇷 Français
+- Rajout d'une fenetre de validation pour ne pas effacer un personnage par accident
+
+### 🇬🇧 English
+- Addition of a validation window to not delete a character by accident
+
+### 🇩🇪 Deutsch
+- Hinzufügen eines Validierungsfensters, um ein Zeichen nicht versehentlich zu löschen
+
+---
+
+## V2.70
+
+### 🇫🇷 Français
+- Rajout d'une options pour afficher une icone de suppresion de personnage
+
+### 🇬🇧 English
+- Addition of an option to display a character deletion icon
+
+### 🇩🇪 Deutsch
+- Hinzufügen einer Option zum Anzeigen eines Symbols zum Löschen von Zeichen
+
+---
+
+## V2.69
+
+### 🇫🇷 Français
+- Corriger un bogues dans la fenetre des livres epiques
+
+### 🇬🇧 English
+- Fix a bug in the Epic Books window
+
+### 🇩🇪 Deutsch
+- Behebung eines Fehlers im Fenster von Epic Books
+
+---
+
+## V2.68
+
+### 🇫🇷 Français
+- Mise a jour des statistique utilisant [CalcStat](https://www.lotrointerface.com/downloads/info1022-CalcStat.html), la denrier version 1.8.0 de Giseldah
+
+### 🇬🇧 English
+- Update statistics using [CalcStat](https://www.lotrointerface.com/downloads/info1022-CalcStat.html), the last version 1.8.0 of Giseldah
+
+### 🇩🇪 Deutsch
+- Aktualisieren Sie die Statistiken mit [CalcStat](https://www.lotrointerface.com/downloads/info1022-CalcStat.html), die letzte Version 1.8.0 von Giseldah
+
+---
+
+## V2.67
+
+### 🇫🇷 Français
+- Corriger une erreur d'affichage dans le fenetre d'argent
+- Corriger une erreur d'affichage dans le fenetre des quetes epiques
+- Corriger une erreur d'affichage de l'argent possédé par le joueur
+- Corriger la taille des fenetre qui ne s'ajustait pas correctement au nombre de personnage
+- Corriger une erreur d'affichage du boutons des quetes epique
+- Corriger une erreur d'affichage du bouton de recherche
+
+### 🇬🇧 English
+- Correct a display error in the money window
+- Correct a display error in the epic quest window
+- Correct an error in displaying the money owned by the player
+- Correct the window size that did not fit correctly to the number of characters
+- Correct an error in the display of the epic quest buttons
+- Correct a search button display error
+
+### 🇩🇪 Deutsch
+- Korrigieren Sie einen Anzeigefehler im Geldfenster
+- Korrigiere einen Anzeigefehler im epischen Questfenster
+- Korrigieren Sie einen Fehler bei der Anzeige des Geldes des Spielers
+- Korrigieren Sie die Fenstergröße, die nicht richtig auf die Anzahl der Zeichen passte
+- Korrigiere einen Fehler in der Anzeige der epischen Quest-Buttons
+- Korrigieren Sie einen Anzeigefehler der Suchschaltfläche
+
+---
+
+## V2.66
+
+### 🇫🇷 Français
+- Rajout d'une options pour afficher les différents serveurs
+- Permet de trier l'affichage par serveur
+
+### 🇬🇧 English
+- Addition of an option to display the different servers
+- Allows you to sort the display by server
+
+### 🇩🇪 Deutsch
+- Hinzufügen einer Option zur Anzeige der verschiedenen Server
+- Ermöglicht die Sortierung der Anzeige nach Server
+
+---
+
+## V2.65
+
+### 🇫🇷 Français
+- Corrections de bugs
+
+### 🇬🇧 English
+- Bug fixes
+
+### 🇩🇪 Deutsch
+- Fehlerbehebung
+
+---
+
+## V2.64
+
+### 🇫🇷 Français
+- Mise a jour des statistiques utilisant [CalcStat](https://www.lotrointerface.com/downloads/info1022-CalcStat.html) version de Giseldah
+
+### 🇬🇧 English
+- Updating statistics using the [CalcStat](https://www.lotrointerface.com/downloads/info1022-CalcStat.html) version of Giseldah
+
+### 🇩🇪 Deutsch
+- Aktualisieren von Statistiken mit dem [CalcStat](https://www.lotrointerface.com/downloads/info1022-CalcStat.html) version von Giseldah
+
+---
+
+## V2.63
+
+### 🇫🇷 Français
+- Mise a jour du niveau maxium a 140
+- Rajout de la nouvelle faction de Gundabad
+
+### 🇬🇧 English
+- Updated max level to 140
+- Addition of the new faction of Gundabad
+
+### 🇩🇪 Deutsch
+- Maximales Level auf 140 aktualisiert
+- Aufnahme der neuen Fraktion von Gundabad
+
+---
+
+## V2.61
+
+### 🇫🇷 Français
+- Rajout de la nouvelle classe le bagarreur
+
+### 🇬🇧 English
+- Addition of the new class the brawler
+
+### 🇩🇪 Deutsch
+- Aufnahme der neuen Klasse der Schläger
+
+---
+
+## V2.60
+
+### 🇫🇷 Français
+- Nettoyage de code et optimization
+
+### 🇬🇧 English
+- Code cleaning and optimization
+
+### 🇩🇪 Deutsch
+- Codebereinigung und -optimierung
+
+---
+
+## V2.58
+
+### 🇫🇷 Français
+- Mise a jour du niveau de l'addon
+- Correction de bugs mineur
+- Correction de fautes d'hortographe en Français
+
+### 🇬🇧 English
+- Update addon level
+- Minor bug fixes
+- Correction of spelling errors in French
+
+### 🇩🇪 Deutsch
+- Add-on-Level aktualisieren
+- Kleinere Fehlerbehebungen
+- Korrektur von Rechtschreibfehlern in Französisch
+
+---
+
+## V2.57
+
+### 🇫🇷 Français
+- Modification de la position de la fenetre d'information des données de personnage
+
+### 🇬🇧 English
+- Changing the Position of the Character Data Info Window
+
+### 🇩🇪 Deutsch
+- Ändern der Position des Zeichendaten-Infofensters
+
+---
+
+## V2.56
+
+### 🇫🇷 Français
+- Correction d'un bug d'affichage de la fenetre de profession si beaucoup de characters
+- Definition d'un timer pour la sauvegarde du sac a dos et du stockage partagé
+- Rajout d'un controle de sauvegarde uniquement si pas en combat
+
+### 🇬🇧 English
+- Fixed a display bug in the profession window if a lot of characters
+- Definition of a timer for backing up the backpack and shared storage
+- Addition of a save control only if not in combat
+
+### 🇩🇪 Deutsch
+- Anzeigefehler im Berufsfenster behoben, wenn viele Charaktere
+- Definition eines Timers zum Sichern des Rucksacks und gemeinsamen Speichers
+- Hinzufügen einer Speicherkontrolle nur, wenn nicht im Kampf
+
+---
+
+## V2.54
+
+### 🇫🇷 Français
+- Correction d'un bug d'affichage si la résolution d'ecran est trop petite pour la fenetre du stockage partagé et pour la fenetre des livres epiques
+
+### 🇬🇧 English
+- Fixed a display bug if the screen resolution is too small for the shared storage window and for the epic books window
+
+### 🇩🇪 Deutsch
+- Anzeigefehler bei zu kleiner Bildschirmauflösung behoben für das gemeinsame Speicherfenster und für das epische Bücherfenster
+
+---
+
+
