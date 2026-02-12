@@ -54,7 +54,7 @@ partagé, statistiques, réputations et quêtes épiques.
   Action               Touche\
   -------------------- ----------------------------\
   Déplacer l'icône     `ALT` (si activé)\
-  Ouvrir les options   `SHIFT + clic sur l’icône`\
+  Ouvrir les options   `SHIFT + clic sur l’icône`
 
 ------------------------------------------------------------------------
 
