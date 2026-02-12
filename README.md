@@ -34,20 +34,20 @@ partagé, statistiques, réputations et quêtes épiques.
 
 ## 📌 Commandes Chat
 
-  Commande                   Description
-  -------------------------- ---------------------------------------------------------
-  `/Alt show`                Montre la fenêtre principale
-  `/Alt hide`                Cache la fenêtre principale
-  `/Alt toggle`              Bascule l'affichage de la fenêtre
-  `/Alt esc`                 Active ou désactive la touche Escape
-  `/Alt options`             Affiche la fenêtre d'options
-  `/Alt optionsbar`          Affiche la fenêtre d'options de la barre
-  `/Alt icon`                Affiche ou masque l'icône
-  `/Alt alt`                 Active ou désactive la touche ALT pour déplacer l'icône
-  `/Alt delete all`          Efface toutes les entrées
-  `/Alt delete NomDuPerso`   Efface le personnage spécifié
+  Commande                   Description\
+  -------------------------- ---------------------------------------------------------\
+  `/Alt show`                Montre la fenêtre principale\
+  `/Alt hide`                Cache la fenêtre principale\
+  `/Alt toggle`              Bascule l'affichage de la fenêtre\
+  `/Alt esc`                 Active ou désactive la touche Escape\
+  `/Alt options`             Affiche la fenêtre d'options\
+  `/Alt optionsbar`          Affiche la fenêtre d'options de la barre\
+  `/Alt icon`                Affiche ou masque l'icône\
+  `/Alt alt`                 Active ou désactive la touche ALT pour déplacer l'icône\
+  `/Alt delete all`          Efface toutes les entrées\
+  `/Alt delete NomDuPerso`   Efface le personnage spécifié\
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------\
 
 ## 🎹 Raccourcis
 
