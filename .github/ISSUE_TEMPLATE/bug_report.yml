@@ -1,0 +1,29 @@
+name: Bug report
+description: Signaler un bug
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: textarea
+    attributes:
+      label: Description
+      description: Qu’est-ce qui ne va pas ?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: Étapes pour reproduire
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: LOTRO version
+      placeholder: "ex: Update xx / build ..."
+  - type: input
+    attributes:
+      label: AltHolic version
+      placeholder: "ex: x.y.z"
+  - type: textarea
+    attributes:
+      label: Logs / Screenshots
+      description: Ajoute des logs/captures si possible
