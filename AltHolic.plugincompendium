@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PluginConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Id>1126</Id>
+  <Name>AltHolic</Name>
+  <Version>4.52</Version>
+  <Author>Homeopatix</Author>
+ <Description>
+DESCRIPTION (Francais)
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+AltHolic est un petit plugin pour avoir une vision rapide de vos alts
+Affiche l'equipement, le porte-monnaie, le coffre, le sac a dos et le stockage partage de vos alts
+Vous devez pressez la touche alt pour deplacer l'icone
+Pressez la touche shift sur l'icone pour afficher les options
+
+DESCRIPTION (English)
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+AltHolic is a small plugin to have a quick view of your alts
+Displays the equipment, wallet, vault, backpack and shared storage of your alts
+You must press the alt key to move the icon
+Press the shift key on the icon to display the options
+
+DESCRIPTION (Deutsche)  
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+AltHolic ist ein kleines Plugin, mit dem Sie schnell einen Uberblick uber Ihre Alts erhalten
+Zeigt die Ausrustung, die Brieftasche, den Tresor, den Rucksack und die gemeinsame Aufbewahrung 
+Ihrer Alts anSie mussen die Alt-Taste drucken, um das Symbol zu verschieben
+Drucken Sie die Umschalttaste auf dem Symbol, um die Optionen anzuzeigen
+
+LIST OF ALL COMMANDS
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+(French)
+/Alt show -- montre l aide
+(English)
+/Alt show - show the help
+(Deutsche)
+/Alt show - zeige das hilfe
+</Description>
+  <InfoUrl>http://www.lotrointerface.com/downloads/info1126</InfoUrl>
+  <DownloadUrl>http://www.lotrointerface.com/downloads/download1126</DownloadUrl>
+  <Descriptors>
+    <descriptor>Homeopatix\AltHolic.plugin</descriptor>
+  </Descriptors>
+</PluginConfig>
