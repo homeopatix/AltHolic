@@ -67,7 +67,7 @@ partagé, statistiques, réputations et quêtes épiques.
     Documents\The Lord of the Rings Online\Plugins\Homeopatix
 
 4.  En jeu :
-5.  
+    
     /plugins load AltHolic
 
 ------------------------------------------------------------------------
