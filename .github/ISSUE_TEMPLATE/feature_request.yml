@@ -1,0 +1,17 @@
+name: Feature request
+description: Proposer une amélioration
+title: "[FEATURE] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    attributes:
+      label: Besoin
+      description: Quel problème ça résout ?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Solution proposée
+      description: Comment tu le verrais dans AltHolic ?
+    validations:
+      required: true
