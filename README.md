@@ -51,7 +51,7 @@ partagé, statistiques, réputations et quêtes épiques.
 
 ## 🎹 Raccourcis
 
-  Action               Touche
+  Action               Touche\
   -------------------- ----------------------------\
   Déplacer l'icône     `ALT` (si activé)\
   Ouvrir les options   `SHIFT + clic sur l’icône`\
