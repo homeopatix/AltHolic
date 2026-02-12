@@ -1295,4 +1295,467 @@
 
 ---
 
+---
+
+## V2.53
+
+### 🇫🇷 Français
+- Correction d'un bug avec les reputations
+
+### 🇬🇧 English
+- Fixed a bug with reputations
+
+### 🇩🇪 Deutsch
+- Fehler mit Reputationen behoben
+
+---
+
+## V2.52
+
+### 🇫🇷 Français
+- Nettoyage et optimisation du code
+
+### 🇬🇧 English
+- Code cleaning and optimization
+
+### 🇩🇪 Deutsch
+- Codebereinigung und -optimierung
+
+---
+
+## V2.51
+
+### 🇫🇷 Français
+- Corriger un bug dans les réputations qui commence par etranger
+
+### 🇬🇧 English
+- Fix a bug in reputations that starts with foreigner
+
+### 🇩🇪 Deutsch
+- Reputationsfehler behoben, der mit Ausländer beginnt
+
+---
+
+## V2.50
+
+### 🇫🇷 Français
+- Corriger une erreur de texte dans les nouvelle reputation en francais
+- Redimentione automatiquement certaines fenetres si la resolution d'ecran est plus petite
+
+### 🇬🇧 English
+- Correct a text error in the new French reputation
+- Automatically resizes some windows if the screen resolution is smaller
+
+### 🇩🇪 Deutsch
+- Korrigieren Sie einen Textfehler im neuen französischen Ruf
+- Ändert automatisch die Größe einiger Fenster, wenn die Bildschirmauflösung kleiner ist
+
+---
+
+## V2.49
+
+### 🇫🇷 Français
+- Rajout des nouvelle réputation de l'update 30
+
+### 🇬🇧 English
+- Addition of the new reputation of Update 30
+
+### 🇩🇪 Deutsch
+- Hinzufügen des neuen Rufs von Update 30
+
+---
+
+## V2.48
+
+### 🇫🇷 Français
+- Nettoyage et optimisation du code
+
+### 🇬🇧 English
+- Code cleaning and optimization
+
+### 🇩🇪 Deutsch
+- Codebereinigung und -optimierung
+
+---
+
+## V2.47
+
+### 🇫🇷 Français
+- Nettoyage et optimisation du code
+
+### 🇬🇧 English
+- Code cleaning and optimization
+
+### 🇩🇪 Deutsch
+- Codebereinigung und -optimierung
+
+---
+
+## V2.46
+
+### 🇫🇷 Français
+- Corriger un bug qui ne sauvegardai pas correctement l'emplacement de l'icone principale
+- Correction de bugs mineurs
+
+### 🇬🇧 English
+- Fixed a bug that did not correctly save the location of the main icon
+- Fixed minor bugs
+
+### 🇩🇪 Deutsch
+- Es wurde ein Fehler behoben, der die Position des Hauptsymbols nicht korrekt speicherte
+- Kleinere Fehler behoben
+
+---
+
+## V2.45
+
+### 🇫🇷 Français
+- Changement Cosmetique et mise a jour de bugs mineurs
+
+### 🇬🇧 English
+- Cosmetic change and minor bug update
+
+### 🇩🇪 Deutsch
+- Kosmetische Veränderung und kleines Bug Update
+
+---
+
+## V2.44
+
+### 🇫🇷 Français
+- Rajout d'une options pour changer l'affichage du niveau lorsqu'on est niveau maximum
+- Réorganisation de la fenetre d'options
+
+### 🇬🇧 English
+- Addition of an option to change the level display when you are at maximum level
+- Reorganization of the options window
+
+### 🇩🇪 Deutsch
+- Hinzufügen einer Option zum Ändern der Pegelanzeige, wenn Sie sich auf maximaler Ebene befinden
+- Neuorganisation des Optionsfensters
+
+---
+
+## V2.43
+
+### 🇫🇷 Français
+- Corriger la position de l'icone qui ne sauvegardai pas l'emplacement correctement
+
+### 🇬🇧 English
+- Correct the position of the icon that did not save the location correctly
+
+### 🇩🇪 Deutsch
+- Korrigieren Sie die Position des Symbols, das den Speicherort nicht korrekt gespeichert hat
+
+---
+
+## V2.42
+
+### 🇫🇷 Français
+- Changement Cosmetique et mise a jour de bugs mineurs
+
+### 🇬🇧 English
+- Cosmetic change and minor bug update
+
+### 🇩🇪 Deutsch
+- Kosmetische Veränderung und kleines Bug Update
+
+---
+
+## V2.41
+
+### 🇫🇷 Français
+- Ajout d'une barre de défilement dans la fenêtre de genre
+
+### 🇬🇧 English
+- Added a scrollbar in the gender window
+
+### 🇩🇪 Deutsch
+- Im Gender-Fenster wurde eine Bildlaufleiste hinzugefügt
+
+---
+
+## V2.40
+
+### 🇫🇷 Français
+- Mise a jour et correction de réputation
+- Correction d'un bug avec le choix du sexe des nains
+- Changement Cosmetique et mise a jour de bugs mineurs
+
+### 🇬🇧 English
+- Reputation update and fix
+- Fixed a bug with the gender choice of dwarves
+- Cosmetic change and minor bug update
+
+### 🇩🇪 Deutsch
+- Ein Fehler bei der Geschlechtswahl der Zwerge wurde behoben
+- Kosmetische Veränderung und kleines Bug Update
+
+---
+
+## V2.39
+
+### 🇫🇷 Français
+- Mise a jour et correction de la réputation : Gabil'akkâ
+
+### 🇬🇧 English
+- Reputation update and fix: Gabil'akkâ
+
+### 🇩🇪 Deutsch
+- Reputation Update und Fix: Gabil'akkâ
+
+---
+
+## V2.38
+
+### 🇫🇷 Français
+- Rajout de la réputation : Réclamation de Minas Ithil
+
+### 🇬🇧 English
+- Reputation addition: Minas Ithil Claim
+
+### 🇩🇪 Deutsch
+- Reputationszusatz: Minas Ithil Claim
+
+---
+
+## V2.37
+
+### 🇫🇷 Français
+- Correction d'un bug d'affichage lors de l'utilisation de la touche F12
+- Correction d'un bug d'affichage avec la répuation de la compagnie blanche
+
+### 🇬🇧 English
+- Fixed a display bug when using the F12 key
+- Fixed display bug with white company reputation
+
+### 🇩🇪 Deutsch
+- Ein Anzeigefehler bei Verwendung der Taste F12 wurde behoben
+- Anzeigefehler mit dem Ruf eines weißen Unternehmens behoben
+
+---
+
+## V2.36
+
+### 🇫🇷 Français
+- Mise à jour mde correction de bug mineur
+
+### 🇬🇧 English
+- Minor bug fix update
+
+### 🇩🇪 Deutsch
+- Kleines Update zur Fehlerbehebung
+
+---
+
+## V2.35
+
+### 🇫🇷 Français
+- Mise à jour Cosmetique et correction de reputation
+
+### 🇬🇧 English
+- Cosmetic update and reputation correction
+
+### 🇩🇪 Deutsch
+- Kosmetisches Update und Reputationskorrektur
+
+---
+
+## V2.33
+
+### 🇫🇷 Français
+- Rajout d'un petit pop-up lors du survol des icones dans le sac à dos, le coffre et le stockage partagé
+
+### 🇬🇧 English
+- Added a small pop-up when hovering icons in the backpack, vault and shared storage
+
+### 🇩🇪 Deutsch
+- Beim Bewegen von Symbolen im Rucksack, im Tresor und im gemeinsam genutzten Speicher wurde ein kleines Popup hinzugefügt
+
+---
+
+## V2.32
+
+### 🇫🇷 Français
+- Cosmetique et traduction correction
+
+### 🇬🇧 English
+- Cosmetics and translation correction
+
+### 🇩🇪 Deutsch
+- Kosmetik- und Übersetzungskorrektur
+
+---
+
+## V2.31
+
+### 🇫🇷 Français
+- Correction d'un bug mineur
+
+### 🇬🇧 English
+- Minor bug fixed
+
+### 🇩🇪 Deutsch
+- Kleiner Fehler behoben
+
+---
+
+## V2.30
+
+### 🇫🇷 Français
+- Mise a jour de la traduction allemande, un enorme merci à NADIA pour son travail
+
+### 🇬🇧 English
+- German translation update, a huge thank you to NADIA for their work
+
+### 🇩🇪 Deutsch
+- Deutsches Übersetzungs-Update, ein großes Dankeschön an NADIA für ihre Arbeit
+
+---
+
+## V2.29
+
+### 🇫🇷 Français
+- Reparation du livre de quetes epiques
+
+### 🇬🇧 English
+- Epic Quest Book Repair
+
+### 🇩🇪 Deutsch
+- Epische Quest Buchreparatur
+
+---
+
+## V2.28
+
+### 🇫🇷 Français
+- Rajout d'une ligne de commande pour activer la touche alt pour le deplacement de l'icone
+
+### 🇬🇧 English
+- Addition of a command line to activate the alt key for moving the icon
+
+### 🇩🇪 Deutsch
+- Hinzufügen einer Befehlszeile zum Aktivieren der Alt-Taste zum Verschieben des Symbols
+
+---
+
+## V2.27
+
+### 🇫🇷 Français
+- Garde en mémoire si on choisit l'affichage par lignes ou par icones
+- Rajout d'une fenetre pour définir des information sur un personnage (en cliquant sur son nom) et affiche les infos en survol de la souris
+- Rajout d'une options pour afficher une icones principale plus petite
+
+### 🇬🇧 English
+- Keeps in memory if you choose the display by lines or by icons
+- Addition of a window to define information on a character (by clicking on his name) and displays the information when hovering the mouse
+- Addition of an option to display a smaller main icon
+
+### 🇩🇪 Deutsch
+- Wird gespeichert, wenn Sie die Anzeige nach Linien oder Symbolen auswählen
+- Hinzufügen eines Fensters zum Definieren von Informationen zu einem Zeichen (durch Klicken auf seinen Namen) und Anzeigen der Informationen beim Bewegen der Maus
+- Hinzufügen einer Option zum Anzeigen eines kleineren Hauptsymbols
+
+---
+
+## V2.25
+
+### 🇫🇷 Français
+- Corriger un bug qui n'affichait pas correctement les reputation de guilde au niveau maxmum
+
+### 🇬🇧 English
+- Fixed a bug that did not display guild reputation correctly at max level
+
+### 🇩🇪 Deutsch
+- Es wurde ein Fehler behoben, durch den der Ruf der Gilde auf maximaler Ebene falsch angezeigt wurde
+
+---
+
+## V2.24
+
+### 🇫🇷 Français
+- Rajout de la possibilité de scroller avec la molette de la souris
+- Dans les différentes fenêtres : stockage partagé, coffre, sac à dos, réputation, livres épiques et portefeuilles
+- Correction d'un bug lors de la suppression d'une entrée dans Epic Books
+
+### 🇬🇧 English
+- Addition of the possibility of scrolling with the mouse wheel
+- In the different windows: shared storage, chest, backpack, reputation, epic books and wallets
+- Fix a bug when deleting an entry in Epic Books
+
+### 🇩🇪 Deutsch
+- Hinzufügung der Möglichkeit zum Scrollen mit dem Mausrad
+- In den verschiedenen Fenstern: Aufbewahrung, Truhe, Rucksack, Ruf, epische Bücher und Brieftaschen
+- Behebung eines Fehlers beim Löschen eines Eintrags in Epic Books
+
+---
+
+## V2.22
+
+### 🇫🇷 Français
+- Corriger des noms de réputations
+
+### 🇬🇧 English
+- Correct names of reputations
+
+### 🇩🇪 Deutsch
+- Richtige Namen von Reputationen
+
+---
+
+## V2.21
+
+### 🇫🇷 Français
+- Corriger des noms de réputations
+
+### 🇬🇧 English
+- Correct names of reputations
+
+### 🇩🇪 Deutsch
+- Richtige Namen von Reputationen
+
+---
+
+## V2.20
+
+### 🇫🇷 Français
+- Corriger des noms de réputations en Français
+
+### 🇬🇧 English
+- Correct names of reputations in French
+
+### 🇩🇪 Deutsch
+- Richtige Namen von Reputationen auf Französisch
+
+---
+
+## V2.17
+
+### 🇫🇷 Français
+- Oublié d'enlever les code de debuggage
+- nettoyage
+
+### 🇬🇧 English
+- Forgot to remove the debug code
+- cleaning
+
+### 🇩🇪 Deutsch
+- Ich habe vergessen, den Debug-Code zu entfernen
+- Reinigung
+
+---
+
+## V2.16
+
+### 🇫🇷 Français
+- Readapté la fenetre à la taille de l'écran et ajout d'une scrollbar si besoin
+- Possibilité d'avoir un nombre ilimité de personnages
+
+### 🇬🇧 English
+- Readapt the window to the screen size and add a scrollbar if necessary
+- Possibility of having an unlimited number of characters
+
+### 🇩🇪 Deutsch
+- Passen Sie das Fenster erneut an die Bildschirmgröße an und fügen Sie bei Bedarf eine Bildlaufleiste hinzu
+- Möglichkeit einer unbegrenzten Anzahl von Zeichen
 
