@@ -59,5 +59,5 @@ inventaires, équipements, coffre, stockage partagé, statistiques, réputations
 
 1. Télécharger le ZIP depuis GitHub.
 2. Extraire le dossier.
-3. Copier le dossier `AltHolic` dans :
+3. Copier le dossier `AltHolic` dans : C:\Documents\The Lord of the Rings Online\Plugins\Homeopatix
 
