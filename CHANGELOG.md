@@ -1759,3 +1759,778 @@
 - Passen Sie das Fenster erneut an die Bildschirmgröße an und fügen Sie bei Bedarf eine Bildlaufleiste hinzu
 - Möglichkeit einer unbegrenzten Anzahl von Zeichen
 
+---
+
+## V2.15
+
+### 🇫🇷 Français
+- Terminé la traduction des reputations en français, il ne manque plus que l'allemand
+
+### 🇬🇧 English
+- Completed the translation of reputations in French, only German is missing
+
+### 🇩🇪 Deutsch
+- Die Übersetzung des Rufs ins Französische abgeschlossen, fehlt nur Deutsch
+
+---
+
+## V2.14
+
+### 🇫🇷 Français
+- Rajout de la traduction pour les deux nouvelles commandes
+
+### 🇬🇧 English
+- Added translation for the two new commands
+
+### 🇩🇪 Deutsch
+- Übersetzung für die beiden neuen Befehle hinzugefügt
+
+---
+
+## V2.13
+
+### 🇫🇷 Français
+- Rajout de 2 commandes
+- Corriger l'affichage lorsqu'on presse F12
+
+### 🇬🇧 English
+- Addition of 2 command-line
+- Correct display when pressing F12
+
+### 🇩🇪 Deutsch
+- Hinzufügen von 2 Befehlszeilen
+- Richtige Anzeige beim Drücken von F12
+
+---
+
+## V2.12
+
+### 🇫🇷 Français
+- Corriger un bug d'affichage avec la faction des chasseur de poulet
+- Rajout de 8 factions
+- 2 factions non traduite en français, si vous pouvez m'aider ce serait gentil ;)
+- Correction de bugs et améliorations divers du plugins
+
+### 🇬🇧 English
+- Fixed a display bug with the Chicken Hunter faction
+- Addition of 8 factions
+- 2 factions not translated into French, if you can help me that would be nice ;)
+- Bug fixes and various plugins improvements
+
+### 🇩🇪 Deutsch
+- Ein Anzeigefehler mit der Hühnerjäger-Fraktion wurde behoben
+- Hinzufügung von 8 Fraktionen
+- 2 Fraktionen nicht ins Deutsche übersetzt, wenn du mir helfen kannst das wäre schön ;)
+- Fehlerbehebungen und verschiedene Plugins Verbesserungen
+
+---
+
+## V2.11
+
+### 🇫🇷 Français
+- Supprimer l'affichage des metiers de guilde que vous ne possedez pas
+- Correction d'un bug d'affichage lorsque la réputations est au maxium
+- Ajout de la réputation de la mise à jour U28
+- Rajout des deux nouvelles réputations de la mise à jour U29
+
+### 🇬🇧 English
+- Remove the display for guild professions you don't own
+- Fixed a display bug when the reputation is at maxium
+- Added U28 update reputation
+- Addition of the two new reputations of the U29 update
+
+### 🇩🇪 Deutsch
+- Entfernen Sie die Anzeige für Gildenberufe, die Sie nicht besitzen
+- Ein Anzeigefehler wurde behoben, wenn der Ruf maximal ist
+- U28-Update-Reputation hinzugefügt
+- Hinzufügung der beiden neuen Reputationen des U29-Updates
+
+---
+
+## V2.09
+
+### 🇫🇷 Français
+- Rajout des deux nouvelles réputations de la mise à jour U29
+
+### 🇬🇧 English
+- Addition of the two new reputations of the U29 update
+
+### 🇩🇪 Deutsch
+- Hinzufügung der beiden neuen Reputationen des U29-Updates
+
+---
+
+## V2.08
+
+### 🇫🇷 Français
+- Corriger un bug qui ne diminuait pas reputation dans certains cas et qui doublait les point de reputations gagné en utilisant un tome d'acceleration
+
+### 🇬🇧 English
+- Fixed a bug which did not decrease reputation in some cases and which doubled the reputation points gained by using an Acceleration Tome
+
+### 🇩🇪 Deutsch
+- Es wurde ein Fehler behoben, durch den die Reputation in einigen Fällen nicht beeinträchtigt und die durch die Verwendung eines Beschleunigungsbandes erzielten Reputationspunkte verdoppelt wurden
+
+---
+
+## V2.07
+
+### 🇫🇷 Français
+- Corriger un bug qui n'affichait pas le sac à dos si vous n'avez pas choisit de profession et que vous voulez afficher les sac à dos de professions
+
+### 🇬🇧 English
+- Fixed a bug that did not display the backpack if you did not choose a profession and you want to display the backpacks of professions
+
+### 🇩🇪 Deutsch
+- Es wurde ein Fehler behoben, durch den der Rucksack nicht angezeigt wurde, wenn Sie keinen Beruf gewählt hatten und die Rucksäcke von Berufen anzeigen möchten
+
+---
+
+## V2.04
+
+### 🇫🇷 Français
+- Corriger un bug dans l'affichage des reputations
+
+### 🇬🇧 English
+- Fix a bug in the display of reputations
+
+### 🇩🇪 Deutsch
+- Behebung eines Fehlers in der Anzeige von Reputationen
+
+---
+
+## V2.03
+
+### 🇫🇷 Français
+- Corriger quelques nom de réputations en français
+
+### 🇬🇧 English
+- Correct some names of reputations in French
+
+### 🇩🇪 Deutsch
+- Korrigieren Sie einige Namen von Reputationen auf Französisch
+
+---
+
+## V2.02
+
+### 🇫🇷 Français
+- Nettoyage du code
+- Optimisation (Utilise beaucoup moins de ressources machine)
+
+### 🇬🇧 English
+- Code cleaning
+- Optimization (Uses much less machine resources)
+
+### 🇩🇪 Deutsch
+- Code-Reinigung
+- Optimierung (Verbraucht viel weniger Maschinenressourcen)
+
+---
+
+## V2.0
+
+### 🇫🇷 Français
+- Rajout de la réputations
+
+### 🇬🇧 English
+- Addition of reputations
+
+### 🇩🇪 Deutsch
+- Hinzufügung von Reputationen
+
+---
+
+## V1.45
+
+### 🇫🇷 Français
+- Correction de la traduction allemande
+- merci a < Lossensinome >
+
+### 🇬🇧 English
+- Correction of German translation
+- thanks to < Lossensinome >
+
+### 🇩🇪 Deutsch
+- Korrektur der deutschen Übersetzung
+- Dank an < Lossensinome >
+
+---
+
+## V1.44
+
+### 🇫🇷 Français
+- Rajout d'une fenetre pour gerer les quetes epique
+
+### 🇬🇧 English
+- Addition of a window to manage epic quests
+
+### 🇩🇪 Deutsch
+- Hinzufügen eines Fensters zum Verwalten epischer Quests
+
+---
+
+## V1.41
+
+### 🇫🇷 Français
+- Afficher le cash du joueur et le total du cash de tous les alts
+
+### 🇬🇧 English
+- Display the cash of the player and the total cash of all the alts
+
+### 🇩🇪 Deutsch
+- Zeigen Sie das Geld des Spielers und das Gesamtgeld aller Alts an
+
+---
+
+## V1.40
+
+### 🇫🇷 Français
+- Corriger des fautes d'hortographes dans l'anglais et l'allemand
+
+### 🇬🇧 English
+- Correct spelling mistakes in English and German
+
+### 🇩🇪 Deutsch
+- Rechtschreibfehler in Englisch und Deutsch korrigieren
+
+---
+
+## V1.39
+
+### 🇫🇷 Français
+- Possibilité d'afficher le sac a dos, le coffre et le stockage partagé par lignes ou par icones
+- Cosmetique ajustement dans le sac a dos, le coffre et le stockage partagé
+
+### 🇬🇧 English
+- Possibility to display the backpack, the vault, the shared storage by lines or by icons
+- Cosmetic fit in backpack, vault and shared storage
+
+### 🇩🇪 Deutsch
+- Möglichkeit, den Rucksack, den Tresor, den gemeinsam genutzten Speicher nach Linien oder Symbolen anzuzeigen
+- Kosmetische Passform in Rucksack, Tresor und gemeinsamem Stauraum
+
+---
+
+## V1.38
+
+### 🇫🇷 Français
+- Possibilité d'afficher la recherche par lignes ou par icones
+
+### 🇬🇧 English
+- Possibility to display the search by lines or by icons
+
+### 🇩🇪 Deutsch
+- Möglichkeit, die Suche nach Linien oder Symbolen anzuzeigen
+
+---
+
+## V1.36
+
+### 🇫🇷 Français
+- Gère les sacs d'or, d'argent et de bronze dans le porte-monnaie
+
+### 🇬🇧 English
+- Manage bags of gold, silver and bronze in the wallet
+
+### 🇩🇪 Deutsch
+- Verwalten Sie Taschen mit Gold, Silber und Bronze in der Brieftasche
+
+---
+
+## V1.35
+
+### 🇫🇷 Français
+- Mise a jour de la fenetre de recherche pour offrir plus d'options de recherche
+
+### 🇬🇧 English
+- Updated the search window to provide more search options
+
+### 🇩🇪 Deutsch
+- Das Suchfenster wurde aktualisiert, um weitere Suchoptionen bereitzustellen
+
+---
+
+## V1.34
+
+### 🇫🇷 Français
+- Cosmetique et traduction correction
+
+### 🇬🇧 English
+- Cosmetics and translation correction
+
+### 🇩🇪 Deutsch
+- Kosmetik- und Übersetzungskorrektur
+
+---
+
+## V1.33
+
+### 🇫🇷 Français
+- Corriger un bug d'affichage si vous avez le niveau maximum dans une profession
+- Diminuer un petit peu la taille du resultat de la recherche pour etre plus lisible
+
+### 🇬🇧 English
+- Fix a display bug if you have the maximum level in a profession
+- Decrease the size of the search result a little to be more readable
+
+### 🇩🇪 Deutsch
+- Beheben Sie einen Anzeigefehler, wenn Sie die maximale Stufe in einem Beruf haben
+- Verringern Sie die Größe des Suchergebnisses ein wenig, um besser lesbar zu sein
+
+---
+
+## V1.32
+
+### 🇫🇷 Français
+- Corriger un bug dans les lignes de commandes
+
+### 🇬🇧 English
+- Fix a bug in the command lines
+
+### 🇩🇪 Deutsch
+- Beheben Sie einen Fehler in den Befehlszeilen
+
+---
+
+## V1.31
+
+### 🇫🇷 Français
+- Cosmetique et traduction correction
+
+### 🇬🇧 English
+- Cosmetics and translation correction
+
+### 🇩🇪 Deutsch
+- Kosmetik- und Übersetzungskorrektur
+
+---
+
+## V1.29
+
+### 🇫🇷 Français
+- Corriger un bug quand on est en monsterplay
+
+### 🇬🇧 English
+- Correct a bug when in monsterplay
+
+### 🇩🇪 Deutsch
+- Korrigiere einen Fehler im Monsterspiel
+
+---
+
+## V1.27
+
+### 🇫🇷 Français
+- Corriger un bug qui affichait uniquement les stats du personnage connecte
+
+### 🇬🇧 English
+- Fixed a bug that only displayed the stats of the connected character
+
+### 🇩🇪 Deutsch
+- Es wurde ein Fehler behoben, durch den nur die Statistiken des verbundenen Charakters angezeigt wurden
+
+---
+
+## V1.26
+
+### 🇫🇷 Français
+- rajout d'un label sur l'icon de vocation qui affiche le niveau des professions
+
+### 🇬🇧 English
+- addition of a label on the vocation icon which displays the level of professions
+
+### 🇩🇪 Deutsch
+- Hinzufügen eines Etiketts auf dem Berufungssymbol, das die Ebene der Berufe anzeigt
+
+---
+
+## V1.25
+
+### 🇫🇷 Français
+- correction d'un bug qui changeait le sexe du personnage a la connection
+- Mise a jour de la fenetre des statistiques comme suggére par jbusnengo
+
+### 🇬🇧 English
+- fixed a bug that changed the gender of the character at connection
+- Update statistics window as suggested by jbusnengo
+
+### 🇩🇪 Deutsch
+- Es wurde ein Fehler behoben, durch den das Geschlecht des Charakters bei der Verbindung geändert wurde
+- Aktualisieren Sie das Statistikfenster wie von jbusnengo vorgeschlagen
+
+---
+
+## V1.24
+
+### 🇫🇷 Français
+- correction du porte-monnaie qui ne s'actualisait pas en temps reelle pour le personnage connecté
+
+### 🇬🇧 English
+- fixed the wallet not updating in real time for the connected character
+
+### 🇩🇪 Deutsch
+- Es wurde behoben, dass die Brieftasche für den verbundenen Charakter nicht in Echtzeit aktualisiert wurde
+
+---
+
+## V1.23
+
+### 🇫🇷 Français
+- Mise a jour des statistique pour etre plus en accort avec les stats LOTRO
+- Correction d'un bug qui sauvegardait mal l'argent du personnage
+- Ajout d'une fonction qui permet en cliquant sur l'icon d'un object equipe d'en definir le niveau et l'armure ou le dps (uniquement avec le personnage connecte)
+- Nettoyage de code, et réécroture de la fonction de sauvegarde
+
+### 🇬🇧 English
+- Update statistics to be more in line with LOTRO stats
+- Fixed a bug that incorrectly saved the character's money
+- Added a function that allows by clicking on the icon of an equipped object to define its level and armor or dps (only with the character connected)
+- Code cleanup, and re-write the backup function
+
+### 🇩🇪 Deutsch
+- Aktualisieren Sie die Statistiken, um sie besser an die HdRO-Statistiken anzupassen
+- Es wurde ein Fehler behoben, durch den das Geld des Charakters fälschlicherweise gespart wurde
+- Es wurde eine Funktion hinzugefügt, die es ermöglicht, durch Klicken auf das Symbol eines ausgerüsteten Objekts dessen Level und Rüstung oder Schaden zu definieren (nur wenn der Charakter verbunden ist)
+- Bereinigen Sie den Code und schreiben Sie die Sicherungsfunktion neu
+
+---
+
+## V1.22
+
+### 🇫🇷 Français
+- Ajout de plus de statistique
+- Fonctionne aussi pour le monsterPlay
+
+### 🇬🇧 English
+- Added more statistics
+- Also works for monsterPlay
+
+### 🇩🇪 Deutsch
+- Weitere Statistiken hinzugefügt
+- Funktioniert auch für monsterPlay
+
+---
+
+## V1.21
+
+### 🇫🇷 Français
+- Corriger un bug dans la derniere mise a jour
+
+### 🇬🇧 English
+- Correct a bug in the last update
+
+### 🇩🇪 Deutsch
+- Beheben Sie einen Fehler im letzten Update
+
+---
+
+## V1.20
+
+### 🇫🇷 Français
+- Ajout des statistiques de chaque personnage avec un click sur l'icone de race
+- Ajout d'une options pour afficher la couleur de l'usure des objets dans la fenetre d'equipement
+- Ajout des pieces LOTRO dans le porte-monnaie
+- Nettoyage et cosmetic
+
+### 🇬🇧 English
+- Addition of statistics for each character with a click on the race icon
+- Added an option to display the wear color of items in the equipment window
+- Adding LOTRO coins to the wallet
+- Cleaning and cosmetic
+
+### 🇩🇪 Deutsch
+- Hinzufügen von Statistiken für jeden Charakter mit einem Klick auf das Rennsymbol
+- Es wurde eine Option hinzugefügt, um die Verschleißfarbe von Gegenständen im Ausrüstungsfenster anzuzeigen
+- Hinzufügen von HdRO-Münzen zur Brieftasche
+- Reinigung und Kosmetik
+
+---
+
+## V1.19
+
+### 🇫🇷 Français
+- Corriger un bug dans la version englaise et allemande
+- Finaliser les pop up equipement
+
+### 🇬🇧 English
+- Correct a bug in the English and German version
+- Finalize the pop-up equipment
+
+### 🇩🇪 Deutsch
+- Beheben Sie einen Fehler in der englischen und deutschen Version
+- Finalisieren Sie die Popup-Ausrüstung
+
+---
+
+## V1.18
+
+### 🇫🇷 Français
+- Rajout d'une command pour effacer un personnage ou tous les personnages
+- Preparation pour le mouse over sur les object avec l'équipement
+- Corriger un bug dans la commande d'aide
+- Ajout des points de destinées dans le porte-monnaie
+- Nettoyage et cosmetic
+
+### 🇬🇧 English
+- Addition of a command to delete a character or all the characters
+- Preparation for mouse over on objects with equipment
+- Fix a bug in the help command
+- Addition of destiny points in the wallet
+- Cleaning and cosmetic
+
+### 🇩🇪 Deutsch
+- Hinzufügen eines Befehls zum Löschen eines Zeichens oder aller Zeichen
+- Vorbereitung zum Überfahren von Objekten mit Ausrüstung
+- Behebung eines Fehlers im Hilfebefehl
+- Hinzufügen von Schicksalspunkten in der Brieftasche
+- Reinigung und Kosmetik
+
+---
+
+## V1.14
+
+### 🇫🇷 Français
+- Mise a jour de nettoyage et cosmetic
+
+### 🇬🇧 English
+- Cleaning and cosmetic update
+
+### 🇩🇪 Deutsch
+- Reinigung und kosmetisches Update
+
+---
+
+## V1.13
+
+### 🇫🇷 Français
+- Affiche maintenant une fenetre d'aide pour la recherche
+- Permet de definir le sexe de vos personnages
+- Affiche le porte-monnaie de vos alts
+
+### 🇬🇧 English
+- Now displays a help window for searching
+- Allows you to define the gender of your characters
+- Shows your alts wallet
+
+### 🇩🇪 Deutsch
+- Zeigt nun ein Hilfefenster für die Suche an
+- Ermöglicht es Ihnen, das Geschlecht Ihrer Charaktere zu definieren
+- Zeigt Ihre Alts Brieftasche
+
+---
+
+## V1.12
+
+### 🇫🇷 Français
+- rajout d'une fenetre pour afficher l'argent de tous les personnages
+- trie le saca dos, le coffre et le stockage partagé par ordre alphabetique
+- trie les personnage de la fenetre pricipale par ordre alphabetique
+- ajout d'une option pour afficher ou non l'argent de session
+- ajout d'une option pour afficher ou non le sac a dos de classe
+- changer l'icone du coffre
+- ajout du score d'objects de l'equipement
+
+### 🇬🇧 English
+- addition of a window to display the money of all the characters
+- sorts the backpack, vault and shared storage in alphabetical order
+- sort the characters in the main window in alphabetical order
+- addition of an option to display or not the session money
+- added an option to display or not the class backpack
+- change the vault icon
+- added equipment item score
+
+### 🇩🇪 Deutsch
+- Hinzufügen eines Fensters, um das Geld aller Charaktere anzuzeigen
+- sortiert den Rucksack, den Tresor und den gemeinsamen Speicher in alphabetischer Reihenfolge
+- Sortieren Sie die Zeichen im Hauptfenster in alphabetischer Reihenfolge
+- Hinzufügen einer Option zum Anzeigen oder Nicht-Anzeigen des Sitzungsgeldes
+- Es wurde eine Option hinzugefügt, um den Klassenrucksack anzuzeigen oder nicht
+- Ändern Sie das Tresorsymbol
+- Punktzahl für Ausrüstungsgegenstände hinzugefügt
+
+---
+
+## V1.11
+
+### 🇫🇷 Français
+- Correction d'un bug dans le coffre qui affichait la taille du coffre avant de l'avoir créér
+
+### 🇬🇧 English
+- Fixed a bug in the vault that displayed the size of the vault before creating it
+
+### 🇩🇪 Deutsch
+- Es wurde ein Fehler im Tresor behoben, der die Größe des Tresors vor dem Erstellen anzeigte
+
+---
+
+## V1.10
+
+### 🇫🇷 Français
+- Affiche l'argent du joueur si la souris survole la classe du personnage
+- Terminer la traduction
+- Correction d'un bug qui affichait la fausse taile du coffre
+
+### 🇬🇧 English
+- Displays the player's money if the mouse hovers over the character's class
+- Finish translation
+- Fixed a bug that displayed the wrong size of the chest
+
+### 🇩🇪 Deutsch
+- Zeigt das Geld des Spielers an, wenn sich die Maus über der Klasse des Charakters befindet
+- Beenden Sie die Übersetzung
+- Es wurde ein Fehler behoben, der die falsche Größe der Truhe anzeigte
+
+---
+
+## V1.09
+
+### 🇫🇷 Français
+- Correction d'un bug qui enregistrait le coffre-fort et le stockage partagé s'il n'était pas mis à jour
+
+### 🇬🇧 English
+- Corrected a bug that prevented saving the vault and the shared storage if it was not updated
+
+### 🇩🇪 Deutsch
+- Ein Fehler wurde behoben, durch den der Tresor und der gemeinsam genutzte Speicher gespeichert wurden, wenn er nicht aktualisiert wurde
+
+---
+
+## V1.08
+
+### 🇫🇷 Français
+- Comme proposé par jbusnengo la fenetre ne pop plus quand vous ouvrer votre coffre ou votre stockage partagé
+
+### 🇬🇧 English
+- As proposed by jbusnengo the window no longer pops when you open your safe or shared storage
+
+### 🇩🇪 Deutsch
+- Wie von jbusnengo vorgeschlagen, wird das Fenster nicht mehr geöffnet, wenn Sie Ihren sicheren oder gemeinsam genutzten Speicher öffnen
+
+---
+
+## V1.07
+
+### 🇫🇷 Français
+- Corriger un bug dans la gestion de l'argent
+- Ajout d'une option pour afficher l'argent dépensé
+
+### 🇬🇧 English
+- Correct a bug in money management
+- Added option to display money spent
+
+### 🇩🇪 Deutsch
+- Beheben Sie einen Fehler im Geldmanagement
+- Option hinzugefügt, um ausgegebenes Geld anzuzeigen
+
+---
+
+## V1.06
+
+### 🇫🇷 Français
+- Rajout d'une fonction de recherche
+
+### 🇬🇧 English
+- Addition of a search function
+
+### 🇩🇪 Deutsch
+- Hinzufügen einer Suchfunktion
+
+---
+
+## V1.05
+
+### 🇫🇷 Français
+- Corriger un bug dans la traduction allemande et anglaise
+
+### 🇬🇧 English
+- Fix a bug in the German and English translation
+
+### 🇩🇪 Deutsch
+- Behebung eines Fehlers in der deutschen und englischen Übersetzung
+
+---
+
+## V1.04
+
+### 🇫🇷 Français
+- Ajout du stockage partagé
+- Optimisation du code
+
+### 🇬🇧 English
+- Adding shared storage
+- Code optimization
+
+### 🇩🇪 Deutsch
+- Gemeinsamen Speicher hinzufügen
+- Codeoptimierung
+
+---
+
+## V1.03
+
+### 🇫🇷 Français
+- Corriger le cash de session qui affichait un chiffre erroné
+- Touche alt enfoncé pour déplacer l'icone
+
+### 🇬🇧 English
+- Correct the session cash which displayed an incorrect number
+- Alt key pressed to move the icon
+
+### 🇩🇪 Deutsch
+- Korrigieren Sie das Sitzungsgeld, bei dem eine falsche Nummer angezeigt wurde
+- Alt-Taste gedrückt, um das Symbol zu verschieben
+
+---
+
+## V1.02
+
+### 🇫🇷 Français
+- Rajout d'une icon cliquable pour afficher le coffre de chaque personnage
+- Reecrit toutes la partie sauvegarder pour crééer plusieurs fichiers
+- Ajout d'une fenetre d'options
+- Nettoyage du code
+- Traduction en français
+
+### 🇬🇧 English
+- Addition of a clickable icon to display the vault of each character
+- Rewrite all the save part to create multiple files
+- Adding an options window
+- Code cleaning
+- English translation
+
+### 🇩🇪 Deutsch
+- Hinzufügen eines anklickbaren Symbols, um den Tresor jedes Charakters anzuzeigen
+- Schreiben Sie den gesamten Speicherteil neu, um mehrere Dateien zu erstellen
+- Hinzufügen eines Optionsfensters
+- Code-Reinigung
+- Deutsche Übersetzung
+
+---
+
+## V1.01 – Beta 1
+
+### 🇫🇷 Français
+- Rajout d'une icon cliquable pour afficher le sac de chaque personnage
+- Fonctionne aussi avec le Monster play
+
+### 🇬🇧 English
+- Addition of a clickable icon to display the bag of each character
+- Also works with Monster play
+
+### 🇩🇪 Deutsch
+- Hinzufügen eines anklickbaren Symbols, um die Tasche jedes Charakters anzuzeigen
+- Funktioniert auch mit Monsterspiel
+
+---
+
+## V1.0
+
+### 🇫🇷 Français
+- Première version
+
+### 🇬🇧 English
+- Initial release
+
+### 🇩🇪 Deutsch
+- Erstveröffentlichung
