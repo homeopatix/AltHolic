@@ -52,9 +52,9 @@ partagé, statistiques, réputations et quêtes épiques.
 ## 🎹 Raccourcis
 
   Action               Touche
-  -------------------- ----------------------------
-  Déplacer l'icône     `ALT` (si activé)
-  Ouvrir les options   `SHIFT + clic sur l’icône`
+  -------------------- ----------------------------\
+  Déplacer l'icône     `ALT` (si activé)\
+  Ouvrir les options   `SHIFT + clic sur l’icône`\
 
 ------------------------------------------------------------------------
 
@@ -64,16 +64,10 @@ partagé, statistiques, réputations et quêtes épiques.
 2.  Extraire le dossier.
 3.  Copier le dossier `AltHolic` dans :
 
-```{=html}
-<!-- -->
-```
     Documents\The Lord of the Rings Online\Plugins\Homeopatix
 
 4.  En jeu :
-
-```{=html}
-<!-- -->
-```
+5.  
     /plugins load AltHolic
 
 ------------------------------------------------------------------------
