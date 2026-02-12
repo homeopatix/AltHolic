@@ -1,0 +1,480 @@
+------------------------------------------------------------------------------------------
+-- GlobalFR file
+-- Written by Homeopatix
+-- 26 january 2021
+------------------------------------------------------------------------------------------
+function CreateLocalizationInfo()
+	Strings = {};
+
+	------------------------------------------------------------------------------------------
+	-- Francais --
+	------------------------------------------------------------------------------------------
+	Strings.PluginName = "AltHolic";
+	Strings.PluginText = "Par Homeopatix";
+	Strings.PluginEscEnable = "Touche Escape activ\195\169";
+	Strings.PluginEscDesable = "Touche Escape desactiv\195\169";
+	Strings.PluginClear = "Efface ";
+	Strings.PluginClearAll = "Efface toutes les entr\195\169es";
+	Strings.PluginToggleOn = "Basculage de la fen\195\170tre ON";
+	Strings.PluginToggleOff = "Basculage de la fen\195\170tre OFF";
+	Strings.PluginEscIconOn = "Affiche l'icone";
+	Strings.PluginEscIconOff = "Masque l'icone";
+	------------------------------------------------------------------------------------------
+	-- help --
+	------------------------------------------------------------------------------------------
+	Strings.PluginHelp1 = "\n\nListe des commandes:\n";
+	Strings.PluginHelp2 = "/Alt help - affiche la fen\195\168tre. d'aide\n";
+	Strings.PluginHelp3 = "/Alt show - affiche la fen\195\168tre.\n";
+	Strings.PluginHelp4 = "/Alt hide - cache la fen\195\168tre.\n";
+	Strings.PluginHelp5 = "/Alt esc - Active ou d\195\169sactive la touche Escape.\n";
+	Strings.PluginHelp6 = "/Alt options - affiche la fen\195\168tre d'options.\n";
+	Strings.PluginHelp7 = "/Alt clear all - Efface toutes les entr\195\169es.\n";
+	Strings.PluginHelp8 = "/Alt clear NomDuPerso - Efface NomDuPerso.\n";
+	Strings.PluginHelp9 = "/Alt toggle - Basculer la fen\195\170tre.\n";
+	Strings.PluginHelp10 = "/Alt icon - Affiche ou masque l'icone.\n";
+	Strings.PluginCloseButton = "Fermer la fen\195\170tre";
+	Strings.PluginVaultSaved = "Coffre sauvegard\195\169";
+	Strings.PluginBagSaved = "Sac \195\160 dos sauvegard\195\169";
+	Strings.PluginSharedStorageSaved = "Stockage partag\195\169 sauvegard\195\169";
+	Strings.PluginISeeYou = "Je Vous Vois";
+	------------------------------------------------------------------------------------------
+	-- search --
+	------------------------------------------------------------------------------------------
+	Strings.PluginSearch = "Fen\195\168tre de recherche";
+	Strings.PluginSearch1 = "Trouv\195\169 : ";
+	Strings.PluginSearch2 = "Chercher";
+	Strings.PluginSearch3 = "Sac \195\160 dos";
+	Strings.PluginSearch4 = "Coffre";
+	Strings.PluginSearch5 = "Espace partag\195\169";
+	Strings.PluginSearch6 = "Objets";
+	Strings.PluginSearch7 = "Porte-monnaie";
+	Strings.PluginSearch8 = "Chercher dans tous";
+	Strings.PluginSearch9 = "O\195\185 \195\169ffectuer la recherche";
+	Strings.PluginSearch10 = "Rien trouv\195\169 dans ";
+	Strings.PluginSearch11 = "avec la recherche : ";
+	------------------------------------------------------------------------------------------
+	-- epique --
+	------------------------------------------------------------------------------------------
+	Strings.PluginEpiqueWindow1 = "Livre Epique";
+	Strings.PluginAddNewEpique = "Ajouter nouveau livre";
+	Strings.PluginAddNewBook = "Nouveau livre pour ";
+	Strings.PluginAddNewBookVolume = "Volume";
+	Strings.PluginAddNewBookLivre = "Livre";
+	Strings.PluginAddNewBookChapitre = "Chapitre";
+	Strings.PluginUpdate = "Mise \195\160 jour";
+	Strings.PluginDelete = "Effacer";
+	Strings.PluginUpdateTitle = "Mise \195\160 jour livre pour ";
+	Strings.PluginExample1 = "Exemple : I, II, III ou 1, 2, 3";
+	Strings.PluginExample2 = "Exemple : I, II, III ou 1, 2, 3 ou Prologue";
+	Strings.PluginExample3 = "Exemple : 1, 2, 3 ou Avant-propos";
+	------------------------------------------------------------------------------------------
+	-- professions tier --
+	------------------------------------------------------------------------------------------
+	Strings.PluginProfTier1 = "Apprenti";
+	Strings.PluginProfTier2 = "Compagnon";
+	Strings.PluginProfTier3 = "Expert";
+	Strings.PluginProfTier4 = "Artisan";
+	Strings.PluginProfTier5 = "Ma\195\174tre";
+	Strings.PluginProfTier6 = "Supr\195\170me";
+	Strings.PluginProfTier7 = "Ouestfolde";
+	Strings.PluginProfTier8 = "Estemnet";
+	Strings.PluginProfTier9 = "Ouestemnet";
+	Strings.PluginProfTier10 = "An\195\182rien";
+	Strings.PluginProfTier11 = "Folde du Destin";
+	Strings.PluginProfTier12 = "Crevasse de fer";
+	Strings.PluginProfTier13 = "Minas Ithil";
+	Strings.PluginProfTier20 = "Artisanats";
+	Strings.PluginProfTier21 = "Niveau maximum";
+	------------------------------------------------------------------------------------------
+	-- item quality --
+	------------------------------------------------------------------------------------------
+	Strings.PluginQuality1 = "Commun";
+	Strings.PluginQuality2 = "Incomparable";
+	Strings.PluginQuality3 = "L\195\169gendaire";
+	Strings.PluginQuality4 = "Rare";
+	Strings.PluginQuality5 = "Non Commun";
+	Strings.PluginQuality6 = "Ind\195\169fini";
+	Strings.PluginDescription = "Description";
+	Strings.PluginQuality = "Qualit\195\169";
+	Strings.PluginDurability = "Durabilit\195\169";
+	Strings.PluginNoDurability = "Pas de Durabilit\195\169";
+	------------------------------------------------------------------------------------------
+	-- help for the search window --
+	------------------------------------------------------------------------------------------
+	Strings.PluginLabelHelp = "Afficher l'aide";
+	Strings.PluginHelpWindow1 = "\n\nVous devez entrer minimum deux characters\n\n";
+	Strings.PluginHelpWindow2 = "Vous pouvez faire une recherche complete en tapant **\n\n";
+	Strings.PluginHelpWindow3 = "Vous pouvez faire une recherche en \195\169crivant le nom d'un objet\n\n";
+	Strings.PluginHelpWindow4 = "Mettez une majuscule au d\195\169but du mot si le nom de recherche est le nom de l'object\n\n";
+	Strings.PluginHelpWindow5 = "Si vous ne mettez pas de majuscule il recherche dans tous les objets\n\n";
+	Strings.PluginHelpWindow6 = "Vous pouvez effectuer une recherche sp\195\169cial avec par exemple a*\n";
+	Strings.PluginHelpWindow7 = "qui retournera tous le object qui contienne la lettre a\n\n";
+	Strings.PluginHelpWindow8 = "Cliquer sur le button dans lequel vous voulez \195\169ffectuer la recherche\n\n";
+	Strings.PluginHelpWindow9 = "Ou cliquer sur le dernier boutton pour \195\169ffectuer une recherche compl\195\168te\n";
+	Strings.PluginButtonHelpWindow = "Fermer l'aide";
+	Strings.PluginTitreHelpWindow = "Aide Pour la recherche";
+	-- help for epic book
+	Strings.PluginHelpWindow10 = "Vous devez cliquer sur la croix pour faire une nouvelle entr\195\169e\n\n";
+	Strings.PluginHelpWindow11 = "Entrer la numero du volume, le numero du livre et le numero du chapitre si il y en a un\n\n";
+	Strings.PluginHelpWindow12 = "Vous pouvez \195\169crire en chiffre romain ou avec des chiffres normaux\n\n";
+	Strings.PluginHelpWindow13 = "Ecriver Prologue pour les prologues et Avant-propos pour les avant-propos\n\n";
+	Strings.PluginHelpWindow14 = "Cliquer sur une entr\195\169e pour la modifier ou l'\195\169ffacer\n";
+	Strings.PluginTitreHelpWindow2 = "Aide pour Qu\195\170tes Epiques";
+	-- help for reputations
+	Strings.PluginHelpWindow15 = "Cliquer sur le nom d'une r\195\169putation pour la modifier\n\n";
+	Strings.PluginHelpWindow16 = "Entrer la valeur de points actuelle\n\n";
+	Strings.PluginHelpWindow17 = "Si la \195\169putation est au maximum entrer 45000\n\n";
+	Strings.PluginHelpWindow18 = "Choisisser le titre dans le menu d\195\169roulant\n\n";
+	Strings.PluginHelpWindow19 = "Valider l'op\195\169ration\n\n";
+	Strings.PluginHelpWindow20 = "Les points de faction augmente automatiquement, mais vous devez d\195\169finir les points et la position de d\195\169part\n\n";
+	Strings.PluginHelpWindow21 = "Vous pouvez cliquer sur la croix pour afficher uniquement les r\195\169putations connues\n\n";
+	Strings.PluginTitreHelpWindow3 = "Aide pour R\195\169putations";
+	------------------------------------------------------------------------------------------
+	-- vault --
+	------------------------------------------------------------------------------------------
+	Strings.PluginVault1 = "Coffre de ";
+	Strings.PluginVault2 = "Espace coffre : ";
+	Strings.PluginVault3 = "Vous devez ouvrir votre coffre-fort pour afficher ce qu'il y a \195\160 l'int\195\169rieur";
+	Strings.PluginSharedStorage1 = "Espace partag\195\169";
+	Strings.PluginSharedStorage2 = "Espace SharedStorage ";
+	Strings.PluginSharedStorage3 = "Vous devez ouvrir votre espace partag\195\169 pour afficher ce qu'il y a \195\160 l'int\195\169rieur";
+	------------------------------------------------------------------------------------------
+	-- equipement --
+	------------------------------------------------------------------------------------------
+	Strings.PluginEquipement1 = "Equipement de ";
+	Strings.PluginEquipement2 = "Equipement absent";
+	Strings.PluginEquipement3 = "Niveau object";
+	Strings.PluginEquipement4 = "Armure";
+	Strings.PluginEquipement5 = "T\195\170te";
+	Strings.PluginEquipement6 = "Buste";
+	Strings.PluginEquipement7 = "Jambes";
+	Strings.PluginEquipement8 = "Gants";
+	Strings.PluginEquipement9 = "Pieds";
+	Strings.PluginEquipement10 = "Epaules";
+	Strings.PluginEquipement11 = "Dos";
+	Strings.PluginEquipement12 = "Bracelet Gauche";
+	Strings.PluginEquipement13 = "Bracelet Droite";
+	Strings.PluginEquipement14 = "Collier";
+	Strings.PluginEquipement15 = "Anneau Gauche";
+	Strings.PluginEquipement16 = "Anneau Droite";
+	Strings.PluginEquipement17 = "Boucle d'oreille Gauche";
+	Strings.PluginEquipement18 = "Boucle d'oreille Droite";
+	Strings.PluginEquipement19 = "Poche";
+	Strings.PluginEquipement20 = "Arme Principale";
+	Strings.PluginEquipement21 = "Arme Secondaire";
+	Strings.PluginEquipement22 = "Arme \195\160 distance";
+	Strings.PluginEquipement23 = "Outil d'artisanat";
+	Strings.PluginEquipement24 = "Objet de Classe";
+	Strings.PluginEquipement25 = "DPS";
+	------------------------------------------------------------------------------------------
+	-- cash window --
+	------------------------------------------------------------------------------------------
+	Strings.PluginCashWindow1 = "Affiche l'argent de tous les personnages";
+	Strings.PluginCashWindow2 = "Argent Total ";
+	Strings.PluginCashWindow3 = "Argent de session";
+	Strings.PluginCashWindow4 = "Gagn\195\169 ";
+	Strings.PluginCashWindow5 = "D\195\169pens\195\169 ";
+	Strings.PluginCashWindow6 = "Total ";
+	Strings.PluginCashWindow7 = "Argent du jour";
+	------------------------------------------------------------------------------------------
+	-- wallet window --
+	------------------------------------------------------------------------------------------
+	Strings.PluginWalletWindow1 = "Compte partag\195\169";
+	Strings.PluginWalletWindow2 = "Nombre d'objets dans le porte-monnaie";
+	Strings.PluginWalletWindow3 = "Porte-monnaie de ";
+	Strings.PluginWalletWindow4 = "Porte-monnaie non sauvegard\195\169, Connecter le personnage";
+	Strings.PluginWalletWindow5 = "Pi\195\168ces LOTRO";
+	Strings.PluginWalletWindow6 = "LOTRO points";
+	Strings.PluginWalletWindow7 = "Sauvegarder";
+	Strings.PluginWalletWindow8 = "Change les points LOTRO";
+	------------------------------------------------------------------------------------------
+	-- backpack --
+	------------------------------------------------------------------------------------------
+	Strings.PluginBag1 = "Sac \195\160 dos de ";
+	Strings.PluginBag2 = "Espace du sac \195\160 dos : ";
+	------------------------------------------------------------------------------------------
+	-- add new --
+	------------------------------------------------------------------------------------------
+	Strings.PluginAddNew = "Ajouter un nouveau compte";
+	Strings.PluginAddNew2 = "Ajouter nouveau";
+	------------------------------------------------------------------------------------------
+	-- vocations --
+	------------------------------------------------------------------------------------------
+	Strings.PluginVocation1 = "Explorateur";
+	Strings.PluginVocation2 = "Joaillier";
+	Strings.PluginVocation3 = "Franc-tenancier";
+	Strings.PluginVocation4 = "Historien";
+	Strings.PluginVocation5 = "Armurier";
+	Strings.PluginVocation6 = "Bucheron";
+	Strings.PluginVocation7 = "Feronnier";
+	Strings.PluginVocation8 = "Vocation";
+	------------------------------------------------------------------------------------------
+	-- race --
+	------------------------------------------------------------------------------------------
+	Strings.PluginRace1 = "Hobbit";
+	Strings.PluginRace2 = "Homme";
+	Strings.PluginRace3 = "Elf";
+	Strings.PluginRace4 = "B\195\169ornide";
+	Strings.PluginRace5 = "Nain des haches robuste";
+	Strings.PluginRace6 = "Nain";
+	Strings.PluginRace7 = "Haut Elf";
+	Strings.PluginRace8 = "Orque";
+	Strings.PluginRace9 = "Araign\195\169e";
+	Strings.PluginRace10 = "Ourouk";
+	Strings.PluginRace11 = "Ouargue";
+	------------------------------------------------------------------------------------------
+	-- classe --
+	------------------------------------------------------------------------------------------
+	Strings.PluginClasse1 = "Chasseur";
+	Strings.PluginClasse2 = "M\195\169nestrel";
+	Strings.PluginClasse3 = "B\195\169ornide";
+	Strings.PluginClasse4 = "Capitaine";
+	Strings.PluginClasse5 = "Gardien des runes";
+	Strings.PluginClasse6 = "Cambrioleur";
+	Strings.PluginClasse7 = "Ma\195\174tre du savoir";
+	Strings.PluginClasse8 = "Gardien";
+	Strings.PluginClasse9 = "Champion";
+	Strings.PluginClasse10 = "Sentinelle";
+	Strings.PluginClasse11 = "Faucheur";
+	Strings.PluginClasse12 = "Profanateur";
+	Strings.PluginClasse13 = "Tisserand";
+	Strings.PluginClasse14 = "Fl\195\168ches noires";
+	Strings.PluginClasse15 = "Chef de guerre";
+	Strings.PluginClasse16 = "Traqueur";
+	------------------------------------------------------------------------------------------
+	-- stats window --
+	------------------------------------------------------------------------------------------
+	Strings.PluginStats = "Charact\195\169ristiques";
+	Strings.PluginStats1 = "Force";
+	Strings.PluginStats2 = "Agilit\195\169";
+	Strings.PluginStats3 = "Vitalit\195\169";
+	Strings.PluginStats4 = "Volont\195\169";
+	Strings.PluginStats5 = "Destin";
+	Strings.PluginStats6 = "Niveau";
+	Strings.PluginStats7 = "Race";
+	Strings.PluginStats8 = "Classe";
+	Strings.PluginStats9 = "Sexe";
+	Strings.PluginStats10 = "Personnage pas encore enregistr\195\169, veuillez connecter ce personnage";
+	Strings.PluginStats11 = "Statistiques";
+	Strings.PluginStats12 = "Attaque";
+	Strings.PluginStats13 = "Valeur de Critique";
+	Strings.PluginStats14 = "Finesse";
+	Strings.PluginStats15 = "Ma\195\174trise Physique";
+	Strings.PluginStats16 = "Ma\195\174trise Tactique";
+	Strings.PluginStats17 = "R\195\169ductions";
+	Strings.PluginStats18 = "D\195\169fense";
+	Strings.PluginStats19 = "R\195\169sistance";
+	Strings.PluginStats20 = "Echappement";
+	Strings.PluginStats21 = "Blocage";
+	Strings.PluginStats22 = "Parade";
+	Strings.PluginStats23 = "Esquive";
+	Strings.PluginStats24 = "Soins";
+	Strings.PluginStats25 = "Soins Donn\195\169s";
+	Strings.PluginStats26 = "Soins Re\195\167us";
+	Strings.PluginStats27 = "R\195\169ductions Physique";
+	Strings.PluginStats28 = "R\195\169ductions Tactique";
+	Strings.PluginStats29 = "D\195\169fense Critique";
+	Strings.PluginStats30 = "Partielle";
+	Strings.PluginStats31 = "Ma\195\174trise Distance";
+	Strings.PluginStats32 = "Artisanat-orc";
+	Strings.PluginStats33 = "Tomb\195\169-forg\195\169";
+	Strings.PluginStats34 = "Valeur de D\195\169vastateur";
+	Strings.PluginStats35 = "Jaune - capped";
+	Strings.PluginStats36 = "Orange - T2 capped";
+	Strings.PluginStats37 = "Rouge - nouveau T2 capped";
+	Strings.PluginStats38 = "Violet - nouveau T3-5 capped";
+	------------------------------------------------------------------------------------------
+	-- gendre window --
+	------------------------------------------------------------------------------------------
+	Strings.PluginGendreText = "D\195\169finition du sexe";
+	Strings.PluginGendreText1 = "Homme";
+	Strings.PluginGendreText2 = "Femme";
+	------------------------------------------------------------------------------------------
+	-- option window --
+	------------------------------------------------------------------------------------------
+	Strings.PluginOptionsText = "AltHolic Options";
+	Strings.PluginOption1 = "Afficher les modifications de chargement et d'enregistrement";
+	Strings.PluginOption2 = " Afficher les notifications";
+	Strings.PluginOption3 = "Afficher l'argent de session";
+	Strings.PluginOption4 = " Affich\195\169";
+	Strings.PluginOption5 = "Afficher les sacs de classe";
+	Strings.PluginOption6 = "D\195\169finir le sexe";
+	Strings.PluginOption7 = "Changer la couleur du fond pour la durabilit\195\169 de l' \195\169quipement";
+	Strings.PluginOption8 = "Afficher l'argent total";
+	Strings.PluginOption9 = "Afficher les points de r\195\169putation gagn\195\169s";
+	Strings.PluginOption10 = "Afficher les points SDAO gagn\195\169s";
+	Strings.PluginOption11 = "Mode Verbeux";
+	Strings.PluginOption12 = "Affichage de l'argent";
+	Strings.PluginOption13 = "Affichage des sacs \195\160 dos";
+	Strings.PluginOption14 = "Affichage de la durabilit\195\169";
+	Strings.PluginOption15 = "Affichage dans le chat";
+	Strings.PluginOptionValidate = "Valider les changements";
+	Strings.PluginOptionShowWindow = "Affiche la fen\195\168tre d'options";
+	Strings.PluginOptionNotificationsDeactivated = "Notifications d\195\169sactiv\195\169es";
+	Strings.PluginOptionNotificationsActivated = "Notifications activ\195\169es";
+	Strings.PluginOptionSpentCashActivated = "Argent d\195\169pens\195\169 d\195\169sactiv\195\169es";
+	Strings.PluginOptionSpentCashDeactivated = "Argent d\195\169pens\195\169 activ\195\169es";
+	------------------------------------------------------------------------------------------
+	-- reputations text --
+	------------------------------------------------------------------------------------------
+	Strings.reputText1 = "points";
+	Strings.reputText2 = "Lotro points augment\195\169 de";
+	------------------------------------------------------------------------------------------
+	-- reputations position male --
+	------------------------------------------------------------------------------------------
+	Strings.reputposition100 = "R\195\169putations";
+	Strings.reputposition0 = "S\195\169lectionnez un titre";
+	Strings.reputposition = "Niveau Maximum";
+	Strings.reputposition1 = "Ennemi";
+	Strings.reputposition2 = "Etranger";
+	Strings.reputposition3 = "Neutre";
+	Strings.reputposition4 = "Connaissance";
+	Strings.reputposition5 = "Ami";
+	Strings.reputposition6 = "Alli\195\169";
+	Strings.reputposition7 = "Fr\195\168re";
+	Strings.reputposition8 = "Respect\195\169";
+	Strings.reputposition9 = "Honor\195\169";
+	Strings.reputposition10 = "Acclam\195\169";
+
+	Strings.reputposition11 = "Initier";
+	Strings.reputposition12 = "Aprenti";
+	Strings.reputposition13 = "Compagnon";
+	Strings.reputposition14 = "Expert";
+	Strings.reputposition15 = "Artisan";
+	Strings.reputposition16 = "Ma\195\174tre";
+	Strings.reputposition17 = "Ma\195\174tre de l'Estemnet";
+	Strings.reputposition18 = "Ma\195\174tre de l'Ouestemnet";
+	Strings.reputposition19 = "Grand Ma\195\174tre Honor\195\169";
+
+	Strings.reputposition20 = "Rookie";
+	Strings.reputposition21 = "Minor Leaguer";
+	Strings.reputposition22 = "Major Leaguer";
+	Strings.reputposition23 = "All-star";
+	Strings.reputposition24 = "Hall of Famer";
+
+	------------------------------------------------------------------------------------------
+	-- reputations position female --
+	------------------------------------------------------------------------------------------
+	Strings.reputpositionFemale1 = "Ennemie";
+	Strings.reputpositionFemale2 = "Etrang\195\168re";
+	Strings.reputpositionFemale3 = "Neutre";
+	Strings.reputpositionFemale4 = "Connaissance";
+	Strings.reputpositionFemale5 = "Amie";
+	Strings.reputpositionFemale6 = "Alli\195\169e";
+	Strings.reputpositionFemale7 = "Soeur";
+	Strings.reputpositionFemale8 = "Respect\195\169e";
+	Strings.reputpositionFemale9 = "Honor\195\169e";
+	Strings.reputpositionFemale10 = "Acclam\195\169e";
+
+	Strings.reputpositionFemale11 = "Initier";
+	Strings.reputpositionFemale12 = "Aprenti";
+	Strings.reputpositionFemale13 = "Compagnon";
+	Strings.reputpositionFemale14 = "Expert";
+	Strings.reputpositionFemale15 = "Artisan";
+	Strings.reputpositionFemale16 = "Ma\195\174tre";
+	Strings.reputpositionFemale17 = "Ma\195\174tre de l'Estemnet";
+	Strings.reputpositionFemale18 = "Ma\195\174tre de l'Ouestemnet";
+	Strings.reputpositionFemale19 = "Grand Ma\195\174tre Honor\195\169";
+	------------------------------------------------------------------------------------------
+	-- reputations names --
+	------------------------------------------------------------------------------------------
+	Strings.reputname1 = "Hommes de Bree";
+	Strings.reputname2 = "Palais de Thorin";
+	Strings.reputname3 = "La Soci\195\169t\195\169 des Mathoms";
+	Strings.reputname4 = "R\195\180deurs d'Esteldin";
+	Strings.reputname5 = "Elfes de Fondcombe";
+	Strings.reputname6 = "Les Eldgangs";
+	Strings.reputname7 = "Conseil du Nord";
+	Strings.reputname8 = "Les Gardiens d'Annuminas";
+	Strings.reputname9 = "Lossoth du Forochel";
+	Strings.reputname10 = "Les Eglain";
+	Strings.reputname11 = "Gardes de la Garnison de Fer";
+	Strings.reputname12 = "Mineurs de la Garnison de Fer";
+	Strings.reputname13 = "Les Algraig, hommes d'Enedwaith";
+	Strings.reputname14 = "La Compagnie grise";
+	Strings.reputname15 = "Galadhrim";
+	Strings.reputname16 = "Malledhrim";
+	Strings.reputname17 = "Les Cavaliers de Stangarde";
+	Strings.reputname18 = "Les H\195\169ros de la Gorge de Limeclair";
+	Strings.reputname19 = "Hommes du Pays de Dun";
+	Strings.reputname20 = "Cavaliers de Th\195\169odred";
+	Strings.reputname21 = "Guilde des bijoutiers";
+	Strings.reputname22 = "Guilde des cuisiniers";
+	Strings.reputname23 = "Guilde des \195\169rudits";
+	Strings.reputname24 = "Guilde des tailleurs";
+	Strings.reputname25 = "Guilde des menuisiers";
+	Strings.reputname26 = "Guilde des fabricants d'armes";
+	Strings.reputname27 = "Guilde des ferronniers";
+	Strings.reputname28 = "Hommes de la vall\195\169e de l'Entalluve";
+	Strings.reputname29 = "Hommes des Norcrofts";
+	Strings.reputname30 = "Hommes des Sutcrofts";
+	Strings.reputname31 = "Hommes du Plateau";
+	Strings.reputname32 = "Peuple des Landes farouches";
+	Strings.reputname33 = "Survivants des Landes farouches";
+	Strings.reputname34 = "Les Eorlingas";
+	Strings.reputname35 = "Les Helmingas";
+	Strings.reputname36 = "Les Ents de la for\195\170t de Fangorn";
+	Strings.reputname37 = "Dol Amroth";
+	Strings.reputname38 = "Dol Amroth - Armurerie";
+	Strings.reputname39 = "Dol Amroth - Banque";
+	Strings.reputname40 = "Dol Amroth - Quais";
+	Strings.reputname41 = "Dol Amroth - Palais";
+	Strings.reputname42 = "Dol Amroth - Biblioth\195\168que";
+	Strings.reputname43 = "Dol Amroth - Entrep\195\180t";
+	Strings.reputname44 = "Dol Amroth - Atelier de Maconnerie";
+	Strings.reputname45 = "Dol Amroth - Chevaliers au Cygne";
+	Strings.reputname46 = "Hommes du Val de Ringl\195\179";
+	Strings.reputname47 = "Hommes de Dor-en-Ernil";
+	Strings.reputname48 = "Hommes du Lebennin";
+	Strings.reputname49 = "Pelargir";
+	Strings.reputname50 = "R\195\180deurs de l'Ithilien";
+	Strings.reputname51 = "D\195\169fenseurs de Minas Tirith";
+	Strings.reputname52 = "Cavaliers du Rohan";
+	Strings.reputname53 = "Arm\195\169e de l'ouest";
+	Strings.reputname54 = "Arm\195\169e de l'ouest: Armures";
+	Strings.reputname55 = "Arm\195\169e de l'ouest: Armes";
+	Strings.reputname56 = "Arm\195\169e de l'ouest: Provisions";
+	Strings.reputname57 = "Conqu\195\170te de Gorgoroth";
+	Strings.reputname58 = "Ennemi du sud de Fushaum Bal";
+	Strings.reputname59 = "Ennemi du nord de Fushaum Bal";
+	Strings.reputname60 = "Clan du Ciel rouge";
+	Strings.reputname61 = "Nains d'Erebor";
+	Strings.reputname62 = "Elfes de Felegoth";
+	Strings.reputname63 = "Hommes de Dale";
+	Strings.reputname64 = "Ligue des Chasseurs de Poulets d'Eriador";
+	Strings.reputname65 = "La confr\195\169rie de la cervoise";
+	Strings.reputname66 = "La Ligue des Tavernes";
+	Strings.reputname67 = "Exp\195\169dition des Montagnes Grises";
+	Strings.reputname68 = "Peuple sauvage";
+	Strings.reputname69 = "La Grande Alliance";
+	Strings.reputname70 = "La Compagnie blanche";
+	Strings.reputname71 = "Reconqu\195\170te de Minas Ithil";
+	-- to translate from here
+	Strings.reputname72 = "Syst\195\168me d'all\195\169geance";
+	Strings.reputname73 = "Le peuple de Durin";
+	Strings.reputname74 = "Le Royaume du Gondor";
+	Strings.reputname75 = "La Cour de la Lothl\195\179rien";
+	Strings.reputname76 = "Les Hobbits de la communaut\195\169e";
+	Strings.reputname77 = "La Ligue de la hache";
+	Strings.reputname78 = "Confr\195\169rie des B\195\187cherons";
+	Strings.reputname79 = "Les Gabil'akk\195\162";
+	-- new from here
+	Strings.reputname80 = "Les citadins de l'Eastfold";
+	Strings.reputname81 = "Habitants de la terre-du-roi";
+	Strings.reputname82 = "Communaut\195\169 des \195\169chevins";
+	Strings.reputname83 = "Communaut\195\169 des forgerons";
+	Strings.reputname84 = "Communaut\195\169 des ma\195\167ons";
+	Strings.reputname85 = "Ud\195\187n";
+	Strings.reputname86 = "Dor Amarth";
+	Strings.reputname87 = "Talath \195\154rui";
+	Strings.reputname88 = "Agarnaith";
+	Strings.reputname89 = "Protecteurs des Terres sauvages";
+	-- new from U34
+	Strings.reputname90 = "Kharum-ubn\195\162r";
+	Strings.reputname91 = "La reconqu\195\170te de la Montagne";
+	Strings.reputname92 = "D\195\168fenseurs de l'Angle";
+	Strings.reputname93 = "La Garde de la Comt\195\168 Lointaine";
+	Strings.reputname94 = "Dunedain du Cardolan";
+	Strings.reputname95 = "Les Haban'akk\195\162 de Thr\195\162in";
+	Strings.reputname96 = "Acc\195\168l\195\168ration de r\195\168putation";
+end
