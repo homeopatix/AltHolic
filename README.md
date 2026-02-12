@@ -29,18 +29,24 @@ inventaires, équipements, coffre, stockage partagé, statistiques, réputations
 ---
 
 # 🎮 Commandes & Raccourcis
-
+| Commande / Touche | Action | 
+|--------|------------------|
+| Afficher / Masquer l'icône | `/Alt icon` |
+| Déplacer l’icône | `ALT` |
+| Ouvrir les options | `SHIFT + clic sur l’icône` |
+🎮 Commandes & Raccourcis
+📌 Commandes Chat
 Commande	Description
-/Alt show	Montre la fenêtre principale
-/Alt hide	Cache la fenêtre principale
-/Alt toggle	Bascule l'affichage de la fenêtre
-/Alt esc	Active ou désactive la touche Escape
-/Alt options	Affiche la fenêtre d’options
-/Alt optionsbar	Affiche la fenêtre d’options de la barre
-/Alt icon	Affiche ou masque l’icône
-/Alt alt	Active ou désactive la touche ALT pour déplacer l’icône
-/Alt delete all	Efface toutes les entrées
-/Alt delete NomDuPerso	Efface le personnage spécifié
+| /Alt show	| Montre la fenêtre principale |
+| /Alt hide	| Cache la fenêtre principale |
+| /Alt toggle	| Bascule l'affichage de la fenêtre |
+| /Alt esc	| Active ou désactive la touche Escape |
+| /Alt options	| Affiche la fenêtre d’options |
+| /Alt optionsbar	| Affiche la fenêtre d’options de la barre |
+| /Alt icon	| Affiche ou masque l’icône |
+| /Alt alt	| Active ou désactive la touche ALT pour déplacer l’icône |
+| /Alt delete all	| Efface toutes les entrées |
+| /Alt delete NomDuPerso	| Efface le personnage spécifié |
 
 ---
 
