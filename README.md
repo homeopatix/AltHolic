@@ -36,8 +36,9 @@ inventaires, équipements, coffre, stockage partagé, statistiques, réputations
 | Déplacer l’icône | `ALT` |
 | Ouvrir les options | `SHIFT + clic sur l’icône` |
 
-📌 Commandes Chat
-| Commande / Description | 
+# 📌 Commandes Chat
+
+| Commande | Description | 
 |--------|------------------|
 | /Alt show	| Montre la fenêtre principale |
 | /Alt hide	| Cache la fenêtre principale |
