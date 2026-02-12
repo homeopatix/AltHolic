@@ -29,12 +29,13 @@ inventaires, équipements, coffre, stockage partagé, statistiques, réputations
 ---
 
 # 🎮 Commandes & Raccourcis
+
 | Commande / Touche | Action | 
 |--------|------------------|
 | Afficher / Masquer l'icône | `/Alt icon` |
 | Déplacer l’icône | `ALT` |
 | Ouvrir les options | `SHIFT + clic sur l’icône` |
-🎮 Commandes & Raccourcis
+
 📌 Commandes Chat
 Commande	Description
 | /Alt show	| Montre la fenêtre principale |
