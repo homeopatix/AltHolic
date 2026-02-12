@@ -47,7 +47,7 @@ partagé, statistiques, réputations et quêtes épiques.
   `/Alt delete all`          Efface toutes les entrées\
   `/Alt delete NomDuPerso`   Efface le personnage spécifié\
 
-------------------------------------------------------------------------\
+------------------------------------------------------------------------------------
 
 ## 🎹 Raccourcis
 
