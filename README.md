@@ -97,7 +97,7 @@ Les fichiers sont enregistrés dans :
 ## 🇫🇷 !!! Besoins !!!
 
 Vous devez avoir installé le package **Turbine**.\
-Vous pouvez le télécharger à cette adresse : **Here**\
+Vous pouvez le télécharger à cette adresse : **(https://www.lotrointerface.com/downloads/info1064-TurbineUtilities.html)**\
 Ou vous pouvez le télécharger avec le **Compendium plugins** (appelé
 *Turbine Examples*).
 
