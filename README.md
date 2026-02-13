@@ -1,3 +1,7 @@
+
+<img width="1536" height="1024" alt="homeo_plugins" src="https://github.com/user-attachments/assets/435fdf91-b616-46ca-be02-105f250d0e4c" />
+
+
 # 👥 AltHolic -- LOTRO Plugin
 
 ![Lua](https://img.shields.io/badge/Lua-Plugin-blue)
