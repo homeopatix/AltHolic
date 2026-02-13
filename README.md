@@ -97,21 +97,21 @@ Les fichiers sont enregistrés dans :
 ## 🇫🇷 !!! Besoins !!!
 
 Vous devez avoir installé le package **Turbine**.\
-Vous pouvez le télécharger à cette adresse : **https://www.lotrointerface.com/downloads/info1064-TurbineUtilities.html**\
+Vous pouvez le télécharger à cette adresse : **(https://www.lotrointerface.com/downloads/info1064-TurbineUtilities.html)**\
 
 ------------------------------------------------------------------------
 
 ## 🇬🇧 !!! Needs !!!
 
 You need to have the **Turbine package** installed.\
-You can download it at this address: **https://www.lotrointerface.com/downloads/info1064-TurbineUtilities.html**\
+You can download it at this address: **(https://www.lotrointerface.com/downloads/info1064-TurbineUtilities.html)**\
 
 ------------------------------------------------------------------------
 
 ## 🇩🇪 !!! Bedürfnisse !!!
 
 Sie müssen das **Turbine-Paket** installiert haben.\
-Sie können es unter dieser Adresse herunterladen: **https://www.lotrointerface.com/downloads/info1064-TurbineUtilities.html**\
+Sie können es unter dieser Adresse herunterladen: **(https://www.lotrointerface.com/downloads/info1064-TurbineUtilities.html)**\
 
 ------------------------------------------------------------------------
 
