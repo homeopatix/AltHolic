@@ -1,0 +1,7 @@
+AltHolic 4.86 - Gold Tally spacing polish
+
+- Widened the Gold Tally window from 960px to 1020px.
+- Added small gutters between Wallet, Coin Bags, Vault Bags, and Total.
+- Centered the vertical separators inside those gutters so the money displays no longer visually touch adjacent columns.
+- Preserved the 4.85 native LOTRO coin glyph sizes, row height, typography, scrollbar, and ledger styling.
+- No profession-rendering or launcher code changed.

@@ -1,0 +1,49 @@
+AltHolic 4.69 - Stability / Cleanup Refactor
+=============================================
+Baseline: 4.68 Black Slots (known-good crafting rendering)
+
+The 4.68 profession rendering path is intentionally preserved.
+
+Major cleanup
+-------------
+* Replaced the large destructive settings-migration block with recursive default merging.
+  - Missing new settings are added automatically.
+  - Existing/unknown settings are preserved for backwards compatibility.
+  - Added a schemaVersion field for future migrations.
+* Reduced SaveSettings() from dozens of no-op `x = x` assignments to the values that
+  actually need to be refreshed/coerced before saving.
+* Added Core.lua for reusable helpers (settings default merge, plugin discovery cache,
+  joining display values).
+* Centralized/cached RecipeTracker/Tokens plugin discovery instead of repeatedly walking
+  the complete plugin lists.
+* Refactored the minimized-icon setup from four copy/pasted branches into one data-driven
+  loop. All icon sizes now stay synchronized to the same screen position.
+* Removed SaveSettings() from every icon PositionChanged tick; settings persist normally
+  on unload/options save instead of writing repeatedly while the icon is dragged.
+* Minimized icons no longer request Update events while inactive.
+* Fixed MinimizedIcon:SetFramesPerActiveImage() using a global variable instead of the
+  icon instance's own framesPerActiveImage field.
+* Hoisted the profession-icon lookup table so it is not recreated every lookup.
+* Removed duplicate profession scan/save work during startup. Current professions are
+  refreshed once and marked fresh for the window build.
+* Stats window now shows the character's actual saved professions instead of an obsolete
+  vocation label/id.
+* SavePlayerDatas() no longer replaces the entire current character data table before
+  writing fields, preserving unknown/forward-compatible fields.
+* Stopped actively overwriting the legacy `voc` field. Existing values remain readable
+  by older display/filter code for compatibility, but current crafting does not depend on it.
+* Removed dead ProfessionWindow.lua (not imported or referenced).
+* Fixed a duplicate local `reputationValueLevel70` declaration that silently shadowed the
+  intended table in DecreaseReput(). It now matches UpdateReput()'s level-70 table.
+* AltHolic.plugin and AltHolic.plugincompendium now both report 4.69.
+
+Intentionally NOT rewritten
+---------------------------
+* CalcStat.lua contains very large static/statistical data tables. Reformatting or splitting
+  them would create a large regression surface with little runtime benefit, so they were
+  left intact.
+* Legacy vocation localization strings and the old `voc` save field are retained for
+  backward compatibility with old saves and a few old UI filters, but new crafting code
+  does not use vocations to determine professions.
+* The 4.68 crafting row rendering (black slot texture, hover trigger behavior, StretchMode)
+  is preserved because it is the configuration confirmed working in-game.

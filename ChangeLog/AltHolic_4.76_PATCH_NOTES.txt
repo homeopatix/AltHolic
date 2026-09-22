@@ -1,0 +1,6 @@
+AltHolic 4.76 - Search Input Fix
+
+Changes from 4.75:
+- Search text input is now explicitly single-line with SetMultiline(false).
+- Preserves all 4.75 runtime cleanup and the working 4.74 launcher behavior.
+- No crafting/profession rendering changes.

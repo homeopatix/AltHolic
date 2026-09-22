@@ -1,0 +1,58 @@
+AltHolic 4.70 – Control Cleanup / Orphan Prevention
+=====================================================
+Baseline: 4.69 Stability Refactor (which preserved the 4.68 confirmed-working crafting renderer)
+
+Background
+----------
+The ChatGPT conversation log (Tradeskill_icon_fix.md) was reviewed alongside the 4.69 code.
+That conversation independently arrived at the same architectural conclusions Claude reached:
+  - Individual professions, not vocations, are the correct data model for modern LOTRO.
+  - The 4.68 Prof_Slot.tga + SetStretchMode(1) + no-SetBackColor-on-hoverControl path is
+    the definitive working renderer. ChatGPT confirmed this was the correct fix after
+    multiple failed texture-size attempts (16×16 BL origin, 20×20, etc.).
+  - The [i][x] 2D indexing fix for per-character popup controls (centerLabelProf1 etc.)
+    was independently identified by ChatGPT as a real bug in the original code.
+  - Preserving legacy voc data for backward compatibility while not depending on it for
+    crafting is the right approach. Both ChatGPT and Claude agreed on this.
+
+The 4.69 refactor already fixed all the bugs both conversations identified. This 4.70
+pass addresses one additional concern: UI control accumulation across window rebuilds.
+
+What changed in 4.70
+--------------------
+* Added AltHolicUtil.DetachControls(controlTable) to Core.lua.
+  - Recursively walks a table of Turbine UI controls (flat or nested) and calls
+    SetParent(nil) on each one, which releases the C-side framework reference so the
+    control stops rendering and can be garbage collected.
+  - Falls back to SetVisible(false) via pcall if a control type does not support
+    SetParent(nil), so it is safe on SimpleWindow and other non-Label types.
+
+* PopulateWindow() in UI.lua now detaches old row controls before rebuilding.
+  - Before clearing CraftingRowControls, calls AltHolicUtil.DetachControls on the old table.
+  - This releases every Prof_Slot.tga tile Label and every profession icon Label that was
+    parented to viewport1.map in the previous build. Without this, each window open
+    accumulated a new set of invisible orphaned controls that the Turbine UI framework kept
+    alive (C-side parent reference), consuming memory and update bandwidth.
+  - Introduced a parallel CraftingHoverControls table. PopulateWindow detaches and resets
+    it alongside CraftingRowControls so hover-trigger Controls also get cleaned up.
+
+* DisplaySmallLabel() in FCT_Display.lua now manages hover control and popup lifecycle.
+  - The ButtonPlusVoc[i] SimpleWindow parented to AltHolicWindow is detached before a new
+    one is created for the same character. Previously each rebuild left the old popup alive
+    as a child of AltHolicWindow.
+  - The hoverControl (invisible mouse-enter trigger parented to viewport1.map) is stored
+    in CraftingHoverControls[i] so PopulateWindow can detach it on the next rebuild.
+
+What did NOT change in 4.70
+----------------------------
+* The 4.68/4.69 crafting rendering path is completely untouched:
+  - Prof_Slot.tga backing tiles at ZOrder 18, SetStretchMode(1)
+  - Circular-masked profession icon Labels at ZOrder 19, SetStretchMode(1)
+  - hoverControl with NO SetBackColor (the fix for the "see-through grey rectangle" bug)
+  - All parented to viewport1.map
+* The per-character [i][x] 2D indexing for popup profession rows is unchanged from 4.69.
+* DeepMerge settings, plugin discovery cache, MiniMizedIconHandler data-driven loop,
+  CurrentProfessionsAreFresh flag, and all other 4.69 stability improvements are retained.
+* CalcStat.lua, vocation compatibility code, and localization strings are untouched.
+
+Version: AltHolic.plugin and AltHolic.plugincompendium both report 4.70.

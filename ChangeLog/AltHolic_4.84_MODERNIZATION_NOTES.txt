@@ -1,0 +1,44 @@
+AltHolic 4.84 - Modernization / Cleanup Pass
+
+Built from the working 4.83 baseline.
+
+User-facing
+- Gold Tally now renders wallet/bag/vault/total amounts with the native LOTRO gold, silver, and copper icons instead of g/s/c suffix text.
+- Existing click-toggle, X-to-close, scrollbar, and safe offline-alt behavior are retained.
+
+Core / utility cleanup
+- Added reusable UI label/texture factories and a compact native money renderer to Core.lua.
+- Added a centralized MoneyParts helper so money decomposition is no longer reimplemented everywhere new code needs it.
+
+Coin-bag valuation
+- Replaced three nearly-identical English/French/German bag scanners with one table-driven valuation engine.
+- Renamed old French Compte* helpers to CalculateBagCoinValue, CalculateVaultCoinValue, and CalculateSharedStorageCoinValue.
+- Updated all internal call sites; old Compte* function names are not retained as aliases.
+- UpdateCash now calculates shared-storage coin value once instead of scanning twice.
+
+Stats window
+- Replaced long race/class if-chains with lookup tables.
+- Replaced the huge required-stat nil chain with a reusable field validator.
+- Rebuilt the PlayerAttArray definition as a single literal table rather than 20 assignment statements.
+- Basic character rows (level/race/class/crafting/gender) are now created through reusable label/pair helpers.
+- Removed ~125 lines of repetitive UI construction while preserving displayed data.
+
+Main character window
+- Replaced the large race/class texture if-chains with lookup tables and two focused resolver helpers.
+- Preserved the special current-player red monster-play artwork behavior.
+- Reduced UI.lua by more than 100 lines of repetitive mapping code.
+
+Toolbar
+- Replaced race/class icon if-chains with shared lookup tables and a texture helper.
+- Preserved existing click/tooltip behavior.
+
+FCT_Display.lua
+- Removed obsolete DisplayCashForCashWindow / DisplayDailyCashForCashWindow functions; the rebuilt Gold Tally no longer calls them.
+- Consolidated the duplicated help-button constructors into one internal CreateHelpButton helper.
+- Removed the ineffective SettingsToHandle pass-by-value argument from help-button call sites.
+- Localized a leaked currentCash variable and the delete-tooltip name-length temporary.
+
+Safety
+- Known-good profession row rendering, Prof_Slot behavior, crafting hover handling, and the single floating AltHolic launcher are untouched.
+- Generated CalcStat lookup data is untouched.
+- All Lua files pass a syntax load check with LuaTeX's Lua parser.

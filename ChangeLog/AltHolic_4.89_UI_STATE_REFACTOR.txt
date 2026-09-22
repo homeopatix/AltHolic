@@ -1,0 +1,40 @@
+AltHolic 4.89 - UI / State Refactor
+===================================
+
+This pass targets the remaining large procedural UI/state files identified after 4.88.
+
+FCT.lua
+- Replaced duplicated bag/vault/wallet/shared-storage search counters with shared helpers.
+- Search matching is now plain substring matching instead of Lua pattern matching.
+- Reworked locale-specific chat parsing into table-driven English/French/German handlers.
+- Localized reputation/XP/LOTRO-point parsing state and removed hidden global leaks.
+
+UISearch.lua
+- Rebuilt the search renderer around source definitions and reusable rendering helpers.
+- Preserved single-line search input.
+- Added deterministic sorting of characters/items.
+- Search query ** remains explicit match-all behavior.
+- Scroll range/content height now follows rendered content.
+- Reduced duplicated no-results, header, button, and source rendering code.
+
+UIShowStats.lua
+- Converted repeated primary-stat, offence, mitigation, resistance, and rating rows to table-driven definitions.
+- Reused row/section helpers instead of manually constructing nearly identical controls.
+
+FCT_2.lua
+- Consolidated repeated gold/silver/copper toolbar rendering into one money-row helper.
+- Session and spent cash rows now share the same renderer.
+
+FCT_Display.lua
+- Consolidated repeated main-window gold/silver/copper rendering into shared money helpers.
+- Wallet, bag-coin, vault-coin, session, and spent-cash displays now reuse the same implementation.
+- Existing positioning and visual behavior were preserved.
+
+Protected behavior intentionally unchanged
+- Profession row icon rendering / Prof_Slot.tga / crafting stretch-mode behavior.
+- Single floating launcher and the 4.74 anti-tiling size mapping.
+- Gold Tally layout and spacing accepted in 4.86.
+- Search textbox remains single-line.
+
+Validation
+- All packaged Lua files were syntax-checked with texluac.

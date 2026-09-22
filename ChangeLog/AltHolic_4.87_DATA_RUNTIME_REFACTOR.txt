@@ -1,0 +1,13 @@
+AltHolic 4.87 - Data/runtime refactor
+
+- Replaced ~500 lines of repeated equipment-slot save/load code with one shared 20-slot schema.
+- Centralized equipment slot indexes in AltHolicUtil.EquipmentSlots.
+- Normalized missing equipment lvl/armor fields to zero when loading.
+- Replaced ~200 lines of PlayerStats equipment cache initialization with one loop.
+- Removed duplicated morale/power reads in PlayerStats.
+- Localized backpack/vault/shared-storage/wallet save temporaries that were leaking globals.
+- Localized Epic-book save/delete temporaries.
+- Fixed DisplayDestinyPoints and DisplayLotroCoins using leaked global valToAdd state.
+- Removed obsolete vocation-era toolbar compatibility aliases.
+- Localized several toolbar-only UI controls to prevent cross-window global collisions.
+- Launcher, profession rendering, and Gold Tally visuals were not changed.

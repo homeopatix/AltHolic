@@ -1,0 +1,55 @@
+AltHolic 4.87 - Deep Code Refactor
+=================================
+
+This build continues the internal modernization from the stable 4.86 baseline while preserving the known-good launcher, profession rendering, and Gold Tally behavior.
+
+Major changes
+-------------
+
+1. Equipment persistence refactor
+- Replaced twenty repeated equipment-slot load/save blocks with one centralized equipment-slot schema and loop.
+- Added AltHolicUtil.EquipmentSlots and AltHolicUtil.EnsureTable().
+- Equipment saving now goes through one SaveEquipmentSlot() implementation.
+- PlayerStats equipment cache initialization uses the same slot schema instead of duplicating another twenty-slot block.
+
+2. Storage sorting and namespace cleanup
+- Bag, Vault, Shared Storage, and Wallet now sort slot keys directly through AltHolicUtil.SortedItemSlots().
+- This replaces the old O(n^2) name -> slot lookup loops and correctly preserves duplicate item names.
+- Localized numerous temporary controls/tables that previously leaked into the global namespace.
+- Wallet and Equipment popup label arrays are now window-local instead of sharing generic globals.
+
+3. XP window rewrite
+- Replaced the duplicated server-filtered / unfiltered XP rendering branches with one filtered character list and one reusable row renderer.
+- XP progress math and bar construction now live in dedicated helpers.
+- Scroll range is based on actual visible rows instead of the old hard-coded maximum.
+- Removed many temporary global variables from the XP window.
+
+4. Profession/data cleanup
+- Current profession saves use one canonical profession record list rather than maintaining redundant parallel arrays for the active character.
+- Legacy saved profession arrays remain readable for older alts until they are naturally refreshed.
+
+5. Main/bar/runtime fixes
+- Fixed DisplayDestinyPoints() and DisplayLotroCoins() using an undeclared shared valToAdd value.
+- Removed obsolete vocation parameters from DisplayBag()/DisplayVault(); the bag's optional random appearance remains intact.
+- Removed an unused vault-icon lookup table and stale vocation-era comments/aliases.
+- Main and toolbar Gold Tally buttons now route through the same ToggleUIShowCash() function.
+
+6. Core/UI helper improvements
+- External file-path textures no longer receive Overlay blend mode implicitly; numeric LOTRO resource IDs retain the normal Overlay default.
+- Added sorted storage-slot helper and retained reusable label/texture/money UI helpers.
+- Localized additional FCT_Display/FCT_2 controls that did not need to be globals.
+
+7. General cleanup
+- Removed dead/redundant state, unused aliases, repeated temporary globals, and repeated save calculations found during the full audit.
+- Total Lua source was reduced by roughly 900 lines versus 4.86 despite adding reusable helper code.
+
+Protected behavior intentionally unchanged
+------------------------------------------
+- Single floating AltHolic launcher and the 4.74 tiling fix.
+- Profession row icon rendering, Prof_Slot.tga behavior, stretch-mode path, and hover behavior.
+- Gold Tally 4.86 visual layout and spacing.
+- The generated/static CalcStat lookup body.
+
+Validation
+----------
+Every Lua source file and localization file in the package passes texluac syntax parsing after the refactor.

@@ -1,0 +1,83 @@
+AltHolic 4.71 – Dead Code Removal / Reputation Modernization
+=============================================================
+Baseline: 4.70 Control Cleanup / Orphan Prevention
+
+Background
+----------
+This pass completes the modernization work that the ChatGPT conversation
+(Tradeskill_icon_fix.md) explicitly deferred:
+
+  "I left some old vocation-related compatibility code in the reputation
+   screens for now.  Those sections aren't being used to determine your
+   crafting professions anymore, but ripping them out safely requires
+   understanding exactly which reputation indexes correspond to which
+   crafting guilds.  That deserves a separate focused modernization
+   rather than blindly deleting it."
+
+The reputation index → crafting guild mapping was confirmed via
+GlobalsEN.lua (indices 21–27), making all three cleanups safe to apply:
+
+What changed in 4.71
+--------------------
+
+* UIShowReput.lua – replaced voc-based guild filter with profession lookup.
+  - The old code used PlayerDatas[name].voc (a 1–7 vocation enum) to decide
+    which crafting-guild reputation rows to show or hide.  Modern LOTRO
+    abandoned fixed vocations; a character may learn any combination of
+    professions, so the voc field is no longer a reliable source of truth.
+  - The replacement reads PlayerProfessions[NamePlayerToShow] (the same
+    table used by the crafting panel since 4.68) and checks whether the
+    character's actual saved profession list contains the guild's profession.
+  - Guild index → profession mapping used by the new code:
+      21 = Jewellers' Guild   → "jeweller" / "jeweler"
+      22 = Cooks' Guild       → "cook"
+      23 = Scholars' Guild    → "scholar" / "historian"
+      24 = Tailors' Guild     → "tailor" / "taillor"
+      25 = Woodworkers' Guild → "woodworker" / "carpenter"
+      26 = Weaponsmiths' Guild→ "weaponsmith" / "weaponcrafter"
+      27 = Metalsmiths' Guild → "metalsmith"
+  - Comparison is case-insensitive (string.lower) and supports alternate
+    spellings to match however the game client stores the profession name.
+  - Non-guild reputation rows (i not in 21–27) are unaffected.
+
+* UIShowReput.lua – removed dead function ReputToEnleve().
+  - This function (lines 606–631 in 4.70) was defined but never called
+    anywhere in the codebase.  It returned a voc-based count of guild
+    reputations to hide, but the call site that would have used it was
+    never wired up.  Removed entirely.
+
+* FCT.lua – removed duplicate unreachable elseif(i == 102) branch.
+  - Both DecreaseReput() and UpdateReput() contained the same bug:
+    the elseif chain handled i == 102 correctly at the top (with a
+    position-adjustment block), then repeated a bare `elseif(i == 102)`
+    lower down that could never be reached.  The second occurrence was
+    dead code in both functions and has been removed from each.
+
+* CalcStat.lua – removed duplicate global RoundDbl* definitions.
+  - Lines 11050–11145 (in 4.70) re-declared RoundDbl, RoundDblDown,
+    RoundDblUp, RoundDblLotro, and RoundDblProg as globals using
+    unaliased math.floor / math.log10 calls.  Lua looks up global
+    table entries (math.floor) on every call, whereas the local aliases
+    at the top of the file (mathfloor, etc.) resolve at compile time to
+    a direct upvalue reference — significantly faster inside the 10,000+
+    line CalcStat() binary search tree that calls them.
+  - The duplicate globals shadowed the optimised local versions for any
+    external caller that happened to use the global name, and offered no
+    correctness benefit.  No callers outside CalcStat.lua were found.
+  - Removed the entire duplicate block.  The local versions at lines
+    61–133 (unchanged) remain the sole definitions.
+  - The binary search tree body (lines 249–10619) and all other exposed
+    helper functions are completely untouched.
+
+What did NOT change in 4.71
+----------------------------
+* The 4.68/4.69/4.70 crafting rendering path is untouched.
+* CraftingRowControls / CraftingHoverControls orphan-prevention (4.70) unchanged.
+* AltHolicUtil.DetachControls (4.70) unchanged.
+* DeepMerge settings, plugin discovery cache, MiniMizedIconHandler,
+  CurrentProfessionsAreFresh, and all other prior stability work retained.
+* CalcStat() function body (lines 249–10619) not modified.
+* All localization strings and CalcStat helper functions after line 10620
+  are untouched.
+
+Version: AltHolic.plugin and AltHolic.plugincompendium both report 4.71.

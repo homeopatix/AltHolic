@@ -1,0 +1,27 @@
+AltHolic 4.81 - Window Lifecycle / Namespace Refactor
+===================================================
+
+Baseline
+--------
+Built from the confirmed-working 4.80 tree. The launcher renderer, profession-row renderer, Prof_Slot.tga path, stretch mode, crafting hover behavior and search input behavior are unchanged.
+
+Changes
+-------
+- Transient window visibility flags are normalized to false at login so lazy-created windows can never be referenced as visible before their control exists.
+- Secondary windows (delete confirmation, server selector, bar options, help, epic, stats, reputation, search) are no longer constructed hidden at plugin startup. Their existing click/command handlers already construct them when needed.
+- Consolidated repetitive Closing handlers in FCT_Windows.lua behind one internal helper while preserving existing wrapper function names.
+- Localized UpdateMainWindow sizing temporaries instead of leaking winHeight/heightScreen globals.
+- Localized listbox/listItem/vscrollListBox independently inside Bag, Vault, Wallet, Shared Storage, Reputation, Epic and XP window builders. Previously these generic names were globals shared by unrelated windows; opening a second window could overwrite state referenced by the first window's scrollbar callbacks.
+- Localized per-window display-mode state in Bag/Vault/Shared Storage and removed three unused LocalPlayer lookups.
+- Localized Epic window server-count state instead of leaking `toSearch`.
+- Localized reputation close/no-data controls in addition to its toggle/tooltip controls.
+- Localized reputation toggle/tooltip controls used only by CreateUIShowReput().
+- Localized the stats calculation array and temporary stat-icon reference inside CreateUIShowStats().
+- Localized HelpWindowButton inside GenerateHelpWindow().
+
+Risk controls
+-------------
+- No changes to profession rendering or profession detection.
+- No changes to the floating launcher rendering/sizing.
+- No changes to CalcStat generated lookup data.
+- Existing cross-file function names are preserved.

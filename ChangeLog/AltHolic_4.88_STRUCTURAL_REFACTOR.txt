@@ -1,0 +1,51 @@
+AltHolic 4.88 - Structural Refactor
+
+This pass continues the full-code cleanup from the stable 4.87 baseline.
+
+Highlights
+----------
+- UIShowEpique.lua rebuilt around small helpers and local state.
+  * Removed many temporary globals.
+  * Added table-driven epic volume icon lookup.
+  * Fixed the always-true `value ~= nil or value ~= ""` style check by using a proper guard.
+  * Replaced the fixed scrollbar maximum with actual content-height calculation.
+  * Character filtering/sorting is now isolated and deterministic.
+
+- UISearch.lua streamlined.
+  * Renamed CreateUiSearch -> CreateUISearch across the plugin.
+  * Normalized internal display mode from `icones` to `icons`.
+  * Search-source counting/height calculation is now table-driven.
+  * Search buttons and click handlers now use shared helpers instead of five repeated blocks.
+  * No-results messaging now uses one helper.
+  * Removed several dead temporaries and fixed a duplicated `if iconCount == 9` block.
+  * Shared-storage item count is now local instead of leaking a global.
+
+- OptionsWindow.lua reduced and localized.
+  * Checkbox controls used by validation are module-local, not globals.
+  * Added CreateOptionCheckBox helper.
+  * Icon-size choices are generated from one option table and share one exclusivity handler.
+  * Remaining standard checkboxes now use the helper instead of repeated construction blocks.
+  * Server-name dropdown data/current index are local.
+  * Layout coordinates/colors are local to the generator.
+
+- UIShowReput.lua cleanup and correctness fixes.
+  * Guild/profession metadata and reputation thresholds are allocated once at module load.
+  * Crafting-guild visibility now reads the canonical GetSavedProfessions() format, while remaining compatible with legacy saves.
+  * Fixed an inverted guild visibility condition introduced by the earlier vocation->profession modernization: learned-profession guilds now display; unrelated guilds hide.
+  * Removed repeated per-row threshold-table allocation.
+  * Scroll range is based on the number of displayed reputation rows, not a hard-coded maximum.
+  * Reputation faction-count helper is private to the module.
+  * Removed another leaked `myTable` global.
+
+- UI.lua / FCT_Display.lua main-window cleanup.
+  * Character-name sorting is now local to PopulateWindow rather than relying on a global `a` table.
+  * Several one-window controls (expand/collapse, shared storage, XP, epic, search, cash button) are local rather than globals.
+  * Main-window scrollbar and map-height temporaries are local.
+  * Search hover helper no longer reaches through a global `centerLabelIsVisibleSearch`; the icon control is passed explicitly.
+  * Reused MAIN_MONSTER_RACES lookup instead of repeating four race comparisons twice.
+  * Removed an unused vault-count temporary.
+
+Safety
+------
+- Profession row rendering, Prof_Slot.tga, crafting stretch mode, the single launcher/4.74 tiling fix, and the 4.86 Gold Tally layout were not behaviorally changed.
+- All Lua files in the package pass texluac syntax validation.

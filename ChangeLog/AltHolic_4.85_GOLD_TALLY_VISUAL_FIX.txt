@@ -1,0 +1,9 @@
+AltHolic 4.85 - Gold Tally Visual Fix
+
+- Rebuilt Gold Tally as a wider, ledger-style view.
+- Uses LOTRO coin textures at their native 27x21 dimensions instead of clipping them into 13x13 squares.
+- Increased row height and money font size for readability.
+- Added vertical column dividers and horizontal row separators.
+- Widened money columns and the window to reduce visual crowding.
+- Keeps the existing scrollbar, click-toggle behavior, safe offline-alt cash handling, and Gold Tally tooltip.
+- No profession or minimized-launcher rendering code was changed.

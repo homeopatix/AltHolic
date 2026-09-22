@@ -1,0 +1,34 @@
+AltHolic 4.91 - Legacy Windows + Localization Refactor
+
+Targets cleaned:
+- OptionsWindowBar.lua
+- ServerNameWindow.lua
+- InfoWindow.lua
+- UIAddNew.lua
+- UIAddNewXP.lua
+- UIAddNewEpique.lua
+- UIAddNewReput.lua
+- UIToBeSur.lua
+- GenderWindow.lua
+- HelpWindow.lua
+
+Highlights:
+- Replaced repetitive toolbar-option checkbox construction and saving with table-driven definitions.
+- Localized temporary controls/state in legacy windows; retained only the window globals required by other modules.
+- Added safe single-control detachment helper so rebuilt windows cannot leave stale C-side controls behind.
+- Server-name selector now uses local rows/controls, deterministic ordering, optional scrollbar, and no longer writes controls into AltHolicWindow.Message135/136.
+- Info editor no longer depends on the global PlayerInformations scratch variable; SavePlayerInfos now accepts the text directly.
+- Corrected info-window visibility setting usage and X-close state handling.
+- Add-account window footer is now parented to the correct window instead of AltHolicWindow.
+- Epic editor is helper-driven, removes duplicated add/update formatting code, preserves raw custom book/chapter text when editing, and chooses the next free numeric index safely instead of tablelength()+1.
+- Reputation editor is table-driven, localizes its hard-coded English labels, and removes several leaked globals.
+- Gender selector no longer keeps module-wide checkbox maps and avoids needless saves simply from opening the window.
+- Help topics are table-driven; obsolete vocation help topic is removed.
+- Removed dead PluginVocation*, PluginOption27, and vocation-help localization keys from EN/FR/DE.
+- Updated lotrointerface.txt to describe automatic profession detection instead of the removed manual vocation picker.
+- Cleaned remaining stale vocation-era comments.
+- All Lua/localization Lua files pass texluac syntax validation.
+
+Compatibility notes:
+- Persisted character fields such as `sexe` and `armure` remain unchanged intentionally to avoid breaking existing saved data.
+- Known-sensitive profession rendering, launcher rendering/dragging, and Gold Tally layout were not altered.

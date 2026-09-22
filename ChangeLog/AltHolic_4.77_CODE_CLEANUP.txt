@@ -1,0 +1,17 @@
+AltHolic 4.77 - Code Cleanup / Namespace Safety
+
+Baseline: 4.76 (working launcher, crafting renderer, search input).
+
+Changes:
+- Fixed a latent global-name collision in DisplayBirthday(): the birthday popup used ButtonPlusVoc/centerLabelBVoc, the same globals now used by the profession popup tables. Birthday controls and resource tables are now local and semantically named.
+- Renamed DisplayButtonVocation_Bar() to DisplayProfessions_Bar() and DisplaySmallLabelForBar() to DisplayProfessionTooltipForBar(). Backward-compatible aliases remain.
+- Localized crafting-bar controls/popups and RecipeTracker detection so rebuilding the bar no longer leaves unnecessary globals behind.
+- Localized RecipeTracker detection in the main profession tooltip.
+- Removed proven-dead helpers: returnNombreBooks(), ReturnNumberBooks(), ReturnReputValue(), DisplayButtonHelp().
+- Removed the unused standalone UIShowCrafting.lua module and its import; active crafting UI is the row/toolbar profession popup path.
+- Updated the visible toolbar option wording from vocation to professions in EN/FR/DE.
+- No changes to the known-good profession-row texture/rendering path, launcher rendering/sizing, or search behavior.
+- Removed unnecessary SetWantsUpdates(true) from the toolbar, server-name window, and gender window; none defines an Update callback.
+- Made server/gender checkbox tables module-local instead of global.
+- Added correctly-spelled GenerateGenderWindow() and retained GenerateGendreWindow as a compatibility alias.
+- Removed the never-imported/dead UIShowFestival.lua module, which also duplicated global gender checkbox names.

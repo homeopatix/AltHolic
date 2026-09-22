@@ -1,0 +1,8 @@
+AltHolic 4.83 - Gold Tally UI polish
+
+- Added a concise hover tooltip to the main-window coin icon:
+  "Left-click: Open Gold Tally"
+- Rebuilt the Gold Tally content into a Turbine ListBox with a LOTRO vertical scrollbar.
+- Column headers remain fixed while character, totals, session, and daily rows scroll.
+- Window height is bounded to the display instead of growing beyond the screen.
+- Preserves 4.82 click-to-toggle behavior and safe offline-character cash handling.

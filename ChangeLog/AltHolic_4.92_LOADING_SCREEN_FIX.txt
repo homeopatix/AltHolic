@@ -1,0 +1,7 @@
+AltHolic 4.92 - Loading Screen Launcher Fix
+
+- Lowered the floating launcher Z-order from 10000 to 100.
+- Lowered the launcher tooltip Z-order to 101.
+- Removed the redundant second SetZOrder call from FCT.lua.
+- Keeps the launcher above AltHolic's normal main window while allowing LOTRO's loading/full-screen overlays to cover it normally.
+- No changes to launcher size, image selection, drag behavior, Shift+Click settings, or the 4.74 anti-tiling logic.

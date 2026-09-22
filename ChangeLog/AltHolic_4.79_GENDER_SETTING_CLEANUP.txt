@@ -1,0 +1,7 @@
+AltHolic 4.79 - Gender Setting Cleanup
+
+- Removed the legacy isGendreWindowVisible migration code entirely.
+- The only live setting is isGenderWindowVisible.
+- If that setting is absent from saved data, the existing default merge supplies value=false.
+- Old misspelled saved data is ignored rather than migrated.
+- No crafting, launcher, search, or other UI behavior was changed.

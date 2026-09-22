@@ -1,0 +1,42 @@
+AltHolic 4.80 - Internal Refactor / Runtime Cleanup
+=================================================
+
+Baseline
+--------
+Built conservatively from the confirmed-working 4.79 tree. The working profession-row renderer, Prof_Slot.tga path, crafting hover behavior, floating launcher rendering/tiling fix, and single-line search behavior were not redesigned.
+
+Correctness fixes
+-----------------
+- Fixed DisplayClassPlayer_Bar() reading an undefined `i` when choosing the current monster-play class/race artwork. The bar now uses the current player context directly.
+- Fixed DisplayCashOfPlayer_Bar() testing PlayerDatas.bagCash / PlayerDatas.vaultCash at the wrong table level. Per-character bag and vault cash now participate in the aggregate correctly.
+- Fixed the slash-command fallback condition that was logically always true (`~= A or ~= B ...`). Unknown commands now cleanly fall through to help.
+- Added an English localization fallback for client languages that do not have a dedicated AltHolic localization file.
+
+Profession data cleanup
+-----------------------
+- GetDataForProfessions() now returns one canonical profession list instead of maintaining four parallel copies of the same information.
+- Removed unused profession globals (ProfessionName/currentLevel/currentLevelMastery/CurrentProfessionData).
+- SavePlayerProfessions() now stores the canonical list only (format Version 3), rather than duplicating Name, CurrentLvl, currentMastery and Professions for current-format characters.
+- Legacy profession arrays remain readable for old alts until those characters are logged in and naturally rewritten.
+- Existing profession detection and the proven rendering path were intentionally left unchanged.
+
+Runtime / namespace cleanup
+---------------------------
+- Reworked Random() to seed Lua's PRNG once instead of reseeding on every call.
+- Simplified Round(), rating formatting, comma formatting, Split(), and tablelength(); Split() no longer leaks a global `result` table.
+- Localized a large set of temporary toolbar, search-window, money-display, tooltip and row controls that previously leaked into the global namespace.
+- Removed an unused equipment scan from the race display on the toolbar.
+- Removed unused VaultIcons/nbrItemInVault state from the toolbar vault button.
+- Moved the toolbar's `alreadyDisplayed` state into FCT_2.lua instead of sharing a loose global with PlayerStats.lua/UI_Bar.lua.
+- Localized profession icon lookup data and refresh state inside FCT.lua.
+
+Search / save cleanup
+---------------------
+- Simplified search-source selection into one elseif chain and removed the `bag = bag` no-op.
+- Corrected the stale 'create the bag window' comment in UISearch.lua.
+- Removed reputation-save self-assignments that performed no operation.
+
+Validation
+----------
+- Every Lua source file in the packaged plugin passes a Lua 5.1-compatible texluac syntax parse.
+- No changes were made to the launcher tiling fix, profession texture/stretch behavior, Prof_Slot rendering, or crafting hover-control fix.

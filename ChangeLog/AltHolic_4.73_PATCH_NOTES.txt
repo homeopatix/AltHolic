@@ -1,0 +1,11 @@
+AltHolic 4.73 - Single Launcher Icon Fix
+
+- Restores the AltHolic floating launcher to exactly ONE draggable icon.
+- Removes the refactor behavior that instantiated 64/32/24/16 launcher windows simultaneously.
+- Icon size changes now resize/retexture the same MainMinimizedIcon instance.
+- Preserves the Shift+Click Settings / Alt+Drag tooltip.
+- Keeps drag-position write optimization: the settings file is not written on every pixel of movement.
+- Updates HUD visibility handling and auxiliary windows to use the single launcher instance.
+- No profession/crafting rendering code was changed.
+
+Baseline: AltHolic 4.71.

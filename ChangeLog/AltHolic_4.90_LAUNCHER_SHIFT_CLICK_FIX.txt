@@ -1,0 +1,7 @@
+AltHolic 4.90 - Launcher Shift+Click Fix
+
+- Restores reliable Shift+Left Click on the floating AltHolic launcher to toggle Settings.
+- Uses Turbine.UI.Control.IsShiftKeyDown() / IsAltKeyDown(), the documented static modifier-key API.
+- Removes the old account-name prerequisite from Shift+Click; Settings is always available.
+- Uses actual window visibility instead of only the saved visibility flag when toggling Settings.
+- Preserves the single-launcher architecture, drag behavior, tooltip, and 4.74 anti-tiling behavior.

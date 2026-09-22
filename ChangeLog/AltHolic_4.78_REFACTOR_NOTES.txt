@@ -1,0 +1,45 @@
+AltHolic 4.78 - Gender Naming + Refactor Cleanup
+
+Built from the working 4.77 baseline.
+
+Changes
+-------
+- Removed the GenerateGendreWindow compatibility alias entirely.
+- Renamed GendreWindow.lua to GenderWindow.lua and updated the import.
+- Renamed active misspelled gender UI symbols throughout the plugin:
+  * GendreWindow -> GenderWindow
+  * OpenChangesGendre -> OpenChangesGender
+  * CloseGendreWindow -> CloseGenderWindow
+  * buttonDefineGendre -> buttonDefineGender
+  * DisplayLabelSexe -> DisplayGenderLabel
+  * SavePlayerSexeForSpecialCharacters -> SavePlayerSexForSpecialCharacters
+- Renamed localization keys PluginGendreText* -> PluginGenderText* in EN/FR/DE.
+- Renamed the saved visibility key isGendreWindowVisible -> isGenderWindowVisible.
+- Added one-time migration for existing saved settings so old installs retain the window state.
+- Bumped the settings schema to 5.
+
+Gender window refactor
+----------------------
+- Rewrote the gender window around small local helpers instead of many leaked globals.
+- Replaced repeated race-ID if blocks with male/female texture lookup tables.
+- Localized list, row, portrait, scrollbar, and close-button controls.
+- Rebuilds now detach the previous GenderWindow before creating a fresh one.
+- Fixed callback capture so each checkbox reliably updates its own character row.
+- Scroll range now uses the number of eligible characters instead of every alt.
+- Kept the manual-gender behavior intact because offline alt gender is not reliably available from the LOTRO API.
+
+Additional runtime cleanup
+--------------------------
+- CreateBarWindow now detaches the previous AltHolicBar before rebuilding it, preventing stale child-control trees from accumulating across repeated bar refreshes.
+
+Deliberately untouched
+----------------------
+- Crafting profession row rendering and Prof_Slot.tga path.
+- Profession tooltip/hover behavior.
+- Single floating AltHolic launcher and 4.74 tiling fix.
+- Search input behavior from 4.76.
+- CalcStat generated lookup data.
+
+Validation
+----------
+- All Lua files parse successfully after the refactor.

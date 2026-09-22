@@ -1,0 +1,42 @@
+AltHolic 4.75 - Conservative Runtime Cleanup
+============================================
+Baseline: working 4.74 build.
+
+This pass intentionally avoids the profession-row renderer and the floating-launcher
+rendering path that were recently stabilized.
+
+Runtime / stability cleanup
+---------------------------
+- UI.lua: inventory, vault and shared-storage event handlers are now installed once.
+  Previously they were reassigned from AltHolicWindow.Update about every 30 seconds.
+- UI.lua: UpdaterFromChat() is no longer reinstalled from every UI update tick. The
+  existing one-time installation during window creation remains.
+- UI.lua: the cached alt count is recomputed on the periodic maintenance cycle instead
+  of on every UI update tick.
+- DropDown.lua: optional ItemChanged callbacks no longer create/overwrite a global
+  ItemChangedListener function on each selection.
+
+Reputation code cleanup
+-----------------------
+- FCT.lua: reputation threshold tables are now shared constants instead of being
+  allocated again every time UpdateReput/DecreaseReput runs.
+- FCT.lua: reputation threshold selection is centralized in GetReputationLevelTable().
+- FCT.lua: lvlValue, lvlNextRepPos and nextVal are now local temporaries instead of
+  leaking into the plugin global namespace.
+- FCT.lua: removed the large obsolete, commented-out reputation-only chat parser.
+- FCT.lua: removed one duplicate centerEquipItem2a table initialization.
+
+Dead legacy cleanup
+-------------------
+- LoadAndSave.lua: removed unused ReturnPlayerVocation(). Existing saved .voc fields are
+  left untouched for legacy bag artwork/compatibility.
+- PlayerStats.lua: removed the unused PlayerVoc runtime variable/comments.
+- Init.lua: removed the unused OptionsWindowVoc default setting.
+- OptionsWindow.lua: corrected the stale comment; LOTRO vocations still exist, but
+  AltHolic now stores crafting by individual professions.
+
+Validation
+----------
+- All Lua files pass a syntax parse check.
+- Profession icon rendering files/functions were not changed.
+- Floating AltHolic launcher rendering/sizing was not changed.

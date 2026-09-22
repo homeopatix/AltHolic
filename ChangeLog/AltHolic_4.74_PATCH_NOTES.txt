@@ -1,0 +1,15 @@
+AltHolic 4.74 - Single Launcher Texture Tiling Fix
+
+Root cause
+----------
+The 4.69+ refactor interpreted settings.iconSize.value == 64 as a literal 64x64 launcher control.
+However, legacy AltHolic used the value 64 only as the selector for the "Standard icon"; the actual AltHolic.tga resource is 32x32 and the original code displayed it in a 32x32 control.
+LOTRO tiles a file-path background when the control is larger than the texture, so the 32x32 launcher texture repeated 2x2 inside the erroneous 64x64 control.
+
+Fix
+---
+- Standard icon (legacy setting value 64) now displays at its original 32x32 control size.
+- Tiny 32 / 24 / 16 modes remain 32x32, 24x24, and 16x16 respectively.
+- Still uses exactly one launcher object.
+- Tooltip and drag behavior are unchanged.
+- No crafting/profession rendering code was changed.
