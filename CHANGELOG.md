@@ -2,6 +2,113 @@
 
 > Languages: 🇫🇷 Français • 🇬🇧 English • 🇩🇪 Deutsch
 
+## V4.92 - Mise à jour Majeur
+
+### 🇫🇷 Français
+- Mise à jour des statistique avec la dernière version de giseldah, V 2.5.5
+- Ajout de 5 nouvelles réputations
+- Mise à jour du level max à 160
+- Mise à jour des nom des serveurs disponible
+- Mise à jour du Tiers 16 des professions
+- !!!! Refection et nettoyage du code fait par xruptor ( un très grand merci à lui pour son incroyable travail ) !!!!
+
+### 🇬🇧 English
+- Update of statistics with the latest version of giseldah, V 2.5.5
+- Added 5 new reputations
+- Updated max level to 160
+- Updated available server names
+- Updated Tier 16 professions
+- !!!! Code overhaul and cleanup done by xruptor (a huge thanks to him for his amazing work) !!!!
+
+### 🇩🇪 Deutsch
+- Aktualisierung der Statistiken mit der neuesten Version von giseldah, V 2.5.5
+- Hinzufügen von 5 neuen Rufwerten
+- Aktualisierung des maximalen Levels auf 160
+- Aktualisierung der verfügbaren Servernamen
+- Aktualisierung des Tier 16 der Berufe
+- !!!! Code-Überarbeitung und Bereinigung durchgeführt von xruptor (ein riesiges Dankeschön an ihn für seine unglaubliche Arbeit) !!!!
+
+---
+
+## V4.53
+
+### 🇫🇷 Français
+- Mise à jour des statistique avec la dernière version de giseldah, V 2.5.5
+- Ajout de 5 nouvelles réputations
+- Mise à jour du level max à 160
+- Mise à jour des nom des serveurs disponible
+- Mise à jour du Tiers 16 des professions
+- Mise à jour des vocation (qui n'existe plus), !! Travail en cours pour l'ajout des professions !!
+
+### 🇬🇧 English
+- Updating statistics with the latest version of Giseldah, V 2.5.5
+- Added 5 new reputations
+- Updated max level to 160
+- Updated available server names
+- Updated Tier 16 professions
+- Updated vocations (which no longer exist), !! Work in progress for adding professions !!
+
+### 🇩🇪 Deutsch
+- Aktualisierung der Statistiken mit der neuesten Version von giseldah, V 2.5.5
+- Hinzufügen von 5 neuen Rufwerten
+- Aktualisierung des Maximallevels auf 160
+- Aktualisierung der verfügbaren Servernamen
+- Aktualisierung des Tiers 16 der Berufe
+- Aktualisierung der Berufe (die es nicht mehr gibt), !! Arbeit läuft für das Hinzufügen der Berufe !!
+
+---
+
+## V4.52
+
+### 🇫🇷 Français
+- Corrigé un bug dans la fenêtre des statistiques
+- Corrigé un bug dans la fenêtre de l'UI principale
+- Corrigé un bug dans la fenêtre de l'affichage du cash
+- Corrigé un bug dans la la fonction de calcul du cash
+- Corrigé un bug dans les réputations
+- Corrigé un bug dans les vocation qui n'existe plus 
+- Corrigé un bug dans l'affichage du sac é dos avec modification de l'options pour l'afficher aléatoirement ou non
+
+### 🇬🇧 English
+- Fixed a bug in the statistics window
+- Fixed a bug in the main UI window
+- Fixed a bug in the cash display window
+- Fixed a bug in the cash calculation function
+- Fixed a bug in reputations
+- Fixed a bug in vocations that no longer exist 
+- Fixed a bug in the backpack display with an option to show it randomly or not
+
+### 🇩🇪 Deutsch
+- Ein Bug im Statistikfenster behoben
+- Ein Bug im Haupt-UI-Fenster behoben
+- Ein Bug im Cash-Anzeigefenster behoben
+- Ein Bug in der Cash-Berechnungsfunktion behoben
+- Ein Bug bei den Reputation behoben
+- Ein Bug bei den nicht mehr existierenden Berufen behoben 
+- Ein Bug bei der Darstellung des Rucksacks behoben mit der Anpassung der Option, um ihn zufällig anzuzeigen oder nicht
+
+---
+
+## V4.49
+
+### 🇫🇷 Français
+- Corrigé un bug dans la fenêtre des statistiques
+- Changé le texte de la fenêtre des statistiques en allemand pour une meilleure compréhension
+- Changé la police du texte de la fenêtre des statistiques en allemand pour une meilleure lisibilité
+- Merci à Farothhen pour son travail sur l’allemand
+
+### 🇬🇧 English
+- Fixed a bug in the stats window
+- Changed the text of the statistics window to German for better comprehension
+- Changed the text of the statistics window to German for better readability
+- Thanks to Farothhen for his work on German
+
+### 🇩🇪 Deutsch
+- Ein Fehler im Statistikfenster wurde behoben
+- Der Text des Statistikfensters wurde zum besseren Verständnis auf Deutsch umgestellt
+- Der Text des Statistikfensters wurde zur besseren Lesbarkeit auf Deutsch geändert
+- Danke an Farothhen für seine Arbeit an der deutschen
+  
 ---
 
 ## V4.49
