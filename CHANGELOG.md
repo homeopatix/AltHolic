@@ -1,3 +1,89 @@
+V5.8.1 – Cleanup, stability and collections
+
+Français
+
+* Ajout de deux nouvelles fenêtres, Montures et Familiers, accessibles depuis les boutons de la fenêtre principale.
+* Ces fenêtres listent par ordre alphabétique toutes les montures et tous les familiers connus de vos personnages, avec l'icône, le nom et le personnage qui les possède.
+* Nettoyage des chemins de sauvegarde fragiles des données des personnages.
+* Correction des structures manquantes lors du chargement des professions, des réputations et des quêtes épiques.
+* Optimisation des sauvegardes en évitant les réécritures de données inutiles ou risquées.
+* Chargement des données utilisateur plus robuste en cas de données manquantes ou partiellement initialisées.
+
+English
+
+* Added two new windows, Mounts and Pets, opened from the buttons in the main window.
+* These windows list, in alphabetical order, every mount and pet known to your characters, with its icon, name and owning character.
+* Cleaned up fragile save paths for character data.
+* Fixed missing structures when loading professions, reputations and epic quests.
+* Optimized saves by avoiding unnecessary or unsafe data rewrites.
+* Made loading more robust against missing or partially initialized data.
+
+Deutsch
+
+* Zwei neue Fenster hinzugefügt, Reittiere und Haustiere, erreichbar über die Schaltflächen im Hauptfenster.
+* Diese Fenster listen alphabetisch alle Reittiere und Haustiere Ihrer Charaktere auf, mit Symbol, Name und dem besitzenden Charakter.
+* Fragile Speicherpfade für Charakterdaten bereinigt.
+* Fehlende Strukturen beim Laden von Berufen, Rufen und epischen Quests behoben.
+* Speicherung optimiert, indem unnötige oder unsichere Neuschreibungen von Daten vermieden werden.
+* Laden robuster gegenüber fehlenden oder teilweise initialisierten Daten gemacht.
+
+
+V5.07 – Cleanup and stability pass
+
+Français
+
+* Mise à jour de la version du plugin en 5.07 pour la branche Testing.
+* Nettoyage des chemins de sauvegarde fragiles des données des personnages.
+* Correction des structures manquantes lors du chargement des professions, des réputations et des quêtes épiques.
+* Optimisation des sauvegardes en évitant les réécritures de données inutiles ou risquées.
+* Chargement des données utilisateur plus robuste en cas de données manquantes ou partiellement initialisées.
+
+English
+
+* Updated the plugin version to 5.07 for the Testing branch.
+* Cleaned up fragile save paths for character data.
+* Fixed missing structures when loading professions, reputations and epic quests.
+* Optimized saves by avoiding unnecessary or unsafe data rewrites.
+* Made loading more robust against missing or partially initialized data.
+
+Deutsch
+
+* Plugin-Version für den Testing-Branch auf 5.07 aktualisiert.
+* Fragile Speicherpfade für Charakterdaten bereinigt.
+* Fehlende Strukturen beim Laden von Berufen, Rufen und epischen Quests behoben.
+* Speicherung optimiert, indem unnötige oder unsichere Neuschreibungen von Daten vermieden werden.
+* Laden robuster gegenüber fehlenden oder teilweise initialisierten Daten gemacht.
+
+
+V5.06 – Major refactor and stability update
+
+Français
+
+* Refonte majeure du code par xruptor.
+* Consolidation de la logique de sauvegarde et de chargement.
+* Nettoyage des fenêtres et des fonctions utilitaires partagées.
+* Correction des erreurs liées aux sauvegardes et aux données par personnage.
+* Amélioration de la cohérence des structures de données sauvegardées.
+* Amélioration de la robustesse et de la compatibilité du plugin.
+
+English
+
+* Major code refactor by xruptor.
+* Consolidated save and loading logic.
+* Cleaned up shared helpers and UI code.
+* Fixed issues with saves and per-character data.
+* Improved consistency of saved data structures.
+* Improved plugin robustness and compatibility.
+
+Deutsch
+
+* Umfassende Überarbeitung des Codes durch xruptor.
+* Speicher- und Ladelogik zusammengeführt.
+* Fenster und gemeinsame Hilfsfunktionen bereinigt.
+* Fehler bei Speicherungen und charakterbezogenen Daten behoben.
+* Konsistenz der gespeicherten Datenstrukturen verbessert.
+* Robustheit und Kompatibilität des Plugins verbessert.
+
 V4.92 – Mise à jour majeure
 
 Français
@@ -26,7 +112,6 @@ Deutsch
 * Namen der verfügbaren Server aktualisiert.
 * Tier 16 der Berufe aktualisiert.
 * !!!! Überarbeitung und Bereinigung des Codes durch xruptor (ein riesiges Dankeschön an ihn für seine unglaubliche Arbeit) !!!!
-
 
 V4.53
 
