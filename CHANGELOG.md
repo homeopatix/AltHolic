@@ -9,6 +9,7 @@
 - Correction des structures manquantes lors du chargement des professions, réputations et quêtes épiques
 - Optimisation des sauvegardes en supprimant les chemins de données inutiles ou fragiles
 - Renforcement de la robustesse du chargement des données utilisateur
+-  Mise à jour du fichier calcstats de Giseldah
 
 ### English
 - Added two new windows: Mounts and Pets, opened from the buttons in the main window
@@ -17,6 +18,7 @@
 - Fixed missing-table issues when loading professions, reputations, and epic entries
 - Optimized saves by avoiding unnecessary or unsafe data rewrites
 - Hardened the plugin against missing or partially initialized data on load
+-  Mise à jour du fichier calcstats de Giseldah
 
 ### Deutsch
 - Zwei neue Fenster hinzugefügt: Reittiere und Haustiere, erreichbar über die Schaltflächen im Hauptfenster
@@ -25,6 +27,7 @@
 - Fehler bei fehlenden Tabellen beim Laden von Berufen, Ruf und epischen Einträgen behoben
 - Speicherung optimiert, indem unnötige oder unsichere Neuschreibungen von Daten vermieden werden
 - Robusteres Laden bei fehlenden oder teilweise initialisierten Daten
+-  Mise à jour du fichier calcstats de Giseldah
   
 ## V5.07 - Cleanup and stability pass
 
