@@ -10,6 +10,7 @@ _G.T = {};
 ------------------------------------------------------------------------------------------
 T[ "PluginName" ] = "AltHolic";
 T[ "Loaded" ] = "Geladen";
+T[ "PluginCommandsHint" ] = "Gib /alt ein, um die Befehlsliste anzuzeigen.";
 T[ "Unactivated" ] = "Beendet";
 T[ "PluginText" ] = "Von Homeopatix";
 T[ "PluginEscEnable" ] = "Escape-Taste aktiviert";
@@ -25,16 +26,16 @@ T[ "PluginEscIconOff" ] = "Symbol wird ausgeblendet";
 T[ "Version" ] = Plugins[T[ "PluginName" ]]:GetVersion();
 T[ "PluginReleaseAlias" ] = "/Alt toggle";
 T[ "PluginReleaseAliasTokens" ] = "/Tokens toggle";
-T[ "PluginCalcStatVersionText" ] = "Verwendung von CalcStat von Giseldah";
-T[ "PluginCalcStatVersion" ] = "Version 2.5.5";
+T[ "PluginCalcStatVersionText" ] = "CalcStat von Giseldah";
+T[ "PluginCalcStatVersion" ] = "2.5.5p";
 T[ "PluginLangUpdateFR" ] = "FR : Homeo";
 T[ "PluginLangUpdateDE" ] = "DE : Farothhen";
 T[ "PluginLangUpdateEN" ] = "EN : Homeo";
 T[ "PluginTranslators" ] = "\195\156bersetzer";
 T[ "PluginLatestUpdate" ] = "Zuletzt aktualisiert";
+T[ "PluginDateUpdate" ] = "03.10.2026";
 T[ "PluginRefactored" ] = "Refaktorisierung und Bereinigung";
-T[ "PluginRefactored1" ] = "xruptor";
-T[ "PluginDateUpdate" ] = "22.09.2026";
+T[ "PluginRefactoredBy" ] = "xruptor";
 ------------------------------------------------------------------------------------------
 -- ServerName window --
 ------------------------------------------------------------------------------------------
@@ -358,10 +359,6 @@ T[ "PluginGenderText" ] = "Geschlecht festlegen";
 T[ "PluginGenderText1" ] = "Mann";
 T[ "PluginGenderText2" ] = "Frau";
 ------------------------------------------------------------------------------------------
--- option crafting --
-------------------------------------------------------------------------------------------
-T[ "PluginCrafting" ] = "Handwerk";
-------------------------------------------------------------------------------------------
 -- option window for Bar --
 ------------------------------------------------------------------------------------------
 T[ "PluginOptionsBarText" ] = "AltHolic-Leiste Optionen";
@@ -618,9 +615,52 @@ T[ "reputname104" ] = "Die Ikorb\195\162ni";
 T[ "reputname105" ] = "Die Ad\195\186rhid";
 T[ "reputname106" ] = "Amelias Studien";
 T[ "reputname107" ] = "Moria-Kopfgeldj\195\164ger";
--- new
+T[ "PluginCrafting" ] = "Handwerk";
 T[ "reputname108" ] = "Kintai von Sul Mad\195\161sh";
 T[ "reputname109" ] = "Stadt Zaj\195\162na";
 T[ "reputname110" ] = "Tem\195\161mir von Jiret-men\195\170sh";
 T[ "reputname111" ] = "Erneuertes Ham\195\162t";
 T[ "reputname112" ] = "J\195\164gergilde von M\195\187r Ghala";
+
+-- 4.97 Handwerksdetails des Charakters / Tier 16
+T[ "PluginProfTier16" ] = "Sul Mad\195\161sh";
+T[ "PluginCraftDetailsTitle" ] = "Handwerk";
+T[ "PluginCraftDetailsProfession" ] = "Beruf";
+T[ "PluginCraftDetailsProficiency" ] = "Fertigkeit";
+T[ "PluginCraftDetailsMastery" ] = "Meisterschaft";
+T[ "PluginCraftDetailsEmpty" ] = "Keine gespeicherten Berufsdaten fuer diesen Charakter.";
+T[ "PluginCraftDetailsFooter" ] = "Offline-Charaktere zeigen die zuletzt gespeicherten Handwerksdaten ihrer letzten Anmeldung.";
+T[ "PluginOptionDeleteTitle" ] = "Loeschsymbol anzeigen";
+T[ "PluginOptionDeleteDescription" ] = "Loeschfunktion anzeigen";
+
+-- AltHolic modern UI additions
+T[ "PluginGoldTallyTitle" ] = "Goldübersicht - Alle Charaktere";
+T[ "PluginGoldTallyCharacter" ] = "Charakter";
+T[ "PluginGoldTallyWallet" ] = "Geldbörse";
+T[ "PluginGoldTallyTotal" ] = "Gesamt";
+T[ "PluginGoldTallyWalletTooltip" ] = "Geldbörse: das tatsächlich mitgeführte Geld dieses Charakters.";
+T[ "PluginGoldTallyCoinBags" ] = "Münzbeutel";
+T[ "PluginGoldTallyCoinBagsTooltip" ] = "Münzbeutel: Beutel mit Gold-, Silber- und Kupfermünzen im Rucksack und Tresor dieses Charakters.";
+T[ "PluginGoldTallyTotalTooltip" ] = "Gesamt: Geldbörse + Münzbeutel dieses Charakters.";
+T[ "PluginGoldTallyNoCharacters" ] = "Keine Charaktere entsprechen dem aktuellen Serverfilter.";
+T[ "PluginGoldTallySharedItems" ] = "Gemeinsamer-Lager-Gegenstände";
+T[ "PluginGoldTallySharedTooltip" ] = "Gemeinsamer-Lager-Gegenstände: Wert von Beuteln mit Gold-, Silber- und Kupfermünzen im gemeinsamen Lager.";
+T[ "PluginGoldTallyGrandTotal" ] = "Gesamtsumme";
+T[ "PluginGoldTallyOpenTooltip" ] = "Linksklick: Goldübersicht öffnen";
+
+-- Vollständige Prüfung der sichtbaren Lokalisierungstexte
+T[ "PluginVersionLabel" ] = "Version";
+T[ "PluginInformationWindowTitle" ] = "Informationen";
+T[ "PluginLauncherSettings" ] = "Umschalt+Klick: Einstellungen";
+T[ "PluginLauncherMoveAlt" ] = "Alt+Ziehen: Verschieben";
+T[ "PluginLauncherMove" ] = "Ziehen: Verschieben";
+T[ "PluginEquipmentLabel" ] = "Ausrüstung";
+T[ "PluginUnknownProfession" ] = "Unbekannter Beruf";
+T[ "PluginNoCraftingData" ] = "Keine Handwerksdaten gespeichert.";
+T[ "PluginReputationFor" ] = "Ruf von %s";
+T[ "PluginReputationToggleUnknown" ] = "Unbekannte Rufgruppen ein- oder ausblenden";
+T[ "PluginBirthdayTitle" ] = "Alles Gute zum Geburtstag";
+T[ "PluginMonthMay" ] = "Mai";
+T[ "PluginMonthSeptember" ] = "September";
+T[ "PluginBirthdayTolkien" ] = "Es ist der Geburtstag von Bilbo und Frodo Beutlin\n\nDanke an J. R. R. Tolkien";
+T[ "PluginBirthdayDeveloper" ] = "Es ist der Geburtstag Ihres Entwicklers. Schicken Sie ihm gern eine kleine Nachricht!\n\n\n\nHomeopatix";

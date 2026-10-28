@@ -9,6 +9,7 @@ _G.T = {};
 ------------------------------------------------------------------------------------------
 T[ "PluginName" ] = "AltHolic";
 T[ "Loaded" ] = "Loaded";
+T[ "PluginCommandsHint" ] = "Type /alt to see the list of commands.";
 T[ "Unactivated" ] = "Unactivated";
 T[ "PluginText" ] = "By Homeopatix";
 T[ "PluginEscEnable" ] = "Escape key Activated";
@@ -25,15 +26,15 @@ T[ "Version" ] = Plugins[T[ "PluginName" ]]:GetVersion();
 T[ "PluginReleaseAlias" ] = "/Alt toggle";
 T[ "PluginReleaseAliasTokens" ] = "/Tokens toggle";
 T[ "PluginCalcStatVersionText" ] = "Using CalcStat by Giseldah";
-T[ "PluginCalcStatVersion" ] = "Version 2.5.5";
+T[ "PluginCalcStatVersion" ] = "2.5.5p";
 T[ "PluginLangUpdateFR" ] = "FR : Homeo";
 T[ "PluginLangUpdateDE" ] = "DE : Farothhen";
 T[ "PluginLangUpdateEN" ] = "EN : Homeo";
 T[ "PluginTranslators" ] = "Translators";
 T[ "PluginLatestUpdate" ] = "Last Updated";
+T[ "PluginDateUpdate" ] = "03.10.2026";
 T[ "PluginRefactored" ] = "Refactoring and Cleanup";
-T[ "PluginRefactored1" ] = "xruptor";
-T[ "PluginDateUpdate" ] = "22.09.2026";
+T[ "PluginRefactoredBy" ] = "xruptor";
 ------------------------------------------------------------------------------------------
 -- ServerName window --
 ------------------------------------------------------------------------------------------
@@ -71,7 +72,7 @@ T[ "PluginHelp4" ] = "/Alt hide - Hide the window.\n";
 T[ "PluginHelp5" ] = "/Alt esc - Activate or deactivate the Escape key.\n";
 T[ "PluginHelp6" ] = "/Alt options - Display the options window.\n";
 T[ "PluginHelp7" ] = "/Alt clear all - Delete all entries.\n";
-T[ "PluginHelp8" ] = "/Alt clear CharacterName - Efface CharacterName.\n";
+T[ "PluginHelp8" ] = "/Alt clear CharacterName - Delete CharacterName.\n";
 T[ "PluginHelp9" ] = "/Alt toggle - Toggle window.\n";
 T[ "PluginHelp10" ] = "/Alt icon - Display or hide the icon.\n";
 T[ "PluginHelp11" ] = "/Alt alt - Activate or deactivate the alt key to move the icon.\n";
@@ -357,10 +358,6 @@ T[ "PluginGenderText" ] = "Define the gender";
 T[ "PluginGenderText1" ] = "Male";
 T[ "PluginGenderText2" ] = "Female";
 ------------------------------------------------------------------------------------------
--- option crafting --
-------------------------------------------------------------------------------------------
-T[ "PluginCrafting" ] = "Crafting";
-------------------------------------------------------------------------------------------
 -- option window for Bar --
 ------------------------------------------------------------------------------------------
 T[ "PluginOptionsBarText" ] = "AltHolic Bar Options";
@@ -617,9 +614,52 @@ T[ "reputname104" ] = "The Ikorb\195\162ni";
 T[ "reputname105" ] = "The Ad\195\186rhid";
 T[ "reputname106" ] = "Amelia's Studies";
 T[ "reputname107" ] = "Moria Bounty Hunters";
--- new
+T[ "PluginCrafting" ] = "Crafting";
 T[ "reputname108" ] = "Kintai of Sul Mad\195\161sh";
 T[ "reputname109" ] = "City of Zaj\195\162na";
 T[ "reputname110" ] = "Tem\195\161mir of Jiret-men\195\170sh";
 T[ "reputname111" ] = "Ham\195\162t Renewed";
 T[ "reputname112" ] = "Hunter's Guild of M\195\187r Ghala";
+
+-- 4.97 character crafting details / Tier 16
+T[ "PluginProfTier16" ] = "Sul Mad\195\161sh";
+T[ "PluginCraftDetailsTitle" ] = "Crafting";
+T[ "PluginCraftDetailsProfession" ] = "Profession";
+T[ "PluginCraftDetailsProficiency" ] = "Proficiency";
+T[ "PluginCraftDetailsMastery" ] = "Mastery";
+T[ "PluginCraftDetailsEmpty" ] = "No saved profession data for this character.";
+T[ "PluginCraftDetailsFooter" ] = "Offline characters show the last crafting data saved when that character was played.";
+T[ "PluginOptionDeleteTitle" ] = "Display delete icon";
+T[ "PluginOptionDeleteDescription" ] = "Show the delete control";
+
+-- AltHolic modern UI additions
+T[ "PluginGoldTallyTitle" ] = "Gold Tally - All Characters";
+T[ "PluginGoldTallyCharacter" ] = "Character";
+T[ "PluginGoldTallyWallet" ] = "Wallet";
+T[ "PluginGoldTallyTotal" ] = "Total";
+T[ "PluginGoldTallyWalletTooltip" ] = "Wallet: the character's actual carried currency balance.";
+T[ "PluginGoldTallyCoinBags" ] = "Coin Bags";
+T[ "PluginGoldTallyCoinBagsTooltip" ] = "Coin Bags: Bag of Gold/Silver/Copper Coins (sold by Vault-keepers) in this character's backpack and vault.";
+T[ "PluginGoldTallyTotalTooltip" ] = "Total: Wallet + Coin Bags for this character.";
+T[ "PluginGoldTallyNoCharacters" ] = "No characters match the current server filter.";
+T[ "PluginGoldTallySharedItems" ] = "Shared Storage Items";
+T[ "PluginGoldTallySharedTooltip" ] = "Shared Storage Items: value of Bag of Gold/Silver/Copper Coins stored in Shared Storage.";
+T[ "PluginGoldTallyGrandTotal" ] = "Grand Total";
+T[ "PluginGoldTallyOpenTooltip" ] = "Left-click: Open Gold Tally";
+
+-- Full user-facing text localization audit
+T[ "PluginVersionLabel" ] = "Version";
+T[ "PluginInformationWindowTitle" ] = "Information";
+T[ "PluginLauncherSettings" ] = "Shift+Click: Settings";
+T[ "PluginLauncherMoveAlt" ] = "Alt+Drag: Move";
+T[ "PluginLauncherMove" ] = "Drag: Move";
+T[ "PluginEquipmentLabel" ] = "Equipment";
+T[ "PluginUnknownProfession" ] = "Unknown profession";
+T[ "PluginNoCraftingData" ] = "No crafting data saved.";
+T[ "PluginReputationFor" ] = "Reputation for %s";
+T[ "PluginReputationToggleUnknown" ] = "Show or hide unknown reputations";
+T[ "PluginBirthdayTitle" ] = "Happy Birthday";
+T[ "PluginMonthMay" ] = "May";
+T[ "PluginMonthSeptember" ] = "September";
+T[ "PluginBirthdayTolkien" ] = "It is Bilbo and Frodo Baggins' birthday\n\nThanks to J. R. R. Tolkien";
+T[ "PluginBirthdayDeveloper" ] = "It is your developer's birthday. Send him a little mail if you would like!\n\n\n\nHomeopatix";

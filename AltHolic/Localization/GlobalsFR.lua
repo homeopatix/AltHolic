@@ -9,6 +9,7 @@ _G.T = {};
 ------------------------------------------------------------------------------------------
 T[ "PluginName" ] = "AltHolic";
 T[ "Loaded" ] = "charg\195\169";
+T[ "PluginCommandsHint" ] = "Tapez /alt pour afficher la liste des commandes.";
 T[ "Unactivated" ] = "D\195\169sactiv\195\169";
 T[ "PluginText" ] = "Par Homeopatix";
 T[ "PluginEscEnable" ] = "Touche Escape activ\195\169";
@@ -25,15 +26,15 @@ T[ "Version" ] = Plugins[T[ "PluginName" ]]:GetVersion();
 T[ "PluginReleaseAlias" ] = "/Alt toggle";
 T[ "PluginReleaseAliasTokens" ] = "/Tokens toggle";
 T[ "PluginCalcStatVersionText" ] = "CalcStat de Giseldah";
-T[ "PluginCalcStatVersion" ] = "Version 2.5.5";
+T[ "PluginCalcStatVersion" ] = "2.5.5p";
 T[ "PluginLangUpdateFR" ] = "FR : Homeo";
 T[ "PluginLangUpdateDE" ] = "DE : Farothhen";
 T[ "PluginLangUpdateEN" ] = "EN : Homeo";
 T[ "PluginTranslators" ] = "Traducteurs";
 T[ "PluginLatestUpdate" ] = "Derni\195\168re mise \195\160 jour";
+T[ "PluginDateUpdate" ] = "03.10.2026";
 T[ "PluginRefactored" ] = "Refactorisation et Nettoyage";
-T[ "PluginRefactored1" ] = "xruptor";
-T[ "PluginDateUpdate" ] = "22.09.2026";
+T[ "PluginRefactoredBy" ] = "xruptor";
 ------------------------------------------------------------------------------------------
 -- ServerName window --
 ------------------------------------------------------------------------------------------
@@ -357,10 +358,6 @@ T[ "PluginGenderText" ] = "D\195\169finition du sexe";
 T[ "PluginGenderText1" ] = "Homme";
 T[ "PluginGenderText2" ] = "Femme";
 ------------------------------------------------------------------------------------------
--- option crafting --
-------------------------------------------------------------------------------------------
-T[ "PluginCrafting" ] = "Artisanat";
-------------------------------------------------------------------------------------------
 -- option window for Bar --
 ------------------------------------------------------------------------------------------
 T[ "PluginOptionsBarText" ] = "AltHolic Barre Options";
@@ -617,9 +614,52 @@ T[ "reputname104" ] = "Les Ikorb\195\162ni";
 T[ "reputname105" ] = "Les Ad\195\186rhid";
 T[ "reputname106" ] = "Etudes d'Amelia";
 T[ "reputname107" ] = "Les chasseurs de primes de la Moria";
--- new
+T[ "PluginCrafting" ] = "Artisanat";
 T[ "reputname108" ] = "Kintai de Sul Mad\195\161sh";
 T[ "reputname109" ] = "Cit\195\169 de Zaj\195\162na";
 T[ "reputname110" ] = "Tem\195\161mir de Jiret-men\195\170sh";
 T[ "reputname111" ] = "Nouveau Ham\195\162t";
 T[ "reputname112" ] = "Guilde des chasseurs de M\195\187r Ghala";
+
+-- 4.97 details d artisanat du personnage / Tier 16
+T[ "PluginProfTier16" ] = "Sul Mad\195\161sh";
+T[ "PluginCraftDetailsTitle" ] = "Artisanat";
+T[ "PluginCraftDetailsProfession" ] = "Profession";
+T[ "PluginCraftDetailsProficiency" ] = "Competence";
+T[ "PluginCraftDetailsMastery" ] = "Maitrise";
+T[ "PluginCraftDetailsEmpty" ] = "Aucune donnee de profession enregistree pour ce personnage.";
+T[ "PluginCraftDetailsFooter" ] = "Les personnages hors ligne affichent les dernieres donnees d artisanat enregistrees lors de leur connexion.";
+T[ "PluginOptionDeleteTitle" ] = "Afficher l icone de suppression";
+T[ "PluginOptionDeleteDescription" ] = "Afficher le controle de suppression";
+
+-- AltHolic modern UI additions
+T[ "PluginGoldTallyTitle" ] = "Bilan d'or - Tous les personnages";
+T[ "PluginGoldTallyCharacter" ] = "Personnage";
+T[ "PluginGoldTallyWallet" ] = "Bourse";
+T[ "PluginGoldTallyTotal" ] = "Total";
+T[ "PluginGoldTallyWalletTooltip" ] = "Bourse : monnaie réellement portée par ce personnage.";
+T[ "PluginGoldTallyCoinBags" ] = "Sacs de pièces";
+T[ "PluginGoldTallyCoinBagsTooltip" ] = "Sacs de pièces : sacs de pièces d'or, d'argent et de cuivre dans le sac et le coffre de ce personnage.";
+T[ "PluginGoldTallyTotalTooltip" ] = "Total : Bourse + Sacs de pièces pour ce personnage.";
+T[ "PluginGoldTallyNoCharacters" ] = "Aucun personnage ne correspond au filtre de serveur actuel.";
+T[ "PluginGoldTallySharedItems" ] = "Objets du stockage partagé";
+T[ "PluginGoldTallySharedTooltip" ] = "Objets du stockage partagé : valeur des sacs de pièces d'or, d'argent et de cuivre conservés dans le stockage partagé.";
+T[ "PluginGoldTallyGrandTotal" ] = "Total général";
+T[ "PluginGoldTallyOpenTooltip" ] = "Clic gauche : ouvrir le bilan d'or";
+
+-- Audit complet de localisation des textes visibles
+T[ "PluginVersionLabel" ] = "Version";
+T[ "PluginInformationWindowTitle" ] = "Informations";
+T[ "PluginLauncherSettings" ] = "Maj+Clic : Paramètres";
+T[ "PluginLauncherMoveAlt" ] = "Alt+Glisser : Déplacer";
+T[ "PluginLauncherMove" ] = "Glisser : Déplacer";
+T[ "PluginEquipmentLabel" ] = "Équipement";
+T[ "PluginUnknownProfession" ] = "Profession inconnue";
+T[ "PluginNoCraftingData" ] = "Aucune donnée d'artisanat enregistrée.";
+T[ "PluginReputationFor" ] = "Réputation de %s";
+T[ "PluginReputationToggleUnknown" ] = "Afficher ou masquer les réputations inconnues";
+T[ "PluginBirthdayTitle" ] = "Bon anniversaire";
+T[ "PluginMonthMay" ] = "Mai";
+T[ "PluginMonthSeptember" ] = "Septembre";
+T[ "PluginBirthdayTolkien" ] = "C'est l'anniversaire de Bilbo et Frodon Sacquet\n\nMerci à J. R. R. Tolkien";
+T[ "PluginBirthdayDeveloper" ] = "C'est l'anniversaire de votre développeur. Envoyez-lui un petit courrier si vous le souhaitez !\n\n\n\nHomeopatix";
