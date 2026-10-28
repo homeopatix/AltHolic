@@ -3,40 +3,61 @@
 -- Readable account-wealth ledger with native LOTRO coin glyphs and scrolling content.
 ------------------------------------------------------------------------------------------
 
-local CASH_WINDOW_WIDTH = 1020;
 local CASH_ROW_HEIGHT = 30;
 local CASH_HEADER_Y = 49;
 local CASH_CONTENT_Y = 82;
 local CASH_FOOTER_HEIGHT = 34;
 local CASH_LIST_LEFT = 18;
 local CASH_LIST_RIGHT = 36;
-local CASH_ROW_WIDTH = CASH_WINDOW_WIDTH - CASH_LIST_LEFT - CASH_LIST_RIGHT;
 
-local CASH_COLUMNS = {
-    { title = "Character", x = 8,   width = 160, align = Turbine.UI.ContentAlignment.MiddleLeft },
-    { title = "Wallet",    x = 184, width = 180, align = Turbine.UI.ContentAlignment.MiddleCenter },
-    { title = "Coin Bags", x = 376, width = 180, align = Turbine.UI.ContentAlignment.MiddleCenter },
-    { title = "Vault Bags",x = 568, width = 180, align = Turbine.UI.ContentAlignment.MiddleCenter },
-    { title = "Total",     x = 760, width = 198, align = Turbine.UI.ContentAlignment.MiddleCenter },
-};
+-- Column widths are sized to their content instead of a fixed 1230px window:
+--   * name: LOTRO names are at most 20 characters; 156px of Verdana14 plus an 8px left
+--     and 6px right gutter fits them.
+--   * money: up to 99,999 gold per character. Digit boxes are 54/30/22px (5 gold digits
+--     at ~9px each plus ~9px spare so a wide font never clips, 3 silver, 2 copper) plus
+--     three 27px coin icons and 2px gaps = 197px, with a 4-5px gutter each side. The Total column gets 6 gold digits because it also
+--     carries the account Grand Total.
+local NAME_PADDING_LEFT = 8;
+local NAME_COLUMN_WIDTH = 170;
+local MONEY_PADDING = 4;
+local MONEY_DIGITS = { 54, 30, 22 };
+local TOTAL_DIGITS = { 62, 30, 22 };
+local MONEY_ICON_WIDTH, MONEY_ICON_HEIGHT, MONEY_GAP = 27, 21, 2;
 
--- Keep a small visual gutter between ledger columns. Separators sit in the
--- middle of the gutter rather than touching either money display.
-local COLUMN_BOUNDARIES = { 176, 368, 560, 752 };
+local function MoneyColumnWidth(digits)
+    local width = 3 * MONEY_ICON_WIDTH + 3 * MONEY_GAP + 2 * MONEY_GAP;
+    for _, digitWidth in ipairs(digits) do width = width + digitWidth; end
+    return width + 2 * MONEY_PADDING + 2;
+end
+
+-- Builds the column list. The Coin Bags column (Bag of Gold/Silver/Copper Coins bought
+-- from Vault-keepers, in the backpack or personal vault) only appears when at least one
+-- listed character has some; the value is always included in Total either way.
+local function BuildColumns(showCoinBags)
+    local columns = {
+        { titleKey = "PluginGoldTallyCharacter", width = NAME_COLUMN_WIDTH,
+          align = Turbine.UI.ContentAlignment.MiddleLeft },
+        { titleKey = "PluginGoldTallyWallet", tooltipKey = "PluginGoldTallyWalletTooltip",
+          width = MoneyColumnWidth(MONEY_DIGITS), digits = MONEY_DIGITS, field = "wallet" },
+    };
+    if showCoinBags then
+        columns[#columns + 1] = { titleKey = "PluginGoldTallyCoinBags", tooltipKey = "PluginGoldTallyCoinBagsTooltip",
+            width = MoneyColumnWidth(MONEY_DIGITS), digits = MONEY_DIGITS, field = "coinBags" };
+    end
+    columns[#columns + 1] = { titleKey = "PluginGoldTallyTotal", tooltipKey = "PluginGoldTallyTotalTooltip",
+        width = MoneyColumnWidth(TOTAL_DIGITS), digits = TOTAL_DIGITS, field = "total" };
+
+    local x = 0;
+    for _, column in ipairs(columns) do
+        column.x = x;
+        column.align = column.align or Turbine.UI.ContentAlignment.MiddleCenter;
+        x = x + column.width;
+    end
+    return columns, x;
+end
+
 local GRID_COLOR = Turbine.UI.Color(0.18, 0.18, 0.18);
 local HEADER_GRID_COLOR = Turbine.UI.Color(0.35, 0.35, 0.35);
-
-local function CashShouldShowCharacter(name)
-    local data = PlayerDatas[name];
-    if data == nil then return false end
-
-    if not settings["displayServers"]["value"] then
-        return true;
-    end
-
-    local filter = settings["serversToDisplay"]["value"];
-    return filter == nil or filter == "" or filter == T["ServerNamesAll"] or filter == data.serverName;
-end
 
 local function AddCashLabel(parent, text, x, y, width, color, align, font, height)
     local label = Turbine.UI.Label();
@@ -65,69 +86,106 @@ local function AddHorizontalSeparator(parent, y, width, color)
     return AddLine(parent, 0, y, width, 1, color or GRID_COLOR);
 end
 
-local function AddColumnSeparators(parent, height, color)
-    for _, x in ipairs(COLUMN_BOUNDARIES) do
-        AddLine(parent, x, 0, 1, height, color or GRID_COLOR);
+local function CreateLedgerTooltip(parent)
+    local tooltip = Turbine.UI.Window();
+    tooltip:SetParent(parent);
+    tooltip:SetSize(470, 46);
+    tooltip:SetBackColor(Turbine.UI.Color(0.96, 0.03, 0.03, 0.03));
+    tooltip:SetZOrder(200);
+    tooltip:SetMouseVisible(false);
+    tooltip:SetVisible(false);
+
+    local label = Turbine.UI.Label();
+    label:SetParent(tooltip);
+    label:SetPosition(10, 4);
+    label:SetSize(450, 38);
+    label:SetFont(Turbine.UI.Lotro.Font.Verdana14);
+    label:SetForeColor(Turbine.UI.Color(1, 0.94, 0.80));
+    label:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleLeft);
+    label:SetMouseVisible(false);
+
+    return tooltip, label;
+end
+
+local function AttachLedgerTooltip(control, tooltip, tooltipLabel, text, x, y, windowWidth)
+    if control == nil then return end
+    control:SetMouseVisible(true);
+    control.MouseEnter = function()
+        local tooltipWidth = tooltip:GetWidth();
+        local left = math.max(8, math.min(x or 8, windowWidth - tooltipWidth - 8));
+        tooltip:SetPosition(left, y or 78);
+        tooltipLabel:SetText(text or "");
+        tooltip:SetVisible(true);
+    end
+    control.MouseLeave = function()
+        tooltip:SetVisible(false);
     end
 end
 
-local function CreateCashListItem(height)
+-- One ledger: the columns plus the list box rows are added to.
+local Ledger = {};
+Ledger.__index = Ledger;
+
+local function NewLedger(listBox, columns, rowWidth)
+    return setmetatable({ listBox = listBox, columns = columns, rowWidth = rowWidth,
+        totalColumn = columns[#columns] }, Ledger);
+end
+
+function Ledger:NewItem(height)
     local item = Turbine.UI.Control();
-    item:SetSize(CASH_ROW_WIDTH, height or CASH_ROW_HEIGHT);
+    item:SetSize(self.rowWidth, height or CASH_ROW_HEIGHT);
     return item;
 end
 
-local function AddMoney(parent, value, x, width, font)
-    return AltHolicUtil.CreateMoneyDisplay(parent, value or 0, x + 4, 3, width - 8, CASH_ROW_HEIGHT - 6, {
-        font = font or Turbine.UI.Lotro.Font.Verdana14,
-        iconWidth = 27,
-        iconHeight = 21,
-        gap = 2,
-        groupGap = 2,
-        digitWidths = { 44, 34, 28 },
-    });
+function Ledger:AddMoney(parent, value, column)
+    return AltHolicUtil.CreateMoneyDisplay(parent, value or 0, column.x + MONEY_PADDING, 3,
+        column.width - 2 * MONEY_PADDING - 1, CASH_ROW_HEIGHT - 6, {
+            font = Turbine.UI.Lotro.Font.Verdana14,
+            iconWidth = MONEY_ICON_WIDTH,
+            iconHeight = MONEY_ICON_HEIGHT,
+            gap = MONEY_GAP,
+            groupGap = MONEY_GAP,
+            digitWidths = column.digits,
+        });
 end
 
-local function AddListRow(listBox, name, wallet, bagCoins, vaultCoins, total, color)
-    local item = CreateCashListItem(CASH_ROW_HEIGHT);
-    local nameColumn = CASH_COLUMNS[1];
+function Ledger:AddCharacterRow(name, values, color)
+    local item = self:NewItem(CASH_ROW_HEIGHT);
+    local nameColumn = self.columns[1];
+    AddCashLabel(item, name or "", nameColumn.x + NAME_PADDING_LEFT, 0, nameColumn.width - NAME_PADDING_LEFT - 6,
+        color, nameColumn.align, Turbine.UI.Lotro.Font.Verdana14);
 
-    AddCashLabel(item, name or "", nameColumn.x, 0, nameColumn.width, color,
-        nameColumn.align, Turbine.UI.Lotro.Font.Verdana14);
-
-    local values = { wallet, bagCoins, vaultCoins, total };
-    for index = 2, #CASH_COLUMNS do
-        local column = CASH_COLUMNS[index];
-        AddMoney(item, values[index - 1], column.x, column.width);
+    for index = 2, #self.columns do
+        local column = self.columns[index];
+        self:AddMoney(item, values[column.field], column);
+        AddLine(item, column.x, 0, 1, CASH_ROW_HEIGHT, GRID_COLOR);
     end
-
-    AddColumnSeparators(item, CASH_ROW_HEIGHT, GRID_COLOR);
-    AddHorizontalSeparator(item, CASH_ROW_HEIGHT - 1, CASH_ROW_WIDTH, GRID_COLOR);
-    listBox:AddItem(item);
-    return item;
+    AddHorizontalSeparator(item, CASH_ROW_HEIGHT - 1, self.rowWidth, GRID_COLOR);
+    self.listBox:AddItem(item);
 end
 
-local function AddListSectionTitle(listBox, text)
-    local item = CreateCashListItem(39);
-    AddCashLabel(item, text, 8, 5, 340, Turbine.UI.Color.White,
+function Ledger:AddSectionTitle(text)
+    local item = self:NewItem(39);
+    AddCashLabel(item, text, NAME_PADDING_LEFT, 5, self.rowWidth - 16, Turbine.UI.Color.White,
         Turbine.UI.ContentAlignment.MiddleLeft, Turbine.UI.Lotro.Font.BookAntiquaBold22, 27);
-    AddHorizontalSeparator(item, 36, CASH_ROW_WIDTH, Turbine.UI.Color(0.15, 0.25, 0.8));
-    listBox:AddItem(item);
+    AddHorizontalSeparator(item, 36, self.rowWidth, Turbine.UI.Color(0.15, 0.25, 0.8));
+    self.listBox:AddItem(item);
 end
 
-local function AddListSummaryRow(listBox, labelText, value, color, bold)
-    local item = CreateCashListItem(CASH_ROW_HEIGHT);
+-- Label on the left, amount in the Total column.
+function Ledger:AddSummaryRow(labelText, value, color, bold)
+    local item = self:NewItem(CASH_ROW_HEIGHT);
     local font = bold and Turbine.UI.Lotro.Font.BookAntiquaBold19 or Turbine.UI.Lotro.Font.Verdana14;
-    AddCashLabel(item, labelText, 8, 0, 420, color,
+    local label = AddCashLabel(item, labelText, NAME_PADDING_LEFT, 0, self.totalColumn.x - 16, color,
         Turbine.UI.ContentAlignment.MiddleLeft, font);
-    AddMoney(item, value, CASH_COLUMNS[5].x, CASH_COLUMNS[5].width,
-        bold and Turbine.UI.Lotro.Font.Verdana14 or Turbine.UI.Lotro.Font.Verdana14);
-    AddHorizontalSeparator(item, CASH_ROW_HEIGHT - 1, CASH_ROW_WIDTH, GRID_COLOR);
-    listBox:AddItem(item);
+    self:AddMoney(item, value, self.totalColumn);
+    AddHorizontalSeparator(item, CASH_ROW_HEIGHT - 1, self.rowWidth, GRID_COLOR);
+    self.listBox:AddItem(item);
+    return label;
 end
 
-local function AddListSpacer(listBox, height)
-    listBox:AddItem(CreateCashListItem(height or 8));
+function Ledger:AddSpacer(height)
+    self.listBox:AddItem(self:NewItem(height or 8));
 end
 
 local function GetCharacterCashSnapshot(name)
@@ -143,58 +201,56 @@ local function GetCharacterCashSnapshot(name)
     end
 
     local wallet = tonumber(data.cash) or 0;
-    local bagCoins = tonumber(data.bagCash) or 0;
-    local vaultCoins = tonumber(data.vaultCash) or 0;
-    return wallet, bagCoins, vaultCoins, wallet + bagCoins + vaultCoins;
+    local coinBags = (tonumber(data.bagCash) or 0) + (tonumber(data.vaultCash) or 0);
+    return { wallet = wallet, coinBags = coinBags, total = wallet + coinBags };
 end
 
 function CreateUIShowCash()
-    local names = {};
-    for name in pairs(PlayerDatas) do
-        if CashShouldShowCharacter(name) then
-            table.insert(names, name);
-        end
-    end
+    AltHolicUtil.DetachControl(UIShowCash);
+
+    local names = AltHolicUtil.GetDisplayedCharacterNames();
     table.sort(names, function(a, b) return string.lower(a) < string.lower(b) end);
 
+    local snapshots, anyCoinBags = {}, false;
+    for index, name in ipairs(names) do
+        snapshots[index] = GetCharacterCashSnapshot(name);
+        if snapshots[index].coinBags ~= 0 then anyCoinBags = true; end
+    end
+    local shared = tonumber(settings["sharedStorageCash"]["value"]) or 0;
+
+    local columns, rowWidth = BuildColumns(anyCoinBags);
     local displayWidth = Turbine.UI.Display:GetWidth();
     local displayHeight = Turbine.UI.Display:GetHeight();
-    local width = math.min(CASH_WINDOW_WIDTH, math.max(760, displayWidth - 50));
+    local width = math.min(rowWidth + CASH_LIST_LEFT + CASH_LIST_RIGHT, displayWidth);
     local height = math.min(680, math.max(500, displayHeight - 80));
+    local usableWidth = width - CASH_LIST_LEFT - CASH_LIST_RIGHT;
 
     UIShowCash = Turbine.UI.Lotro.GoldWindow();
     UIShowCash:SetSize(width, height);
-    UIShowCash:SetText("Gold Tally - All Characters");
+    UIShowCash:SetText(T["PluginGoldTallyTitle"]);
     UIShowCash:SetPosition(
-        math.max(0, (displayWidth - width) / 2),
-        math.max(0, (displayHeight - height) / 2)
+        math.max(0, math.floor((displayWidth - width) / 2)),
+        math.max(0, math.floor((displayHeight - height) / 2))
     );
     UIShowCash:SetZOrder(10);
     UIShowCash:SetWantsKeyEvents(true);
 
-    -- If the screen forces a narrower window, scale the right-side columns evenly.
-    local usableWidth = width - CASH_LIST_LEFT - CASH_LIST_RIGHT;
-    local scale = usableWidth / CASH_ROW_WIDTH;
-    local headerColumns = {};
-    for index, column in ipairs(CASH_COLUMNS) do
-        headerColumns[index] = {
-            title = column.title,
-            x = math.floor(column.x * scale),
-            width = math.floor(column.width * scale),
-            align = column.align,
-        };
-    end
-
-    for _, column in ipairs(headerColumns) do
-        AddCashLabel(UIShowCash, column.title, CASH_LIST_LEFT + column.x, CASH_HEADER_Y,
-            column.width, Turbine.UI.Color.Gold, column.align, Turbine.UI.Lotro.Font.BookAntiquaBold19);
+    -- Header: titles, tooltips and separators.
+    local ledgerTooltip, ledgerTooltipLabel = CreateLedgerTooltip(UIShowCash);
+    for index, column in ipairs(columns) do
+        local left = CASH_LIST_LEFT + column.x + (index == 1 and NAME_PADDING_LEFT or 0);
+        local headerLabel = AddCashLabel(UIShowCash, T[column.titleKey] or column.titleKey, left, CASH_HEADER_Y,
+            column.width - (index == 1 and NAME_PADDING_LEFT or 0), Turbine.UI.Color.Gold, column.align,
+            Turbine.UI.Lotro.Font.BookAntiquaBold19);
+        if column.tooltipKey ~= nil then
+            AttachLedgerTooltip(headerLabel, ledgerTooltip, ledgerTooltipLabel, T[column.tooltipKey],
+                CASH_LIST_LEFT + column.x - 120, CASH_HEADER_Y + 31, width);
+        end
+        if index > 1 then
+            AddLine(UIShowCash, CASH_LIST_LEFT + column.x, CASH_HEADER_Y, 1, 28, HEADER_GRID_COLOR);
+        end
     end
     AddLine(UIShowCash, CASH_LIST_LEFT, CASH_HEADER_Y + 27, usableWidth, 2, Turbine.UI.Color(0.15, 0.25, 0.8));
-
-    -- Fixed vertical header separators make the ledger columns visually distinct.
-    for _, x in ipairs(COLUMN_BOUNDARIES) do
-        AddLine(UIShowCash, CASH_LIST_LEFT + math.floor(x * scale), CASH_HEADER_Y, 1, 28, HEADER_GRID_COLOR);
-    end
 
     local contentHeight = height - CASH_CONTENT_Y - CASH_FOOTER_HEIGHT - 10;
     local listBox = Turbine.UI.ListBox();
@@ -212,49 +268,49 @@ function CreateUIShowCash()
     scrollBar:SetSize(12, contentHeight);
     listBox:SetVerticalScrollBar(scrollBar);
 
-    -- Rows are built at the native 906px ledger width. On very narrow displays the
-    -- list is still clipped gracefully rather than shrinking the money glyphs into unreadable fragments.
+    local ledger = NewLedger(listBox, columns, rowWidth);
+
     local grandTotal = 0;
-    for _, name in ipairs(names) do
-        local wallet, bagCoins, vaultCoins, total = GetCharacterCashSnapshot(name);
-        grandTotal = grandTotal + total;
+    for index, name in ipairs(names) do
+        grandTotal = grandTotal + snapshots[index].total;
         local color = (name == PlayerName) and Turbine.UI.Color.Lime or Turbine.UI.Color.White;
-        AddListRow(listBox, name, wallet, bagCoins, vaultCoins, total, color);
+        ledger:AddCharacterRow(name, snapshots[index], color);
     end
 
     if #names == 0 then
-        local item = CreateCashListItem(CASH_ROW_HEIGHT);
-        AddCashLabel(item, "No characters match the current server filter.", 8, 0, 560,
+        local item = ledger:NewItem(CASH_ROW_HEIGHT);
+        AddCashLabel(item, T["PluginGoldTallyNoCharacters"], NAME_PADDING_LEFT, 0, rowWidth - 16,
             Turbine.UI.Color.White, Turbine.UI.ContentAlignment.MiddleLeft, Turbine.UI.Lotro.Font.Verdana14);
         listBox:AddItem(item);
     end
 
-    AddListSpacer(listBox, 10);
-    local shared = tonumber(settings["sharedStorageCash"]["value"]) or 0;
-    AddListSummaryRow(listBox, "Shared Storage coin bags", shared, Turbine.UI.Color.White, true);
-    grandTotal = grandTotal + shared;
-    AddListSummaryRow(listBox, "Grand Total", grandTotal, Turbine.UI.Color.Gold, true);
+    ledger:AddSpacer(10);
+    -- Coin bags in Shared Storage belong to the account, not a character; only listed when there are some.
+    if shared ~= 0 then
+        local sharedStorageLabel = ledger:AddSummaryRow(T["PluginGoldTallySharedItems"], shared, Turbine.UI.Color.White, true);
+        AttachLedgerTooltip(sharedStorageLabel, ledgerTooltip, ledgerTooltipLabel,
+            T["PluginGoldTallySharedTooltip"], 20, CASH_HEADER_Y + 31, width);
+        grandTotal = grandTotal + shared;
+    end
+    ledger:AddSummaryRow(T["PluginGoldTallyGrandTotal"], grandTotal, Turbine.UI.Color.Gold, true);
 
-    AddListSpacer(listBox, 12);
-    AddListSectionTitle(listBox, T["PluginCashWindow3"] or "Session cash");
-    local sessionWon = tonumber(settings["sessionCash"]["cashSession"]) or 0;
-    local sessionSpent = tonumber(settings["sessionCash"]["cashSpent"]) or 0;
-    AddListSummaryRow(listBox, T["PluginCashWindow4"] or "Won", sessionWon, Turbine.UI.Color.White, false);
-    AddListSummaryRow(listBox, T["PluginCashWindow5"] or "Spent", sessionSpent, Turbine.UI.Color.White, false);
-    AddListSummaryRow(listBox, T["PluginCashWindow6"] or "Total", sessionWon - sessionSpent, Turbine.UI.Color.White, false);
+    local function AddWonSpent(title, won, spent)
+        won, spent = tonumber(won) or 0, tonumber(spent) or 0;
+        ledger:AddSpacer(12);
+        ledger:AddSectionTitle(title);
+        ledger:AddSummaryRow(T["PluginCashWindow4"], won, Turbine.UI.Color.White, false);
+        ledger:AddSummaryRow(T["PluginCashWindow5"], spent, Turbine.UI.Color.White, false);
+        ledger:AddSummaryRow(T["PluginCashWindow6"], won - spent, Turbine.UI.Color.White, false);
+    end
+    AddWonSpent(T["PluginCashWindow3"], settings["sessionCash"]["cashSession"], settings["sessionCash"]["cashSpent"]);
+    AddWonSpent(T["PluginCashWindow7"], settings["dailyCash"]["cashDaily"], settings["dailyCash"]["cashSpent"]);
 
-    AddListSpacer(listBox, 12);
-    AddListSectionTitle(listBox, T["PluginCashWindow7"] or "Daily cash");
-    local dailyWon = tonumber(settings["dailyCash"]["cashDaily"]) or 0;
-    local dailySpent = tonumber(settings["dailyCash"]["cashSpent"]) or 0;
-    AddListSummaryRow(listBox, T["PluginCashWindow4"] or "Won", dailyWon, Turbine.UI.Color.White, false);
-    AddListSummaryRow(listBox, T["PluginCashWindow5"] or "Spent", dailySpent, Turbine.UI.Color.White, false);
-    AddListSummaryRow(listBox, T["PluginCashWindow6"] or "Total", dailyWon - dailySpent, Turbine.UI.Color.White, false);
-
-    AddCashLabel(UIShowCash, T["PluginText"] or "By Homeopatix", 0, height - 29, width,
+    AddCashLabel(UIShowCash, T["PluginText"], 0, height - 29, width,
         Turbine.UI.Color.White, Turbine.UI.ContentAlignment.MiddleCenter, Turbine.UI.Lotro.Font.Verdana12, 20);
 
     UIShowCash:SetVisible(false);
+    -- Esc closes the Gold Tally like every other AltHolic window.
+    EscapeKeyHandlerForWindows(UIShowCash);
 end
 
 ------------------------------------------------------------------------------------------

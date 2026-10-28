@@ -1,203 +1,74 @@
 ------------------------------------------------------------------------------------------
--- UIInfos file
--- Written by Homeopatix
--- 16 juin 2021
+-- AltHolic information window
 ------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------
--- create infos window
-------------------------------------------------------------------------------------------
+
+local WINDOW_WIDTH = 320;
+local WINDOW_HEIGHT = 535;
+
+local function AddCenteredLabel(parent, text, y, height, font, color)
+    local label = Turbine.UI.Label();
+    label:SetParent(parent);
+    label:SetSize(WINDOW_WIDTH - 20, height or 30);
+    label:SetPosition(10, y);
+    label:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);
+    label:SetFont(font or Turbine.UI.Lotro.Font.BookAntiquaBold19);
+    label:SetForeColor(color or Turbine.UI.Color.Gold);
+    label:SetText(text or "");
+    return label;
+end
+
+local function AddSection(parent, title, value, y)
+    AddCenteredLabel(parent, title, y, 25, Turbine.UI.Lotro.Font.Verdana16, Turbine.UI.Color.Lime);
+    AddCenteredLabel(parent, "________________________", y + 4, 30,
+        Turbine.UI.Lotro.Font.BookAntiquaBold22, Turbine.UI.Color.Blue);
+    AddCenteredLabel(parent, value, y + 27, 36, Turbine.UI.Lotro.Font.BookAntiquaBold19, Turbine.UI.Color.Gold);
+    return y + 68;
+end
+
 function CreateInfosWindow()
-	AltHolicInfosWindow=Turbine.UI.Lotro.GoldWindow(); 
-	AltHolicInfosWindow:SetSize(300,530); 
-	AltHolicInfosWindow:SetText("Informations"); 
-	AltHolicInfosWindow.Message=Turbine.UI.Label(); 
-	AltHolicInfosWindow.Message:SetParent(AltHolicInfosWindow); 
-	AltHolicInfosWindow.Message:SetSize(150,10); 
-	AltHolicInfosWindow.Message:SetPosition(AltHolicInfosWindow:GetWidth()/2 - 75, AltHolicInfosWindow:GetHeight() - 20); 
-	AltHolicInfosWindow.Message:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter); 
-	AltHolicInfosWindow.Message:SetText(T[ "PluginText" ]); 
-	AltHolicInfosWindow:SetZOrder(1);
-	AltHolicInfosWindow:SetWantsKeyEvents(true);
-	AltHolicInfosWindow:SetVisible(false);
+    if AltHolicInfosWindow ~= nil then
+        AltHolicUtil.DetachControl(AltHolicInfosWindow);
+    end
 
-	AltHolicInfosWindow:SetPosition((Turbine.UI.Display:GetWidth()-AltHolicInfosWindow:GetWidth())/2,(Turbine.UI.Display:GetHeight()-AltHolicInfosWindow:GetHeight())/2);
-	------------------------------------------------------------------------------------------
-	-- center window
-	------------------------------------------------------------------------------------------
+    AltHolicInfosWindow = Turbine.UI.Lotro.GoldWindow();
+    AltHolicInfosWindow:SetSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+    AltHolicInfosWindow:SetText(T["PluginInformationWindowTitle"]);
+    AltHolicInfosWindow:SetZOrder(1);
+    AltHolicInfosWindow:SetWantsKeyEvents(true);
+    AltHolicInfosWindow:SetVisible(false);
+    AltHolicInfosWindow:SetPosition(
+        (Turbine.UI.Display:GetWidth() - WINDOW_WIDTH) / 2,
+        (Turbine.UI.Display:GetHeight() - WINDOW_HEIGHT) / 2
+    );
 
-	posx = 40 ;
-	Texte1 = Turbine.UI.Label();
-	Texte1:SetParent(AltHolicInfosWindow); 
-	Texte1:SetSize(250, 50); 
-	Texte1:SetPosition(25, posx); 
-	Texte1:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);  
-	Texte1:SetForeColor(Turbine.UI.Color.Gold); 
-	Texte1:SetFont(Turbine.UI.Lotro.Font.BookAntiquaBold24);
-	Texte1:SetText(T[ "PluginName" ]);
-	Texte1:SetZOrder(1);
+    local footer = Turbine.UI.Label();
+    footer:SetParent(AltHolicInfosWindow);
+    footer:SetSize(150, 12);
+    footer:SetPosition((WINDOW_WIDTH - 150) / 2, WINDOW_HEIGHT - 20);
+    footer:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);
+    footer:SetText(T["PluginText"]);
 
-	posx = posx + 35;
+    local y = 35;
+    AddCenteredLabel(AltHolicInfosWindow, T["PluginName"], y, 36,
+        Turbine.UI.Lotro.Font.BookAntiquaBold24, Turbine.UI.Color.Gold);
+    y = y + 38;
+    AddCenteredLabel(AltHolicInfosWindow, "V " .. tostring(Plugins[pluginName]:GetVersion()), y, 32,
+        Turbine.UI.Lotro.Font.BookAntiquaBold24, Turbine.UI.Color.Gold);
+    y = y + 48;
 
-	Texte2 = Turbine.UI.Label();
-	Texte2:SetParent(AltHolicInfosWindow); 
-	Texte2:SetSize(250, 50); 
-	Texte2:SetPosition(25, posx); 
-	Texte2:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter); 
-	Texte2:SetForeColor(Turbine.UI.Color.Gold); 
-	Texte2:SetFont(Turbine.UI.Lotro.Font.BookAntiquaBold24);
-	Texte2:SetText("V " .. tostring(Plugins[pluginName]:GetVersion())); 
-	Texte2:SetZOrder(1);
+    y = AddSection(AltHolicInfosWindow, T["PluginLatestUpdate"],
+        T["PluginDateUpdate"], y);
 
-	posx = posx + 60;
+    local translatorText = table.concat({
+        T["PluginLangUpdateFR"],
+        T["PluginLangUpdateDE"],
+        T["PluginLangUpdateEN"],
+    }, "   •   ");
+    y = AddSection(AltHolicInfosWindow, T["PluginTranslators"], translatorText, y);
 
-	AltHolicInfosWindow.Message=Turbine.UI.Label(); 
-	AltHolicInfosWindow.Message:SetParent(AltHolicInfosWindow); 
-	AltHolicInfosWindow.Message:SetSize(300, 30); 
-	AltHolicInfosWindow.Message:SetPosition(5, posx); 
-	AltHolicInfosWindow.Message:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter); 
-	AltHolicInfosWindow.Message:SetFont(Turbine.UI.Lotro.Font.Verdana16);
-	AltHolicInfosWindow.Message:SetText( "Latest Update" ); 
-	AltHolicInfosWindow.Message:SetForeColor(Turbine.UI.Color.Lime);
+    y = AddSection(AltHolicInfosWindow, T["PluginCalcStatVersionText"],
+        T["PluginCalcStatVersion"], y);
 
-	AltHolicInfosWindow.Message=Turbine.UI.Label(); 
-	AltHolicInfosWindow.Message:SetParent(AltHolicInfosWindow); 
-	AltHolicInfosWindow.Message:SetSize(300, 30); 
-	AltHolicInfosWindow.Message:SetPosition(0, posx); 
-	AltHolicInfosWindow.Message:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter); 
-	AltHolicInfosWindow.Message:SetFont(Turbine.UI.Lotro.Font.BookAntiquaBold22);
-	AltHolicInfosWindow.Message:SetText("________________________"); 
-	AltHolicInfosWindow.Message:SetForeColor(Turbine.UI.Color.Blue);
-
-	posx = posx + 15;
-
-	Texte2 = Turbine.UI.Label();
-	Texte2:SetParent(AltHolicInfosWindow); 
-	Texte2:SetSize(250, 50); 
-	Texte2:SetPosition(25, posx); 
-	Texte2:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter); 
-	Texte2:SetForeColor(Turbine.UI.Color.Gold); 
-	Texte2:SetFont(Turbine.UI.Lotro.Font.BookAntiquaBold19);
-	Texte2:SetText(T[ "PluginDateUpdate" ]); 
-	Texte2:SetZOrder(1);
-
-	posx = posx + 60;
-
-	AltHolicInfosWindow.Message=Turbine.UI.Label(); 
-	AltHolicInfosWindow.Message:SetParent(AltHolicInfosWindow); 
-	AltHolicInfosWindow.Message:SetSize(300, 30); 
-	AltHolicInfosWindow.Message:SetPosition(5, posx); 
-	AltHolicInfosWindow.Message:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter); 
-	AltHolicInfosWindow.Message:SetFont(Turbine.UI.Lotro.Font.Verdana16);
-	AltHolicInfosWindow.Message:SetText( "Traductors" ); 
-	AltHolicInfosWindow.Message:SetForeColor(Turbine.UI.Color.Lime);
-
-	AltHolicInfosWindow.Message=Turbine.UI.Label(); 
-	AltHolicInfosWindow.Message:SetParent(AltHolicInfosWindow); 
-	AltHolicInfosWindow.Message:SetSize(300, 30); 
-	AltHolicInfosWindow.Message:SetPosition(0, posx); 
-	AltHolicInfosWindow.Message:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter); 
-	AltHolicInfosWindow.Message:SetFont(Turbine.UI.Lotro.Font.BookAntiquaBold22);
-	AltHolicInfosWindow.Message:SetText("________________________"); 
-	AltHolicInfosWindow.Message:SetForeColor(Turbine.UI.Color.Blue);
-
-	posx = posx + 15;
-
-	Texte = Turbine.UI.Label();
-	Texte:SetParent(AltHolicInfosWindow); 
-	Texte:SetSize(250, 50); 
-	Texte:SetPosition(25, posx); 
-	Texte:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter); 
-	Texte:SetForeColor(Turbine.UI.Color.Gold); 
-	Texte:SetFont(Turbine.UI.Lotro.Font.BookAntiquaBold19);
-	Texte:SetText(T[ "PluginLangUpdateFR" ]); 
-	Texte:SetZOrder(1);
-
-	posx = posx + 35;
-
-	Texte = Turbine.UI.Label();
-	Texte:SetParent(AltHolicInfosWindow); 
-	Texte:SetSize(250, 50); 
-	Texte:SetPosition(25, posx); 
-	Texte:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter); 
-	Texte:SetForeColor(Turbine.UI.Color.Gold); 
-	Texte:SetFont(Turbine.UI.Lotro.Font.BookAntiquaBold19);
-	Texte:SetText(T[ "PluginLangUpdateDE" ]); 
-	Texte:SetZOrder(1);
-
-	posx = posx + 35;
-
-	Texte = Turbine.UI.Label();
-	Texte:SetParent(AltHolicInfosWindow); 
-	Texte:SetSize(250, 50); 
-	Texte:SetPosition(25, posx); 
-	Texte:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter); 
-	Texte:SetForeColor(Turbine.UI.Color.Gold); 
-	Texte:SetFont(Turbine.UI.Lotro.Font.BookAntiquaBold19);
-	Texte:SetText(T[ "PluginLangUpdateEN" ]); 
-	Texte:SetZOrder(1);
-
-	posx = posx + 60;
-
-	AltHolicInfosWindow.Message=Turbine.UI.Label(); 
-	AltHolicInfosWindow.Message:SetParent(AltHolicInfosWindow); 
-	AltHolicInfosWindow.Message:SetSize(300, 30); 
-	AltHolicInfosWindow.Message:SetPosition(5, posx); 
-	AltHolicInfosWindow.Message:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter); 
-	AltHolicInfosWindow.Message:SetFont(Turbine.UI.Lotro.Font.Verdana16);
-	AltHolicInfosWindow.Message:SetText( T[ "PluginCalcStatVersionText" ] ); 
-	AltHolicInfosWindow.Message:SetForeColor(Turbine.UI.Color.Lime);
-
-	AltHolicInfosWindow.Message=Turbine.UI.Label(); 
-	AltHolicInfosWindow.Message:SetParent(AltHolicInfosWindow); 
-	AltHolicInfosWindow.Message:SetSize(300, 30); 
-	AltHolicInfosWindow.Message:SetPosition(0, posx); 
-	AltHolicInfosWindow.Message:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter); 
-	AltHolicInfosWindow.Message:SetFont(Turbine.UI.Lotro.Font.BookAntiquaBold22);
-	AltHolicInfosWindow.Message:SetText("________________________"); 
-	AltHolicInfosWindow.Message:SetForeColor(Turbine.UI.Color.Blue);
-
-	posx = posx + 15;
-
-	Texte = Turbine.UI.Label();
-	Texte:SetParent(AltHolicInfosWindow); 
-	Texte:SetSize(250, 50); 
-	Texte:SetPosition(25, posx); 
-	Texte:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter); 
-	Texte:SetForeColor(Turbine.UI.Color.Gold); 
-	Texte:SetFont(Turbine.UI.Lotro.Font.BookAntiquaBold19);
-	Texte:SetText( T[ "PluginCalcStatVersion" ]); 
-	Texte:SetZOrder(1);
-
-	posx = posx + 60; -- new for the refactor
-
-	AltHolicInfosWindow.Message=Turbine.UI.Label(); 
-	AltHolicInfosWindow.Message:SetParent(AltHolicInfosWindow); 
-	AltHolicInfosWindow.Message:SetSize(300, 30); 
-	AltHolicInfosWindow.Message:SetPosition(5, posx); 
-	AltHolicInfosWindow.Message:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter); 
-	AltHolicInfosWindow.Message:SetFont(Turbine.UI.Lotro.Font.Verdana16);
-	AltHolicInfosWindow.Message:SetText( T[ "PluginRefactored" ] ); 
-	AltHolicInfosWindow.Message:SetForeColor(Turbine.UI.Color.Lime);
-
-	AltHolicInfosWindow.Message=Turbine.UI.Label(); 
-	AltHolicInfosWindow.Message:SetParent(AltHolicInfosWindow); 
-	AltHolicInfosWindow.Message:SetSize(300, 30); 
-	AltHolicInfosWindow.Message:SetPosition(0, posx); 
-	AltHolicInfosWindow.Message:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter); 
-	AltHolicInfosWindow.Message:SetFont(Turbine.UI.Lotro.Font.BookAntiquaBold22);
-	AltHolicInfosWindow.Message:SetText("________________________"); 
-	AltHolicInfosWindow.Message:SetForeColor(Turbine.UI.Color.Blue);
-
-	posx = posx + 15;
-
-	Texte = Turbine.UI.Label();
-	Texte:SetParent(AltHolicInfosWindow); 
-	Texte:SetSize(250, 50); 
-	Texte:SetPosition(25, posx); 
-	Texte:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter); 
-	Texte:SetForeColor(Turbine.UI.Color.Gold); 
-	Texte:SetFont(Turbine.UI.Lotro.Font.BookAntiquaBold19);
-	Texte:SetText( T[ "PluginRefactored1" ]); 
-	Texte:SetZOrder(1);
-
+    AddSection(AltHolicInfosWindow, T["PluginRefactored"],
+        T["PluginRefactoredBy"], y);
 end

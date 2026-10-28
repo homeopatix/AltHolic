@@ -126,5 +126,5 @@ function CreateAddNewWindowReput(factionName, playerName, reputationIndex)
         UIShowReput:SetVisible(true);
     end;
 
-    EscapeKeyHandlerForWindows(AltHolicAddnewWindowReput, false);
+    EscapeKeyHandlerForWindows(AltHolicAddnewWindowReput);
 end

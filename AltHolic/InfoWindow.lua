@@ -79,5 +79,5 @@ function GenerateInfosWindow(playerName)
     closeButton.MouseClick = CloseInfoWindow;
 
     ClosingTheInfoWindow();
-    EscapeKeyHandlerForWindows(InfoWindow, settings["isInfoWindowVisible"]["value"]);
+    EscapeKeyHandlerForWindows(InfoWindow, "isInfoWindowVisible", "value");
 end

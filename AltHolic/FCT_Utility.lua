@@ -61,20 +61,23 @@ end
 -- Rating percentage helper.
 -- Formula/data originally based on LOTRO Wiki work credited by the original author.
 ------------------------------------------------------------------------------------------
+-- Mitigation curve per class ID. Matches CalcStat's own <Class>CDArmourType data
+-- (1 = light, 2 = medium, 3 = heavy). Brawler (215) and Mariner (216) were missing,
+-- which made their mitigation rows show 0.0%.
+local MITIGATION_SUFFIX = {
+    [185] = "L", [31] = "L", [193] = "L",                -- Lore-master, Minstrel, Rune-keeper
+    [40] = "M", [162] = "M", [194] = "M", [216] = "M",   -- Burglar, Hunter, Warden, Mariner
+    [23] = "H", [24] = "H", [172] = "H", [214] = "H", [215] = "H", -- Guardian, Captain, Champion, Beorning, Brawler
+};
+
 function get_percentage(attribute, rating, level, penName, penFactor, namePlayerToShow)
     local statName = attribute;
     local capped = 0;
     local playerData = PlayerDatas[namePlayerToShow];
 
     if statName == "PhyMit" or statName == "TacMit" then
-        local classId = playerData and playerData.cla or nil;
-        if classId == 185 or classId == 31 or classId == 193 then
-            statName = statName .. "L";
-        elseif classId == 40 or classId == 162 or classId == 194 then
-            statName = statName .. "M";
-        elseif classId == 214 or classId == 24 or classId == 172 or classId == 23 then
-            statName = statName .. "H";
-        end
+        local suffix = MITIGATION_SUFFIX[playerData and playerData.cla or 0];
+        if suffix then statName = statName .. suffix; end
     end
 
     local percentage = CalcStat(statName .. "PRatP", level, rating)
@@ -85,23 +88,17 @@ function get_percentage(attribute, rating, level, penName, penFactor, namePlayer
     if penName == nil then
         if rating >= ratingCap then capped = 1; end
     else
+        -- Still capped after tier 3 / 2 / 1 penetration? (TPen values are negative.)
+        -- Tier 1 used to query "T2Pen..", which CalcStat does not define (always 0), so
+        -- plain-capped stats showed as tier 1 and the capped = 1 branch never ran.
         local factor = penFactor or 1;
-        local penValue = CalcStat("TPen" .. penName, level, 3) * factor;
-        if rating + penValue >= ratingCap then
-            capped = 4;
-        else
-            penValue = CalcStat("TPen" .. penName, level, 2) * factor;
-            if rating + penValue >= ratingCap then
-                capped = 3;
-            else
-                penValue = CalcStat("T2Pen" .. penName, level) * factor;
-                if rating + penValue >= ratingCap then
-                    capped = 2;
-                elseif rating >= ratingCap then
-                    capped = 1;
-                end
+        for tier = 3, 1, -1 do
+            if rating + CalcStat("TPen" .. penName, level, tier) * factor >= ratingCap then
+                capped = tier + 1;
+                break;
             end
         end
+        if capped == 0 and rating >= ratingCap then capped = 1; end
     end
 
     return rating_string(rating, percentage, attribute), capped;

@@ -120,8 +120,5 @@ function GenerateOptionsWindowBar()
     end;
 
     ClosingTheWindowOptionsBar();
-    EscapeKeyHandlerForWindows(
-        OptionsWindowBar,
-        settings["isOptionsWindowBarVisible"]["isOptionsWindowBarVisible"]
-    );
+    EscapeKeyHandlerForWindows(OptionsWindowBar, "isOptionsWindowBarVisible", "isOptionsWindowBarVisible");
 end

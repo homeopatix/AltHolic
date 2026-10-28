@@ -123,11 +123,9 @@ settings = {
     isToBeSurWindowVisible = { 
         value = false 
     },
-    wasAltHolicBarVisible = { 
-        value = false 
-    },
-    wasAltHolicWindowVisible = { 
-        value = false 
+    -- "/alt icon" shows or hides the floating launcher.
+    isLauncherVisible = {
+        value = true
     },
     -- end new from here
     ShowHideReput = { 
@@ -258,12 +256,11 @@ settings = {
 -- values into these defaults instead of rebuilding the entire settings table for each
 -- historical schema revision.
 DefaultSettings = settings;
-SettingsSchemaVersion = 5;
+SettingsSchemaVersion = 6;
 ------------------------------------------------------------------------------------------
 -- Resources settings --
 ------------------------------------------------------------------------------------------
 ResourcePath = "Homeopatix/AltHolic/Resources/";
-AltHolicIconDebug = false; -- set true to print per-row icon diagnostics to chat
 
 Images = {
 	MinimizedIcon = ResourcePath .. "AltHolic.tga",

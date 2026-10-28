@@ -55,10 +55,12 @@ function CreateAddNewWindow()
 
         AltHolicAddnewWindow:SetVisible(false);
         SavePlayerDatas();
-        SavePlayerEquipment();
+        if Player:GetAlignment() == 1 then SavePlayerEquipment(); end
         SavePlayerBags();
-        SavePlayerVault();
-        UpdateMainWindow();
-        AltHolicWindow:SetVisible(true);
+        -- The vault is only saved once it has actually been opened this session; saving
+        -- it earlier would overwrite the stored vault with an empty one.
+        if vaultHasBeenUpdated == true then SavePlayerVault(); end
+        settings["isWindowVisible"]["isWindowVisible"] = true;
+        UpdateMainWindow(true);
     end;
 end

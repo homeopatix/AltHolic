@@ -74,6 +74,13 @@ function DropDown.Create(ListTable,Default)
 
 	local List = {};
 
+	-- ItemChanged is an optional handler assigned by the caller. It is called directly
+	-- (the old pcall wrapper also hid any error raised inside the handler).
+	local function FireItemChanged()
+		local handler = List.ItemChanged;
+		if type(handler) == "function" then handler(List); end
+	end
+
 
 	-- Main holder for the drop down, also creates the grey frame.
 	local DropDownParent = Turbine.UI.Window();
@@ -165,9 +172,7 @@ function DropDown.Create(ListTable,Default)
 			tempItem.Click = function (sender, args)
 
 				tempLabel:SetText(v);
-				-- ItemChanged is optional. Keep the probe local so the dropdown does
-				-- not create or overwrite a global helper function.
-				pcall(function() List:ItemChanged(); end);
+				FireItemChanged();
 
 			end
 
@@ -329,9 +334,7 @@ function DropDown.Create(ListTable,Default)
 
 						listPARENT:SetVisible(false);
 						listBOXParent:SetVisible(false);
-				-- ItemChanged is optional. Keep the probe local so the dropdown does
-				-- not create or overwrite a global helper function.
-				pcall(function() List:ItemChanged(); end);
+						FireItemChanged();
 
 					end
 

@@ -11,39 +11,16 @@ local XP_MIN_HEIGHT = 440;
 local XP_BASE_HEIGHT = 340;
 
 local function GetXPCharacters()
-    local names = {};
-    local filterServers = settings["displayServers"]["value"] == true;
-    local selectedServer = settings["serversToDisplay"]["value"];
-
-    for name, data in pairs(PlayerDatas) do
-        local include = true;
-        if filterServers then
-            include = selectedServer == T["ServerNamesAll"]
-                or selectedServer == ""
-                or selectedServer == data.serverName;
-        end
-        if include then
-            names[#names + 1] = name;
-        end
-    end
-
-    table.sort(names);
-    return names;
+    return AltHolicUtil.GetDisplayedCharacterNames();
 end
 
 local function GetXPProgress(data)
     local level = tonumber(data.lvl) or 1;
     local currentXP = tonumber(data.xp) or 0;
 
-    if level >= LevelMax then
+    local requiredXP = AltHolicUtil.GetLevelXPRequirement(level);
+    if requiredXP == nil then
         return currentXP, 0, 100, ResourcePath .. "GreenBars.tga";
-    end
-
-    local requiredXP;
-    if level > 1 then
-        requiredXP = (PlayerLevelXP[level] or 0) - (PlayerLevelXP[level - 1] or 0);
-    else
-        requiredXP = PlayerLevelXP[level] or 0;
     end
 
     local percentage = 0;
@@ -133,6 +110,7 @@ end
 -- Create the Players XP window.
 ------------------------------------------------------------------------------------------
 function CreateUIShowXP()
+    AltHolicUtil.DetachControl(UIShowXP);
     local characters = GetXPCharacters();
     local displayHeight = Turbine.UI.Display:GetHeight();
     local desiredHeight = math.max(XP_MIN_HEIGHT, (#characters * 20) + XP_BASE_HEIGHT);
@@ -180,5 +158,5 @@ function CreateUIShowXP()
     scrollbar:SetValue(0);
     listbox:SetVerticalScrollBar(scrollbar);
 
-    EscapeKeyHandlerForWindows(UIShowXP, settings["isXPWindowVisible"]["value"]);
+    EscapeKeyHandlerForWindows(UIShowXP, "isXPWindowVisible", "value");
 end

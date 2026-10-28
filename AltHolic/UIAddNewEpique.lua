@@ -169,5 +169,5 @@ function CreateAddNewWindowEpique(indexToUpdate)
         end;
     end
 
-    EscapeKeyHandlerForWindows(AltHolicAddnewWindowEpique, false);
+    EscapeKeyHandlerForWindows(AltHolicAddnewWindowEpique);
 end

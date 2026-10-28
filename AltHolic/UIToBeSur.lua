@@ -77,5 +77,5 @@ function CreateToBeSurWindow(nameToDelete, deleteMode)
         settings["isToBeSurWindowVisible"]["value"] = false;
     end;
 
-    EscapeKeyHandlerForWindows(ToBeSurWindow, settings["isToBeSurWindowVisible"]["value"]);
+    EscapeKeyHandlerForWindows(ToBeSurWindow, "isToBeSurWindowVisible", "value");
 end

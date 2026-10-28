@@ -13,73 +13,43 @@
 function CreateBarWindow()
 	-- The bar is rebuilt when several settings/data points change. Detach the previous
 	-- window first so its entire child-control tree can be released by Turbine.
-	if AltHolicBar ~= nil then
-		pcall(function() AltHolicBar:SetVisible(false); end);
-		pcall(function() AltHolicBar:SetParent(nil); end);
-	end
+	AltHolicUtil.DetachControl(AltHolicBar);
 
 	AltHolicBar=Turbine.UI.Extensions.SimpleWindow(); 
 	AltHolicBar:SetSize(screenWidth, 50); 
 	AltHolicBar:SetBackColor(Turbine.UI.Color.Black);
 	AltHolicBar:SetPosition(0, 0);
-	AltHolicBar:SetVisible(settings["displayBarWindow"]["value"]);
+	AltHolicBar:SetVisible(settings["displayBarWindow"]["value"] == true and not IsAltHolicHudHidden());
 	AltHolicBar:SetZOrder(1);
 	AltHolicBar:SetOpacity(0.75);
-	AltHolicBar:SetWantsKeyEvents(true);
 	AltHolicBar:SetMouseVisible(true);
 
 
 	DisplayNamePlayer_Bar();
 
-	if(settings["displayBarIcon2"]["value"] == true)then
-		DisplayLvlPlayer_Bar();
+	-- Optional toolbar sections, in display order (setting -> builder).
+	local sections = {
+		{ "displayBarIcon2",   DisplayLvlPlayer_Bar },
+		{ "displayBarIcon16",  DisplayXPWindow_Bar },
+		{ "displayBarIcon3",   DisplayRacePlayer_Bar },  -- "Display the race"
+		{ "displayBarIcon4",   DisplayClassPlayer_Bar }, -- "Display the class"
+		{ "displayBarIcon5",   DisplayServerPlayer_Bar },
+		{ "displayBarIcon6",   DisplayCashOfPlayer_Bar },
+		{ "displayBarIcon7",   DisplayWalletButton_Bar },
+		{ "displayBarIcon8",   DisplayVaultButton_Bar },
+		{ "displayBarIcon9",   DisplayBagButton_Bar },
+		{ "displayBarIcon10",  DisplayProfessions_Bar },
+		{ "displayBarIcon11",  DisplaySharedStorage_Bar },
+		{ "displayBarIcon12",  DisplayEpiqueBook_Bar },
+		{ "displayBarIcon13",  DisplayLoupe_Bar },
+		{ "displayBarIcon14",  DisplayTotalCash_Bar },
+		{ "displayBarIcon15",  DisplaySessionCash_Bar },
+		{ "displayTokensIcon", DisplayTokensIcon_Bar },
+	};
+	for _, section in ipairs(sections) do
+		if settings[section[1]]["value"] == true then section[2](); end
 	end
-	if(settings["displayBarIcon16"]["value"] == true)then
-		DisplayXPWindow_Bar();
-	end
-	if(settings["displayBarIcon4"]["value"] == true)then
-		DisplayClassPlayer_Bar();
-	end
-	if(settings["displayBarIcon3"]["value"] == true)then
-		DisplayRacePlayer_Bar();
-	end
-	if(settings["displayBarIcon5"]["value"] == true)then
-		DisplayServerPlayer_Bar();
-	end
-	if(settings["displayBarIcon6"]["value"] == true)then
-		DisplayCashOfPlayer_Bar();
-	end
-	if(settings["displayBarIcon7"]["value"] == true)then
-		DisplayWalletButton_Bar();
-	end
-	if(settings["displayBarIcon8"]["value"] == true)then
-		DisplayVaultButton_Bar();
-	end
-	if(settings["displayBarIcon9"]["value"] == true)then
-		DisplayBagButton_Bar();
-	end
-	if(settings["displayBarIcon10"]["value"] == true)then
-		DisplayProfessions_Bar();
-	end
-	if(settings["displayBarIcon11"]["value"] == true)then
-		DisplaySharedStorage_Bar();
-	end
-	if(settings["displayBarIcon12"]["value"] == true)then
-		DisplayEpiqueBook_Bar();
-	end
-	if(settings["displayBarIcon13"]["value"] == true)then
-		DisplayLoupe_Bar();
-	end
-	if(settings["displayBarIcon14"]["value"] == true)then
-		DisplayTotalCash_Bar();
-	end
-	if(settings["displayBarIcon15"]["value"] == true)then
-		DisplaySessionCash_Bar();
-	end
-	if(settings["displayTokensIcon"]["value"] == true)then
-		DisplayTokensIcon_Bar();
-	end
-	
+
 	DisplayAltHolicIcon_Bar();
 
 	AltHolicBar.MouseClick = function()
@@ -93,31 +63,16 @@ function CreateBarWindow()
 		end
 	end
 
-	EscapeKeyHandlerForWindows(AltHolicBar, settings["displayBarWindow"]["value"]);
-
-	AltHolicBar.KeyDown=function(sender, args)
-		if ( args.Action == 268435635 ) then
-			if(settings["displayBarWindow"]["value"] == true)then
-				AltHolicBar:SetVisible(false);
-				settings["displayBarWindow"]["value"] = false;
-			else
-				if(settings["wasAltHolicBarVisible"]["value"] == true)then
-					AltHolicBar:SetVisible(true);
-					settings["displayBarWindow"]["value"] = true;
-				end
-			end
-		end
-	end
+	-- The HUD toggle is handled centrally (see InstallHudKeyListener). The bar used to flip
+	-- the saved displayBarWindow option itself on F12, which could permanently disable it.
 end
 ------------------------------------------------------------------------------------------
 -- function to update the bar --
 ------------------------------------------------------------------------------------------
 function UpdateBar()
-	if(settings["displayBarWindow"]["value"] == true)then
-		AltHolicBar:SetVisible(false);
+	if settings["displayBarWindow"]["value"] == true then
 		CreateBarWindow();
-		AltHolicBar:SetVisible(true);
-	else
+	elseif AltHolicBar ~= nil then
 		AltHolicBar:SetVisible(false);
 	end
 end

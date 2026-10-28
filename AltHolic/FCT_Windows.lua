@@ -11,140 +11,118 @@ function PositionChangedWindow()
 	-- if the position changes, save the new window location
 	------------------------------------------------------------------------------------------
 	AltHolicWindow.PositionChanged = function( sender, args )
-    	local x,y = AltHolicWindow:GetPosition();
-    	settings["windowPosition"]["xPos"] = x;
-    	settings["windowPosition"]["yPos"] = y;
+		local x,y = AltHolicWindow:GetPosition();
+		settings["windowPosition"]["xPos"] = x;
+		settings["windowPosition"]["yPos"] = y;
 	end
 end
 ------------------------------------------------------------------------------------------
--- Updating the main windows --
+-- Main window: build, show and hide
 ------------------------------------------------------------------------------------------
-function UpdateMainWindow()
-	local winHeight;
-	local heightScreen;
+-- UpdateMainWindow() is called on every coin, level, vault or shared-storage change. A full
+-- rebuild creates hundreds of controls, so while the window is closed the rebuild is only
+-- recorded and performed the next time the window is shown.
+local mainWindowDirty = false;
 
-	AltHolicWindow:SetVisible(false);
-	if(settings["nameAccount"]["account1"]["nbrAlt"] == 0 or settings["nameAccount"]["account1"]["isVisible"] == false)then
-		if(settings["displaySpentCash"]["value"] == true)then
-			CreateMainWindow(400, 210);
-		else
-			CreateMainWindow(400, 150);
-		end
-		AltHolicWindow:SetVisible(settings["isWindowVisible"]["isWindowVisible"]);
+local function MainWindowHeight()
+	local account = settings["nameAccount"]["account1"];
+	local baseHeight = (settings["displaySpentCash"]["value"] == true) and 210 or 150;
+
+	if account["nbrAlt"] == 0 or account["isVisible"] == false then
+		return baseHeight;
+	end
+
+	-- Same filter as the rows themselves (an empty server choice means "all servers").
+	local characterCount = #AltHolicUtil.GetDisplayedCharacterNames();
+	return math.min((characterCount * 46) + baseHeight, Turbine.UI.Display:GetHeight() - 100);
+end
+
+function UpdateMainWindow(force)
+	if force ~= true and AltHolicWindow ~= nil and not AltHolicWindow:IsVisible() then
+		mainWindowDirty = true;
+		return;
+	end
+	mainWindowDirty = false;
+
+	if AltHolicWindow ~= nil then AltHolicWindow:SetVisible(false); end
+	CreateMainWindow(400, MainWindowHeight());
+	AltHolicWindow:SetVisible(settings["isWindowVisible"]["isWindowVisible"] == true and not IsAltHolicHudHidden());
+end
+
+function ShowMainWindow()
+	settings["isWindowVisible"]["isWindowVisible"] = true;
+	if mainWindowDirty or AltHolicWindow == nil then
+		UpdateMainWindow(true);
 	else
-		if(settings["displaySpentCash"]["value"] == true)then
-			if(settings["displayServers"]["value"])then
-				local toSearch = ReturnNBCharactersOnServer(settings["serversToDisplay"]["value"]);
-				winHeight = (toSearch * 46) + 210;
-			else
-				winHeight = (settings["nameAccount"]["account1"]["nbrAlt"] * 46) + 210;
-			end
-			if(winHeight < 210)then
-				winHeight = 200;
-			end
-		else
-			if(settings["displayServers"]["value"])then
-				local toSearch = ReturnNBCharactersOnServer(settings["serversToDisplay"]["value"]);
-				winHeight = (toSearch * 46) + 150;
-			else
-				winHeight = (settings["nameAccount"]["account1"]["nbrAlt"] * 46) + 150;
-			end
-			if(winHeight < 150)then
-				winHeight = 200;
-			end
-		end
+		AltHolicWindow:SetVisible(not IsAltHolicHudHidden());
+	end
+end
 
-		--Write("Windows height : " .. winHeight);
+function HideMainWindow()
+	settings["isWindowVisible"]["isWindowVisible"] = false;
+	if AltHolicWindow ~= nil then AltHolicWindow:SetVisible(false); end
+end
 
-		heightScreen = Turbine.UI.Display:GetHeight();
-
-		if(winHeight > (heightScreen - 100))then
-			winHeight = (heightScreen - 100);
-		end
-
-		CreateMainWindow(400, winHeight);
-		--Write("Windows height : " .. winHeight);
-		AltHolicWindow:SetVisible(settings["isWindowVisible"]["isWindowVisible"]);
+function ToggleMainWindow()
+	if AltHolicWindow ~= nil and AltHolicWindow:IsVisible() then
+		HideMainWindow();
+	else
+		ShowMainWindow();
 	end
 end
 ------------------------------------------------------------------------------------------
 -- Closing window handler --
 ------------------------------------------------------------------------------------------
 local function AttachVisibilityClosingHandler(window, settingGroup, settingField)
-    if window == nil then return end
-    window.Closing = function(sender, args)
-        settings[settingGroup][settingField] = false;
-    end
+	if window == nil then return end
+	window.Closing = function(sender, args)
+		settings[settingGroup][settingField] = false;
+	end
 end
 
 function ClosingTheWindow()
-    AttachVisibilityClosingHandler(AltHolicWindow, "isWindowVisible", "isWindowVisible");
-end
-function ClosingTheWindowBag()
-    AttachVisibilityClosingHandler(UIShowBag, "isShowBagVisible", "isShowBagVisible");
-end
-function ClosingTheWindowVault()
-    AttachVisibilityClosingHandler(UIShowVault, "isShowVaultVisible", "isShowVaultVisible");
-end
-function ClosingTheWindowSharedStorage()
-    AttachVisibilityClosingHandler(UIShowSharedStorage, "isShowSharedStorageVisible", "isShowSharedStorageVisible");
+	AttachVisibilityClosingHandler(AltHolicWindow, "isWindowVisible", "isWindowVisible");
 end
 function ClosingTheWindowEquipment()
-    AttachVisibilityClosingHandler(UIShowEquip, "isShowEquipmentVisible", "isShowEquipmentVisible");
+	AttachVisibilityClosingHandler(UIShowEquip, "isShowEquipmentVisible", "isShowEquipmentVisible");
 end
 function ClosingTheWindowSearch()
-    AttachVisibilityClosingHandler(UIShowSearch, "isSearchWindowVisible", "isSearchWindowVisible");
+	AttachVisibilityClosingHandler(UIShowSearch, "isSearchWindowVisible", "isSearchWindowVisible");
 end
 function ClosingTheWindowOptions()
-    AttachVisibilityClosingHandler(OptionsWindow, "isOptionsWindowVisible", "isOptionsWindowVisible");
+	AttachVisibilityClosingHandler(OptionsWindow, "isOptionsWindowVisible", "isOptionsWindowVisible");
 end
 function ClosingTheWindowOptionsBar()
-    AttachVisibilityClosingHandler(OptionsWindowBar, "isOptionsWindowBarVisible", "isOptionsWindowBarVisible");
+	AttachVisibilityClosingHandler(OptionsWindowBar, "isOptionsWindowBarVisible", "isOptionsWindowBarVisible");
 end
 function ClosingTheWindowWallet()
-    AttachVisibilityClosingHandler(UIShowWallet, "isShowWalletVisible", "isShowWalletVisible");
+	AttachVisibilityClosingHandler(UIShowWallet, "isShowWalletVisible", "isShowWalletVisible");
 end
 function ClosingTheWindowStats()
-    AttachVisibilityClosingHandler(UIShowStats, "isShowStatsVisible", "isShowStatsVisible");
+	AttachVisibilityClosingHandler(UIShowStats, "isShowStatsVisible", "isShowStatsVisible");
 end
 function ClosingTheWindowEpique()
-    AttachVisibilityClosingHandler(UIShowEpique, "isEpiqueWindowVisible", "isEpiqueWindowVisible");
+	AttachVisibilityClosingHandler(UIShowEpique, "isEpiqueWindowVisible", "isEpiqueWindowVisible");
 end
 function ClosingTheWindowReput()
-    AttachVisibilityClosingHandler(UIShowReput, "isReputWindowVisible", "isReputWindowVisible");
+	AttachVisibilityClosingHandler(UIShowReput, "isReputWindowVisible", "isReputWindowVisible");
 end
 function ClosingTheInfoWindow()
-    if InfoWindow == nil then return end
-    InfoWindow.Closing = function(sender, args)
-        InfoWindow:SetVisible(false);
-        settings["isInfoWindowVisible"]["value"] = false;
-    end
+	if InfoWindow == nil then return end
+	InfoWindow.Closing = function(sender, args)
+		InfoWindow:SetVisible(false);
+		settings["isInfoWindowVisible"]["value"] = false;
+	end
 end
 ------------------------------------------------------------------------------------------
--- function to handle the size of the minimized icon --
+-- Apply the launcher icon size/visibility settings to the single launcher window.
 ------------------------------------------------------------------------------------------
 function UpdateMinimizedIcon()
-    if MainMinimizedIcon == nil then return; end
+	if MainMinimizedIcon == nil then return; end
 
-    local size = 32;
-    local image = Images.MinimizedIcon;
-
-    if settings["isMinimizeEnabled"]["isMinimizeEnabled"] == true then
-        size = tonumber(settings["iconSize"]["value"]) or 32;
-        if size == 16 then
-            image = Images.TinyIcon16;
-        elseif size == 24 then
-            image = Images.TinyIcon24;
-        elseif size == 32 then
-            image = Images.TinyIcon;
-        else
-            size = 32;
-            image = Images.MinimizedIcon;
-        end
-    end
-
-    MainMinimizedIcon:SetImage(image);
-    MainMinimizedIcon:SetSize(size, size);
-    MainMinimizedIcon:SetPosition(settings["IconPosition"]["xPosIcon"], settings["IconPosition"]["yPosIcon"]);
-    MainMinimizedIcon:SetVisible(true);
+	local image, size = ResolveLauncherIcon();
+	MainMinimizedIcon:SetImage(image);
+	MainMinimizedIcon:SetSize(size, size);
+	MainMinimizedIcon:SetPosition(settings["IconPosition"]["xPosIcon"], settings["IconPosition"]["yPosIcon"]);
+	MainMinimizedIcon:SetVisible(settings["isLauncherVisible"]["value"] ~= false and not IsAltHolicHudHidden());
 end

@@ -2,7 +2,7 @@
 OfflineItemInfoControl = class(Turbine.UI.Control);
 
 function OfflineItemInfoControl:Constructor()
-    Turbine.UI.Control.Constructor(self);
+	Turbine.UI.Control.Constructor(self);
 
 	self:SetSize(32, 32);
 
@@ -54,13 +54,16 @@ function OfflineItemInfoControl:SetItem(itemName, namePlayerToshow, itemInfo, ic
 	end
 
 	self.itemInfoControl.MouseClick = function(sender, args)
-		if(settings["isLvlEquipWindowVisible"]["isLvlEquipWindowVisible"] == true)then
-			UIShowLvlEquip:SetVisible(false);
+		if settings["isLvlEquipWindowVisible"]["isLvlEquipWindowVisible"] == true and UIShowLvlEquip ~= nil then
+			AltHolicUtil.DetachControl(UIShowLvlEquip);
+			UIShowLvlEquip = nil;
 			settings["isLvlEquipWindowVisible"]["isLvlEquipWindowVisible"] = false;
 		else
 			CreateUIShowLvlEquip(namePlayerToshow, itemName);
-			UIShowLvlEquip:SetVisible(true);
-			settings["isLvlEquipWindowVisible"]["isLvlEquipWindowVisible"] = true;
+			if UIShowLvlEquip ~= nil then
+				UIShowLvlEquip:SetVisible(true);
+				settings["isLvlEquipWindowVisible"]["isLvlEquipWindowVisible"] = true;
+			end
 		end
 	end
 end

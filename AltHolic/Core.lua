@@ -76,7 +76,8 @@ end
 function AltHolicUtil.DetachControls(controlTable)
     if type(controlTable) ~= "table" then return; end
     for _, value in pairs(controlTable) do
-        if type(value) == "table" then
+        -- Turbine controls are tables too; only recurse into plain lists of controls.
+        if type(value) == "table" and value.SetParent == nil then
             AltHolicUtil.DetachControls(value);
         elseif value ~= nil then
             AltHolicUtil.DetachControl(value);
@@ -181,12 +182,16 @@ local MONEY_GOLD_TEXTURE = 0x41007e7b;
 local MONEY_SILVER_TEXTURE = 0x41007e7c;
 local MONEY_COPPER_TEXTURE = 0x41007e7d;
 
+-- Split a copper amount into gold/silver/copper. The fourth return value is true when the
+-- input was negative (e.g. a net session loss); the parts themselves are always positive.
 function AltHolicUtil.MoneyParts(value)
-    value = math.max(0, math.floor(tonumber(value) or 0));
+    value = math.floor(tonumber(value) or 0);
+    local negative = value < 0;
+    if negative then value = -value; end
     local gold = math.floor(value / 100000);
     local silver = math.floor(value / 100) - (gold * 1000);
     local copper = value - (gold * 100000) - (silver * 100);
-    return gold, silver, copper;
+    return gold, silver, copper, negative;
 end
 
 function AltHolicUtil.CreateLabel(parent, text, x, y, width, height, options)
@@ -238,7 +243,7 @@ function AltHolicUtil.CreateMoneyDisplay(parent, value, x, y, width, height, opt
     width = width or 180;
     height = height or 24;
 
-    local gold, silver, copper = AltHolicUtil.MoneyParts(value);
+    local gold, silver, copper, negative = AltHolicUtil.MoneyParts(value);
     local iconWidth = options.iconWidth or options.iconSize or 27;
     local iconHeight = options.iconHeight or options.iconSize or 21;
     local gap = options.gap or 2;
@@ -260,10 +265,12 @@ function AltHolicUtil.CreateMoneyDisplay(parent, value, x, y, width, height, opt
     -- Work right-to-left so all three denominations remain aligned even when
     -- character wealth varies wildly in digit count.
     local right = width;
+    -- A net loss is shown as "-12g 34s 56c" instead of being clamped to zero.
+    local goldText = negative and ("-" .. tostring(gold)) or tostring(gold);
     local parts = {
-        { value = copper, texture = MONEY_COPPER_TEXTURE, color = colors[3], digits = digitWidths[3] },
-        { value = silver, texture = MONEY_SILVER_TEXTURE, color = colors[2], digits = digitWidths[2] },
-        { value = gold,   texture = MONEY_GOLD_TEXTURE,   color = colors[1], digits = digitWidths[1] },
+        { value = copper,   texture = MONEY_COPPER_TEXTURE, color = colors[3], digits = digitWidths[3] },
+        { value = silver,   texture = MONEY_SILVER_TEXTURE, color = colors[2], digits = digitWidths[2] },
+        { value = goldText, texture = MONEY_GOLD_TEXTURE,   color = colors[1], digits = digitWidths[1] },
     };
 
     for index = 1, #parts do
@@ -289,4 +296,314 @@ function AltHolicUtil.CreateMoneyDisplay(parent, value, x, y, width, height, opt
     end
 
     return container;
+end
+
+-- Shared UI/layout helpers used by the remaining legacy windows. Keeping these
+-- patterns here prevents each window from rebuilding the same controls by hand.
+function AltHolicUtil.CreateDisplayModeButtons(parent, windowWidth, y, showIcons, onLines, onIcons)
+    local lineButton = Turbine.UI.Label();
+    lineButton:SetParent(parent);
+    lineButton:SetSize(21, 21);
+    lineButton:SetPosition(windowWidth / 2 - 41, y or 40);
+    lineButton:SetBackground(showIcons and 0x4110C76F or 0x4110C76D);
+    lineButton:SetMouseVisible(true);
+    lineButton:SetBlendMode(Turbine.UI.BlendMode.Overlay);
+
+    local iconButton = Turbine.UI.Label();
+    iconButton:SetParent(parent);
+    iconButton:SetSize(21, 21);
+    iconButton:SetPosition(windowWidth / 2 + 20, y or 40);
+    iconButton:SetBackground(showIcons and 0x4110C76A or 0x4110C76C);
+    iconButton:SetMouseVisible(true);
+    iconButton:SetBlendMode(Turbine.UI.BlendMode.Overlay);
+
+    lineButton.MouseClick = function() if onLines ~= nil then onLines(); end end;
+    iconButton.MouseClick = function() if onIcons ~= nil then onIcons(); end end;
+    return lineButton, iconButton;
+end
+
+function AltHolicUtil.CreateCloseButton(parent, text, y, onClick, width, x)
+    width = width or 300;
+    local button = Turbine.UI.Lotro.GoldButton();
+    button:SetParent(parent);
+    button:SetPosition(x or ((parent:GetWidth() - width) / 2), y);
+    button:SetSize(width, 20);
+    button:SetFont(Turbine.UI.Lotro.Font.Verdana16);
+    button:SetText(text or T["PluginCloseButton"]);
+    button:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);
+    button:SetVisible(true);
+    button:SetMouseVisible(true);
+    button.MouseClick = function() if onClick ~= nil then onClick(); end end;
+    return button;
+end
+
+-- Build the four standard layers used by AltHolic's saved inventory/equipment icons.
+-- Returns the top icon layer, which is the control callers normally attach tooltips to.
+function AltHolicUtil.CreateStoredItemIcon(parent, itemData, x, y, options)
+    options = options or {};
+    local size = options.size or 32;
+    local offset = options.offset or 1;
+    local z = options.zOrder or ((parent.GetZOrder ~= nil and parent:GetZOrder() or 0) + 1);
+
+    local quality = tonumber(itemData and itemData.Q) or 0;
+    local base = tonumber(itemData and itemData.B) or 0;
+    local stack = tonumber(itemData and itemData.S) or 0;
+    local icon = tonumber(itemData and itemData.I) or 0;
+    local qualityRank = tonumber(itemData and itemData.QA) or 0;
+    if options.useStackFallback ~= false and stack == 0 and qualityRank >= 1 and qualityRank <= 5 then
+        stack = 0x410030C4;
+    end
+
+    local layers = { quality, base, stack, icon };
+    local controls = {};
+    for index, texture in ipairs(layers) do
+        local layer = Turbine.UI.Control();
+        layer:SetParent(parent);
+        layer:SetPosition(x or offset, y or offset);
+        layer:SetSize(size, size);
+        layer:SetZOrder(z);
+        if texture ~= 0 then layer:SetBackground(texture); end
+        layer:SetBlendMode(Turbine.UI.BlendMode.Overlay);
+        layer:SetVisible(true);
+        layer:SetMouseVisible(index == 4);
+        controls[index] = layer;
+    end
+    return controls[4], controls;
+end
+
+function AltHolicUtil.ShouldDisplayCharacter(playerName)
+    if PlayerDatas == nil or PlayerDatas[playerName] == nil then return false; end
+    if settings == nil or settings["displayServers"] == nil or settings["displayServers"]["value"] ~= true then
+        return true;
+    end
+    local selected = settings["serversToDisplay"] and settings["serversToDisplay"]["value"] or "";
+    return selected == "" or selected == T["ServerNamesAll"] or selected == PlayerDatas[playerName].serverName;
+end
+
+
+-- Standard framed hover tooltip used throughout AltHolic's icon rows and toolbar.
+function AltHolicUtil.AttachFramedTooltip(trigger, parent, x, y, width, height, text, options)
+    options = options or {};
+    width = width or 180;
+    height = height or 30;
+
+    local tooltip = Turbine.UI.Extensions.SimpleWindow();
+    tooltip:SetParent(parent);
+    tooltip:SetPosition(x or 0, y or 0);
+    tooltip:SetSize(width, height);
+    tooltip:SetVisible(false);
+    tooltip:SetZOrder(options.zOrder or 20);
+    tooltip:SetBackground(options.background or (ResourcePath .. "/Cadre_180_30.tga"));
+
+    local label = Turbine.UI.Label();
+    label:SetParent(tooltip);
+    label:SetPosition(2, 2);
+    label:SetSize(width - 4, height - 4);
+    -- font = false keeps the Label's built-in default font (used by the small "+" helpers).
+    if options.font ~= false then label:SetFont(options.font or Turbine.UI.Lotro.Font.Verdana20); end
+    label:SetText(text or "");
+    label:SetTextAlignment(options.align or Turbine.UI.ContentAlignment.MiddleCenter);
+    label:SetZOrder((options.zOrder or 20) + 1);
+    if options.backColor ~= false then
+        label:SetBackColor(options.backColor or Turbine.UI.Color(0.8, 0.1, 0.4, 0.9));
+    end
+    if options.foreColor ~= nil then label:SetForeColor(options.foreColor); end
+
+    if options.labelZOrder ~= nil then label:SetZOrder(options.labelZOrder); end
+
+    trigger.MouseEnter = function(sender, args)
+        tooltip:SetVisible(true);
+        if options.onEnter ~= nil then options.onEnter(sender, args); end
+    end;
+    trigger.MouseLeave = function(sender, args)
+        tooltip:SetVisible(false);
+        if options.onLeave ~= nil then options.onLeave(sender, args); end
+    end;
+    return tooltip, label;
+end
+
+------------------------------------------------------------------------------------------
+-- Window helpers
+------------------------------------------------------------------------------------------
+-- Toggle an on-demand window that is (re)built by `create`. Visibility is taken from the
+-- window itself rather than the saved flag, so a window closed with Esc/F12/the X button
+-- reopens on the very next click instead of needing a "phantom close" click first.
+-- `key` identifies what the window shows (usually a character name): clicking another
+-- character's icon while the window is open switches to that character instead of closing.
+function AltHolicUtil.ToggleWindow(getWindow, create, settingGroup, settingField, key)
+    local window = getWindow();
+    local field = settingField or "value";
+    if window ~= nil and window:IsVisible() and (key == nil or window.altHolicKey == key) then
+        window:SetVisible(false);
+        if settingGroup ~= nil then settings[settingGroup][field] = false; end
+        return false;
+    end
+    if create ~= nil then create(); end
+    window = getWindow();
+    if window ~= nil then
+        window.altHolicKey = key;
+        window:SetVisible(true);
+    end
+    if settingGroup ~= nil then settings[settingGroup][field] = true; end
+    return true;
+end
+
+-- Offset of `control` inside `ancestor`, walking the parent chain. Returns nil when the
+-- control is not a descendant (e.g. an item owned by a ListBox).
+function AltHolicUtil.GetOffsetWithin(control, ancestor)
+    local x, y = 0, 0;
+    local current = control;
+    while current ~= nil and current ~= ancestor do
+        x = x + current:GetLeft();
+        y = y + current:GetTop();
+        current = current:GetParent();
+    end
+    if current == nil then return nil, nil; end
+    return x, y;
+end
+
+------------------------------------------------------------------------------------------
+-- Deferred work. Bursts of inventory events (looting ten items, sorting the vault) used to
+-- serialize the whole data file once per event; now each burst is written once, a moment
+-- after the last event. Run(key) executes a pending task immediately (e.g. on unload).
+------------------------------------------------------------------------------------------
+local deferredTasks = {};
+local deferredScheduler = nil;
+
+local function RunDeferredTask(key)
+    local task = deferredTasks[key];
+    if task == nil then return; end
+    deferredTasks[key] = nil;
+    task.fn();
+end
+
+function AltHolicUtil.Defer(key, delaySeconds, fn)
+    deferredTasks[key] = { due = Turbine.Engine.GetGameTime() + (delaySeconds or 1), fn = fn };
+    if deferredScheduler == nil then
+        deferredScheduler = Turbine.UI.Control();
+        deferredScheduler.Update = function()
+            local now = Turbine.Engine.GetGameTime();
+            local due = {};
+            for taskKey, task in pairs(deferredTasks) do
+                if now >= task.due then due[#due + 1] = taskKey; end
+            end
+            for _, taskKey in ipairs(due) do RunDeferredTask(taskKey); end
+            if next(deferredTasks) == nil then
+                deferredScheduler:SetWantsUpdates(false);
+            end
+        end
+    end
+    deferredScheduler:SetWantsUpdates(true);
+end
+
+function AltHolicUtil.RunDeferred(key)
+    if key ~= nil then
+        RunDeferredTask(key);
+        return;
+    end
+    local keys = {};
+    for taskKey in pairs(deferredTasks) do keys[#keys + 1] = taskKey; end
+    for _, taskKey in ipairs(keys) do RunDeferredTask(taskKey); end
+end
+
+------------------------------------------------------------------------------------------
+-- Character / account helpers
+------------------------------------------------------------------------------------------
+-- Total of wallet + backpack coin bags + vault coin bags for every character currently
+-- shown by the server filter, plus the account's shared-storage coin bags.
+function AltHolicUtil.ComputeAccountCash()
+    local total = 0;
+    for name, data in pairs(PlayerDatas or {}) do
+        if AltHolicUtil.ShouldDisplayCharacter(name) then
+            total = total + (tonumber(data.cash) or 0) + (tonumber(data.bagCash) or 0) + (tonumber(data.vaultCash) or 0);
+        end
+    end
+    return total + (tonumber(settings["sharedStorageCash"]["value"]) or 0);
+end
+
+-- Character names that pass the server filter, sorted alphabetically.
+function AltHolicUtil.GetDisplayedCharacterNames(filter)
+    local names = {};
+    for name, data in pairs(PlayerDatas or {}) do
+        if AltHolicUtil.ShouldDisplayCharacter(name) and (filter == nil or filter(name, data)) then
+            names[#names + 1] = name;
+        end
+    end
+    table.sort(names);
+    return names;
+end
+
+-- Experience needed to go from `level` to `level + 1`, or nil at the level cap.
+function AltHolicUtil.GetLevelXPRequirement(level)
+    level = tonumber(level) or 1;
+    if LevelMax ~= nil and level >= LevelMax then return nil; end
+    local current = PlayerLevelXP[level];
+    if current == nil then return nil; end
+    if level <= 1 then return current; end
+    local previous = PlayerLevelXP[level - 1] or 0;
+    return current - previous;
+end
+
+------------------------------------------------------------------------------------------
+-- Race / class artwork (single source for the main list, toolbar, stats and gender windows)
+------------------------------------------------------------------------------------------
+AltHolicUtil.RaceIcons = {
+    [81]  = { male = 0x4110894A, female = 0x41108949 },               -- Elf
+    [23]  = { male = 0x41108945, female = 0x4110894B },               -- Man
+    [65]  = { male = 0x41108947, female = 0x41108948 },               -- Hobbit
+    [114] = { male = 0x4115920D, female = 0x4115920A },               -- Beorning
+    [120] = { male = 0x411DAE7E, female = 0x411DAE7E },               -- Stout-axe
+    [73]  = { male = 0x41108946, female = 0x41108946, maleOnly = true }, -- Dwarf
+    [117] = { male = 0x411C8D6B, female = 0x411C8D6A },               -- High Elf
+    [125] = { male = 0x4110894A, female = 0x41108949 },               -- River Hobbit
+};
+
+AltHolicUtil.MonsterRaces = { [7] = true, [12] = true, [6] = true, [66] = true };
+
+AltHolicUtil.ClassIcons = {
+    [162] = 0x410095C2, [31] = 0x4110867A, [214] = 0x41153604,
+    [24] = 0x410095C5, [193] = 0x4110867B, [40] = 0x410095BB,
+    [185] = 0x410095BF, [23] = 0x410095B8, [172] = 0x410095B5,
+    [194] = 0x41108673, [215] = 0x4120fcd9, [216] = 0x4122f860,
+};
+
+-- Monster-play classes use bundled artwork; "<name>_red.tga" highlights the logged-in character.
+AltHolicUtil.MonsterClassIcons = {
+    [71] = "Faucheur", [128] = "Profanateur", [127] = "Araignee",
+    [179] = "FlecheNoire", [52] = "ChefDeGuerre", [126] = "Ouargue",
+};
+
+function AltHolicUtil.GetRaceTexture(playerData, highlight)
+    if playerData == nil then return nil; end
+    if AltHolicUtil.MonsterRaces[playerData.rac] then
+        return ResourcePath .. (highlight and "Mordor_red.tga" or "Mordor.tga");
+    end
+    local icons = AltHolicUtil.RaceIcons[playerData.rac];
+    if icons == nil then return nil; end
+    return icons[playerData.sexe] or icons.male;
+end
+
+function AltHolicUtil.GetClassTexture(playerData, highlight)
+    if playerData == nil then return nil; end
+    local texture = AltHolicUtil.ClassIcons[playerData.cla];
+    if texture ~= nil then return texture; end
+    local monsterName = AltHolicUtil.MonsterClassIcons[playerData.cla];
+    if monsterName ~= nil then
+        return ResourcePath .. monsterName .. (highlight and "_red.tga" or ".tga");
+    end
+    return nil;
+end
+
+function AltHolicUtil.ApplyTexture(control, texture)
+    if control ~= nil and texture ~= nil then control:SetBackground(texture); end
+end
+
+------------------------------------------------------------------------------------------
+-- Equipment helpers
+------------------------------------------------------------------------------------------
+-- Turbine.Gameplay.ItemWearState -> displayed durability percentage (-1 = no durability).
+local WEAR_STATE_PERCENT = { [0] = -1, [3] = 0, [1] = 20, [4] = 99, [2] = 100 };
+
+function AltHolicUtil.WearStatePercent(wearState)
+    return WEAR_STATE_PERCENT[tonumber(wearState) or 0] or 0;
 end

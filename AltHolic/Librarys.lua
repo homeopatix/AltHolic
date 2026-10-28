@@ -56,9 +56,7 @@ import "Homeopatix.AltHolic.UIAddNew";
 import "Homeopatix.AltHolic.UIAddNewEpique";
 import "Homeopatix.AltHolic.UIAddNewReput";
 import "Homeopatix.AltHolic.UIShowEquip";
-import "Homeopatix.AltHolic.UIShowBag";
-import "Homeopatix.AltHolic.UIShowVault";
-import "Homeopatix.AltHolic.UIShowSharedStorage";
+import "Homeopatix.AltHolic.UIShowStorage";
 import "Homeopatix.AltHolic.UISearch";
 import "Homeopatix.AltHolic.UIShowCash";
 import "Homeopatix.AltHolic.UIShowEpique";
@@ -76,6 +74,7 @@ import "Homeopatix.AltHolic.OptionsWindowBar";
 import "Homeopatix.AltHolic.ServerNameWindow";
 import "Homeopatix.AltHolic.UIToBeSur";
 import "Homeopatix.AltHolic.UIShowXP";
+import "Homeopatix.AltHolic.UICraftingDetails";
 import "Homeopatix.AltHolic.UIAddNewXP";
 ------------------------------------------------------------------------------------------
 -- Import Commands --

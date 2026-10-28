@@ -2,80 +2,112 @@
 -- LoadAndSave file
 -- Written by Homeopatix
 -- 26 january 2021
+-- Refactored for AltHolic 5.06: plain-table snapshots, persist-only helpers and
+-- a single place for each file's load/save logic.
 ------------------------------------------------------------------------------------------
+
+local function IsSessionPlay()
+    return string.sub(PlayerName, 1, 1) == "~";
+end
+
+-- Write a whole data file without re-scanning any live game container. Deleting an alt or
+-- editing offline data must never re-read the logged-in character's vault/bags, because
+-- those containers are empty until they are actually opened this session.
+local function Persist(fileName, data)
+    PatchDataSave(dataScope, fileName, data);
+end
+
+-- Load a per-character file and make sure the logged-in character has a record.
+local function LoadCharacterFile(fileName, current)
+    local data = PatchDataLoad(dataScope, fileName, current);
+    if type(data) ~= "table" then data = {}; end
+    if type(data[PlayerName]) ~= "table" then data[PlayerName] = {}; end
+    return data;
+end
+
+-- Copy the fields AltHolic displays out of a live inventory Item. Saving plain tables (rather
+-- than decorating the live Item objects) keeps engine objects out of the save files.
+local function SnapshotItem(item, sizeField, size)
+    local info = item:GetItemInfo();
+    local snapshot = {
+        Q = tostring(info:GetQualityImageID()),
+        B = tostring(info:GetBackgroundImageID()),
+        U = tostring(info:GetUnderlayImageID()),
+        S = tostring(info:GetShadowImageID()),
+        I = tostring(info:GetIconImageID()),
+        N = tostring(info:GetName()),
+        QUA = tostring(item:GetQuantity()),
+    };
+    snapshot[sizeField] = tostring(size);
+    return snapshot;
+end
+
 ------------------------------------------------------------------------------------------
--- create or load the settings
+-- Settings
 ------------------------------------------------------------------------------------------
 function LoadSettings()
     local savedSettings = PatchDataLoad(dataScope, settingsFileName, nil);
+    if type(savedSettings) ~= "table" then savedSettings = {}; end
 
-    if type(savedSettings) ~= "table" then
-        savedSettings = {};
-    end
-
-    -- Merge missing defaults recursively. This replaces the old migration block that
-    -- rebuilt the entire settings table whenever one historical key was absent, which
-    -- could silently discard newer preferences. Unknown saved keys are preserved for
-    -- backwards compatibility.
-    settings = AltHolicUtil.DeepMergeDefaults(savedSettings, DefaultSettings or settings);
-    settings.schemaVersion = SettingsSchemaVersion or 4;
+    -- Merge missing defaults recursively; unknown saved keys are preserved.
+    settings = AltHolicUtil.DeepMergeDefaults(savedSettings, DefaultSettings);
+    settings.schemaVersion = SettingsSchemaVersion;
 
     -- Session-only values are always reset on load.
-    if settings.sessionCash ~= nil then
-        settings.sessionCash.cashSession = 0;
-        settings.sessionCash.cashSpent = 0;
-    end
+    settings.sessionCash.cashSession = 0;
+    settings.sessionCash.cashSpent = 0;
 end
-------------------------------------------------------------------------------------------
--- save settings
-------------------------------------------------------------------------------------------
+
 function SaveSettings()
     if settings == nil then return; end
 
-    -- Only values that genuinely need to be refreshed/coerced belong here. The old
-    -- implementation contained dozens of x = x assignments that did no work and made
-    -- adding a setting unnecessarily error-prone.
-    if AltHolicWindow ~= nil and settings.windowPosition ~= nil then
+    if AltHolicWindow ~= nil then
         settings.windowPosition.xPos = tostring(AltHolicWindow:GetLeft());
         settings.windowPosition.yPos = tostring(AltHolicWindow:GetTop());
     end
-    if settings.iconSize ~= nil then
-        settings.iconSize.value = tonumber(settings.iconSize.value) or 64;
-    end
-    if settings.sharedStorageCash ~= nil then
-        settings.sharedStorageCash.value = tonumber(settings.sharedStorageCash.value) or 0;
-    end
-    settings.schemaVersion = SettingsSchemaVersion or settings.schemaVersion;
+    settings.iconSize.value = tonumber(settings.iconSize.value) or 64;
+    settings.sharedStorageCash.value = tonumber(settings.sharedStorageCash.value) or 0;
+    settings.lotroCoins.value = tonumber(settings.lotroCoins.value) or 0;
+    settings.schemaVersion = SettingsSchemaVersion;
 
-    PatchDataSave(dataScope, settingsFileName, settings);
+    Persist(settingsFileName, settings);
 end
+
 ------------------------------------------------------------------------------------------
--- create or load the settings for player datas
+-- Character data (level, class, money, stats)
 ------------------------------------------------------------------------------------------
 function LoadPlayerDatas()
-    PlayerDatas = PatchDataLoad(dataScope, settingsDatasFileName, PlayerDatas);
-
-    if (PlayerDatas == nil)then 
-        PlayerDatas = {}; 
-    end
-
-    if (PlayerDatas[PlayerName] == nil)then 
-        PlayerDatas[PlayerName] = {}; 
-    end
+    PlayerDatas = LoadCharacterFile(settingsDatasFileName, PlayerDatas);
 end
 
-------------------------------------------------------------------------------------------
--- Legacy vocation getter removed; crafting is read from PlayerProfessions.
-------------------------------------------------------------------------------------------
+-- Write PlayerDatas as it is in memory (used for offline edits: XP, server, gender, delete).
+function PersistPlayerDatas()
+    Persist(settingsDatasFileName, PlayerDatas);
+end
+
+-- XP chat messages arrive on every kill. They only mark the data dirty; the 30-second
+-- maintenance tick and plugin unload write it, instead of a full save per kill.
+local playerDatasDirty = false;
+
+function MarkPlayerDatasDirty()
+    playerDatasDirty = true;
+end
+
+function FlushPlayerDatas()
+    if playerDatasDirty then SavePlayerDatas(); end
+end
+
+-- Refresh the logged-in character's record from the live game, then persist.
 function SavePlayerDatas()
-    if ( string.sub( PlayerName, 1, 1 ) == "~" )then return end; --Ignore session play
+    if IsSessionPlay() then return; end
+    playerDatasDirty = false;
 
     PlayerDatas[PlayerName] = PlayerDatas[PlayerName] or {};
     local playerData = PlayerDatas[PlayerName];
 
     playerData.cla = PlayerClass;
     playerData.lvl = Player:GetLevel();
-    -- Legacy playerData.voc is intentionally left untouched for old display/filter data.
+    -- Legacy playerData.voc is intentionally left untouched for old saved data.
     playerData.rac = PlayerRace;
     playerData.cash = PlayerAttr:GetMoney();
     playerData.bagCash = tonumber(CalculateBagCoinValue());
@@ -84,17 +116,15 @@ function SavePlayerDatas()
     playerData.sexe = PlayerSexe[PlayerName];
     playerData.xp = tonumber(PlayerXp[PlayerName]);
 
-    -- statistical part
     playerData.moral = tonumber(Player:GetMorale());
     playerData.maxMoral = tonumber(Player:GetMaxMorale());
     playerData.power = tonumber(Player:GetPower());
     playerData.maxPower = tonumber(Player:GetMaxPower());
 
-    -- server part
     playerData.serverName = PlayerServer[PlayerName];
 
-    -- do not save for monsterplay
-    if(playerData.align == 1)then
+    -- Detailed stats only exist for Free Peoples characters.
+    if playerData.align == 1 then
         playerData.armure = tonumber(PlayerAttr:GetArmor());
         playerData.agility = tonumber(PlayerAttr:GetAgility());
         playerData.fate = tonumber(PlayerAttr:GetFate());
@@ -102,7 +132,6 @@ function SavePlayerDatas()
         playerData.vitality = tonumber(PlayerAttr:GetVitality());
         playerData.will = tonumber(PlayerAttr:GetWill());
 
-        -- large stats
         playerData.critA = tonumber(PlayerAttr:GetBaseCriticalHitChance());
         playerData.fines = tonumber(PlayerAttr:GetFinesse());
         playerData.meleD = tonumber(PlayerAttr:GetMeleeDamage());
@@ -116,149 +145,91 @@ function SavePlayerDatas()
         playerData.esqui = tonumber(PlayerAttr:GetEvade());
         playerData.healD = tonumber(PlayerAttr:GetOutgoingHealing());
         playerData.healR = tonumber(PlayerAttr:GetIncomingHealing());
-        -- new stats
         playerData.orc = tonumber(PlayerAttr:GetPhysicalMitigation());
         playerData.range = tonumber(PlayerAttr:GetRangeDamage());
     end
 
-    PatchDataSave( dataScope, settingsDatasFileName, PlayerDatas);
+    PersistPlayerDatas();
 end
-------------------------------------------------------------------------------------------
--- create the save settings for the server of the player
-------------------------------------------------------------------------------------------
+
 function SavePlayerServerName(playerToSave)
-
+    if PlayerDatas[playerToSave] == nil then return; end
     PlayerDatas[playerToSave].serverName = PlayerServer[playerToSave];
-
-    PatchDataSave( dataScope, settingsDatasFileName, PlayerDatas);
+    PersistPlayerDatas();
 end
-------------------------------------------------------------------------------------------
--- create the save settings for a special player named
-------------------------------------------------------------------------------------------
+
 function SavePlayerSexForSpecialCharacters(namePlayerToSave)
-
+    if PlayerDatas[namePlayerToSave] == nil then return; end
     PlayerDatas[namePlayerToSave].sexe = PlayerSexe[namePlayerToSave];
-
-    PatchDataSave( dataScope, settingsDatasFileName, PlayerDatas);
+    PersistPlayerDatas();
 end
-------------------------------------------------------------------------------------------
--- create the save settings for a special player named
-------------------------------------------------------------------------------------------
-function SavePlayerLvlEquipment(i)
 
-    PlayerEquipement[PlayerName][i].lvl = PlayerEquipItems[PlayerName][i];
-    PlayerEquipement[PlayerName][i].armor = PlayerEquipArmor[PlayerName][i];
-
-    PatchDataSave( dataScope, settingsEquipmentFileName, PlayerEquipement);
+-- Saved XP for any character (the XP editor works on offline alts too).
+function SavePlayerXP(playerName, xp)
+    if PlayerDatas[playerName] == nil then return; end
+    xp = math.max(0, tonumber(xp) or 0);
+    PlayerXp[playerName] = xp;
+    PlayerDatas[playerName].xp = xp;
+    PersistPlayerDatas();
 end
+
 ------------------------------------------------------------------------------------------
--- create or load the settings for player bag
+-- Backpack
 ------------------------------------------------------------------------------------------
 function LoadPlayerBags()
-    PlayerBags = PatchDataLoad(dataScope, settingsBagFileName, PlayerBags);
-    if (PlayerBags == nil)then 
-        PlayerBags = {}; 
-    end
-    if (PlayerBags[PlayerName] == nil)then 
-        PlayerBags[PlayerName] = {}; 
-    end
+    PlayerBags = LoadCharacterFile(settingsBagFileName, PlayerBags);
 end
-------------------------------------------------------------------------------------------
--- create the save settingsfor player bag
-------------------------------------------------------------------------------------------
+
 function SavePlayerBags()
-    if ( string.sub( PlayerName, 1, 1 ) == "~" )then return end; --Ignore session play
+    if IsSessionPlay() then return; end
 
     local backpackSize = backpack:GetSize();
-
-    PlayerBags[PlayerName] = {};
-
+    local bag = {};
     local slot = 1;
-    for i = 1, backpackSize do
-
-        local items = backpack:GetItem( i );
-        if (items ~= nil) then
-            local ind = tostring(slot);
-            PlayerBags[PlayerName][ind] = items;
-            local iteminfo = PlayerBags[PlayerName][ind]:GetItemInfo();
-
-            PlayerBags[PlayerName][ind].Q = tostring(iteminfo:GetQualityImageID());
-            PlayerBags[PlayerName][ind].B = tostring(iteminfo:GetBackgroundImageID());
-            PlayerBags[PlayerName][ind].U = tostring(iteminfo:GetUnderlayImageID());
-            PlayerBags[PlayerName][ind].S = tostring(iteminfo:GetShadowImageID());
-            PlayerBags[PlayerName][ind].I = tostring(iteminfo:GetIconImageID());
-            PlayerBags[PlayerName][ind].N = tostring(iteminfo:GetName());
-            PlayerBags[PlayerName][ind].BS = tostring(backpackSize);
-
-            local tq = tostring(PlayerBags[PlayerName][ind]:GetQuantity());
-
-           -- if (tq == "1")then 
-            --    tq = ""; 
-           -- end
-
-            PlayerBags[PlayerName][ind].QUA = tq;
-            PlayerBags[PlayerName][ind].BSIZE = tostring(backpackSize);
-
-            slot = slot +  1;
+    for index = 1, backpackSize do
+        local item = backpack:GetItem(index);
+        if item ~= nil then
+            bag[tostring(slot)] = SnapshotItem(item, "BSIZE", backpackSize);
+            slot = slot + 1;
         end
     end
-    settings["nameAccount"]["account1"]["isVisible"] = false;
-    PatchDataSave( dataScope, settingsBagFileName, PlayerBags);
+
+    PlayerBags[PlayerName] = bag;
+    Persist(settingsBagFileName, PlayerBags);
 end
+
 ------------------------------------------------------------------------------------------
--- create or load the settings for vault
+-- Vault
 ------------------------------------------------------------------------------------------
 function LoadPlayerVault()
-    PlayerVault = PatchDataLoad(dataScope, settingsVaultsFileName, PlayerVault);
-    if (PlayerVault == nil)then 
-        PlayerVault = {}; 
-    end
-    if (PlayerVault[PlayerName] == nil)then 
-        PlayerVault[PlayerName] = {}; 
-    end
+    PlayerVault = LoadCharacterFile(settingsVaultsFileName, PlayerVault);
 end
-------------------------------------------------------------------------------------------
--- create the save settings for vault
-------------------------------------------------------------------------------------------
+
 function SavePlayerVault()
-    if ( string.sub( PlayerName, 1, 1 ) == "~" )then return end; --Ignore session play
+    if IsSessionPlay() then return; end
 
-    local vaultpackSize = vaultpack:GetCapacity();
-    local vaultpackCount = vaultpack:GetCount();
-
-    PlayerVault[PlayerName] = {};
-
-    for slot = 1, vaultpackCount do
-        local ind = tostring(slot);
-        PlayerVault[PlayerName][ind] = vaultpack:GetItem(slot);
-        local iteminfo = PlayerVault[PlayerName][ind]:GetItemInfo();
-
-        PlayerVault[PlayerName][ind].Q = tostring(iteminfo:GetQualityImageID());
-        PlayerVault[PlayerName][ind].B = tostring(iteminfo:GetBackgroundImageID());
-        PlayerVault[PlayerName][ind].U = tostring(iteminfo:GetUnderlayImageID());
-        PlayerVault[PlayerName][ind].S = tostring(iteminfo:GetShadowImageID());
-        PlayerVault[PlayerName][ind].I = tostring(iteminfo:GetIconImageID());
-        PlayerVault[PlayerName][ind].N = tostring(iteminfo:GetName());
-
-        local tq = tostring(PlayerVault[PlayerName][ind]:GetQuantity());
-        --if (tq == "1" )then 
-         --   tq = ""; 
-       -- end
-
-        PlayerVault[PlayerName][ind].QUA = tq;
-        PlayerVault[PlayerName][ind].VSIZE = tostring(vaultpackSize);
+    local capacity = vaultpack:GetCapacity();
+    local vault = {};
+    local slot = 1;
+    for index = 1, vaultpack:GetCount() do
+        local item = vaultpack:GetItem(index);
+        if item ~= nil then
+            vault[tostring(slot)] = SnapshotItem(item, "VSIZE", capacity);
+            slot = slot + 1;
+        end
     end
 
-    PatchDataSave( dataScope, settingsVaultsFileName, PlayerVault);
+    PlayerVault[PlayerName] = vault;
+    Persist(settingsVaultsFileName, PlayerVault);
 end
+
 ------------------------------------------------------------------------------------------
--- create or load the settings for equipment
+-- Equipment
 ------------------------------------------------------------------------------------------
 function LoadPlayerEquipment()
-    PlayerEquipement = PatchDataLoad(dataScope, settingsEquipmentFileName, PlayerEquipement);
-    if type(PlayerEquipement) ~= "table" then PlayerEquipement = {}; end
+    PlayerEquipement = LoadCharacterFile(settingsEquipmentFileName, PlayerEquipement);
 
-    local playerEquipment = AltHolicUtil.EnsureTable(PlayerEquipement, PlayerName);
+    local playerEquipment = PlayerEquipement[PlayerName];
     for _, slotDef in ipairs(AltHolicUtil.EquipmentSlots) do
         local slotData = AltHolicUtil.EnsureTable(playerEquipment, slotDef.key);
         -- Normalise optional legacy fields so downstream code can safely compare them.
@@ -267,10 +238,16 @@ function LoadPlayerEquipment()
     end
 end
 
-------------------------------------------------------------------------------------------
--- Save all equipped items using the shared equipment-slot schema.
-------------------------------------------------------------------------------------------
-local function SaveEquipmentSlot(playerEquipment, slotDef)
+function SavePlayerLvlEquipment(slotName, playerName)
+    playerName = playerName or PlayerName;
+    local equipment = PlayerEquipement[playerName];
+    if equipment == nil or equipment[slotName] == nil then return; end
+    equipment[slotName].lvl = PlayerEquipItems[playerName] and PlayerEquipItems[playerName][slotName] or nil;
+    equipment[slotName].armor = PlayerEquipArmor[playerName] and PlayerEquipArmor[playerName][slotName] or nil;
+    Persist(settingsEquipmentFileName, PlayerEquipement);
+end
+
+local function SaveEquipmentSlot(playerEquipment, slotDef, itemCache, armorCache)
     local slotName = slotDef.key;
     local slotData = {};
     playerEquipment[slotName] = slotData;
@@ -291,10 +268,8 @@ local function SaveEquipmentSlot(playerEquipment, slotDef)
     slotData.CAT = itemInfo:GetCategory();
     slotData.WS = item:GetWearState();
 
-    local itemCache = PlayerEquipItems[PlayerName];
-    local armorCache = PlayerEquipArmor[PlayerName];
+    -- A different item in the slot invalidates the manually entered level/armour values.
     local nameKey = slotName .. "N";
-
     if itemCache[nameKey] ~= slotData.N then
         itemCache[slotName] = 0;
         armorCache[slotName] = 0;
@@ -308,7 +283,7 @@ local function SaveEquipmentSlot(playerEquipment, slotDef)
 end
 
 function SavePlayerEquipment()
-    if string.sub(PlayerName, 1, 1) == "~" then return; end -- Ignore session play
+    if IsSessionPlay() then return; end
 
     PlayerEquipement[PlayerName] = PlayerEquipement[PlayerName] or {};
     local playerEquipment = PlayerEquipement[PlayerName];
@@ -318,294 +293,186 @@ function SavePlayerEquipment()
     PlayerEquipArmor[PlayerName] = armorCache;
 
     for _, slotDef in ipairs(AltHolicUtil.EquipmentSlots) do
-        SaveEquipmentSlot(playerEquipment, slotDef);
+        SaveEquipmentSlot(playerEquipment, slotDef, itemCache, armorCache);
     end
 
-    PatchDataSave(dataScope, settingsEquipmentFileName, PlayerEquipement);
+    Persist(settingsEquipmentFileName, PlayerEquipement);
 end
+
 ------------------------------------------------------------------------------------------
--- create or load the settings for vault
+-- Shared storage (account-wide, not per character)
 ------------------------------------------------------------------------------------------
 function LoadSharedStorage()
     SharedStorageVault = PatchDataLoad(dataScope, settingsSharedStorageFileName, SharedStorageVault);
-    if (SharedStorageVault == nil)then 
-        SharedStorageVault = {}; 
-    end
+    if type(SharedStorageVault) ~= "table" then SharedStorageVault = {}; end
 end
-------------------------------------------------------------------------------------------
--- create the save settings for vault
-------------------------------------------------------------------------------------------
+
 function SaveSharedStorage()
-    if ( string.sub( PlayerName, 1, 1 ) == "~" )then return end; --Ignore session play
+    if IsSessionPlay() then return; end
 
-    local sharedStorageSize = sspack:GetCapacity();
-    local sharedStorageCount = sspack:GetCount();
-
-    SharedStorageVault = {};
-
-    for slot = 1, sharedStorageCount do
-        local ind = tostring(slot);
-        SharedStorageVault[ind] = sspack:GetItem(slot);
-        local iteminfo = SharedStorageVault[ind]:GetItemInfo();
-
-        SharedStorageVault[ind].D = tostring(iteminfo:GetDescription());
-        SharedStorageVault[ind].Q = tostring(iteminfo:GetQualityImageID());
-        SharedStorageVault[ind].B = tostring(iteminfo:GetBackgroundImageID());
-        SharedStorageVault[ind].U = tostring(iteminfo:GetUnderlayImageID());
-        SharedStorageVault[ind].S = tostring(iteminfo:GetShadowImageID());
-        SharedStorageVault[ind].I = tostring(iteminfo:GetIconImageID());
-        SharedStorageVault[ind].N = tostring(iteminfo:GetName());
-
-        local tq = tostring(SharedStorageVault[ind]:GetQuantity());
-        --if (tq == "1" )then 
-           -- tq = ""; 
-        --end
-
-        SharedStorageVault[ind].QUA = tq;
-        SharedStorageVault[ind].VSIZE = tostring(sharedStorageSize);
+    local capacity = sspack:GetCapacity();
+    local storage = {};
+    local slot = 1;
+    for index = 1, sspack:GetCount() do
+        local item = sspack:GetItem(index);
+        if item ~= nil then
+            storage[tostring(slot)] = SnapshotItem(item, "VSIZE", capacity);
+            slot = slot + 1;
+        end
     end
 
-    PatchDataSave( dataScope, settingsSharedStorageFileName, SharedStorageVault);
+    SharedStorageVault = storage;
+    Persist(settingsSharedStorageFileName, SharedStorageVault);
 end
+
 ------------------------------------------------------------------------------------------
--- create or load the settings for vault
+-- Wallet
 ------------------------------------------------------------------------------------------
 function LoadPlayerWallet()
-    PlayerWallet = PatchDataLoad(dataScope, settingsWalletFileName, PlayerWallet);
-    if (PlayerWallet == nil)then 
-        PlayerWallet = {}; 
-    end
-    if (PlayerWallet[PlayerName] == nil)then 
-        PlayerWallet[PlayerName] = {}; 
-    end
+    PlayerWallet = LoadCharacterFile(settingsWalletFileName, PlayerWallet);
 end
-------------------------------------------------------------------------------------------
--- create the save settings for vault
-------------------------------------------------------------------------------------------
+
 function SavePlayerWallet()
-    if ( string.sub( PlayerName, 1, 1 ) == "~" )then return end; --Ignore session play
+    if IsSessionPlay() then return; end
 
-    local walletpackSize = walletpack:GetSize();
-
-    PlayerWallet[PlayerName] = {};
-
-    for slot = 1, walletpackSize do
-        local ind = tostring(slot);
-        PlayerWallet[PlayerName][ind] = walletpack:GetItem(slot);
-
-        PlayerWallet[PlayerName][ind].D = tostring(PlayerWallet[PlayerName][ind]:GetDescription());
-        PlayerWallet[PlayerName][ind].I = tostring(PlayerWallet[PlayerName][ind]:GetImage());
-        PlayerWallet[PlayerName][ind].MQUA = tostring(PlayerWallet[PlayerName][ind]:GetMaxQuantity());
-        PlayerWallet[PlayerName][ind].S = tostring(PlayerWallet[PlayerName][ind]:GetSmallImage());
-        PlayerWallet[PlayerName][ind].A = tostring(PlayerWallet[PlayerName][ind]:IsAccountItem());
-        PlayerWallet[PlayerName][ind].N = tostring(PlayerWallet[PlayerName][ind]:GetName());
-
-        local tq = tostring(PlayerWallet[PlayerName][ind]:GetQuantity());
-        --if (tq == "1" )then 
-         --   tq = ""; 
-       -- end
-
-        PlayerWallet[PlayerName][ind].QUA = tq;
-        PlayerWallet[PlayerName][ind].WSIZE = tostring(walletpackSize);
+    local walletSize = walletpack:GetSize();
+    local wallet = {};
+    for index = 1, walletSize do
+        local item = walletpack:GetItem(index);
+        if item ~= nil then
+            wallet[tostring(index)] = {
+                D = tostring(item:GetDescription()),
+                I = tostring(item:GetImage()),
+                MQUA = tostring(item:GetMaxQuantity()),
+                S = tostring(item:GetSmallImage()),
+                A = tostring(item:IsAccountItem()),
+                N = tostring(item:GetName()),
+                QUA = tostring(item:GetQuantity()),
+                WSIZE = tostring(walletSize),
+            };
+        end
     end
 
-    PatchDataSave( dataScope, settingsWalletFileName, PlayerWallet);
+    PlayerWallet[PlayerName] = wallet;
+    Persist(settingsWalletFileName, PlayerWallet);
 end
+
 ------------------------------------------------------------------------------------------
--- create or load the settings for player professions
+-- Epic book tracker
 ------------------------------------------------------------------------------------------
 function LoadPlayerEpique()
-    PlayerEpique = PatchDataLoad(dataScope, settingsEpiqueFileName, PlayerEpique);
-
-    if (PlayerEpique == nil)then 
-        PlayerEpique = {}; 
-    end
-
-    if (PlayerEpique[PlayerName] == nil)then 
-        PlayerEpique[PlayerName] = {}; 
-    end
-
-    if (PlayerEpique[PlayerName].volume == nil)then 
-        PlayerEpique[PlayerName].volume = {}; 
-    end
-
-    if (PlayerEpique[PlayerName].livre == nil)then 
-        PlayerEpique[PlayerName].livre = {}; 
-    end
-
-    if (PlayerEpique[PlayerName].chapitre == nil)then 
-        PlayerEpique[PlayerName].chapitre = {}; 
-    end
+    PlayerEpique = LoadCharacterFile(settingsEpiqueFileName, PlayerEpique);
+    local epic = PlayerEpique[PlayerName];
+    epic.volume = epic.volume or {};
+    epic.livre = epic.livre or {};
+    epic.chapitre = epic.chapitre or {};
 end
-------------------------------------------------------------------------------------------
--- create the save settings for player Epique
-------------------------------------------------------------------------------------------
+
+-- The add/update window edits PlayerEpique directly; this only writes it. (The previous
+-- implementation copied from three never-filled globals, which erased entry #1 on every
+-- add or update.)
 function SavePlayerEpique()
-    --if ( string.sub( PlayerName, 1, 1 ) == "~" )then return end; --Ignore session play
-
-    local val = tablelength(EpiqueVolume);
-
-    if(val == 0)then
-        val = 1;
-    else
-        val = val + 1;
-    end
-
-    for slot = 1, val do
-        PlayerEpique[PlayerName].volume[slot] = EpiqueVolume[slot];
-        PlayerEpique[PlayerName].livre[slot] = EpiqueLivre[slot];
-        PlayerEpique[PlayerName].chapitre[slot] = EpiqueChapitre[slot];
-    end
-
-    PatchDataSave( dataScope, settingsEpiqueFileName, PlayerEpique);
+    Persist(settingsEpiqueFileName, PlayerEpique);
 end
-------------------------------------------------------------------------------------------
--- create the save settings for player Epique delete
-------------------------------------------------------------------------------------------
+
+-- Re-number the current character's entries 1..n after a deletion, keeping their order.
+-- (The previous implementation kept only entry #1 and silently dropped the rest.)
 function SavePlayerEpiqueDelete()
-    --if ( string.sub( PlayerName, 1, 1 ) == "~" )then return end; --Ignore session play
-
-    local val = tablelength(EpiqueVolume);
-
-    local test1 = {}; 
-    local test2 = {}; 
-    local test3 = {}; 
-
-    local valx = 1;
-    for slot = 1, val+1 do
-        if(PlayerEpique[PlayerName].volume[slot] ~= nil)then
-            test1[valx] = PlayerEpique[PlayerName].volume[slot];
-            test2[valx] = PlayerEpique[PlayerName].livre[slot];
-            test3[valx] = PlayerEpique[PlayerName].chapitre[slot];
-            valx = valx + 1;
-        end
+    local epic = PlayerEpique[PlayerName];
+    local indices = {};
+    for key, value in pairs(epic.volume or {}) do
+        local index = tonumber(key);
+        if index ~= nil and value ~= nil then indices[#indices + 1] = index; end
     end
+    table.sort(indices);
 
-    PlayerEpique[PlayerName].volume = test1;
-    PlayerEpique[PlayerName].livre = test2;
-    PlayerEpique[PlayerName].chapitre = test3;
+    local volume, livre, chapitre = {}, {}, {};
+    for newIndex, oldIndex in ipairs(indices) do
+        volume[newIndex] = epic.volume[oldIndex];
+        livre[newIndex] = epic.livre[oldIndex];
+        chapitre[newIndex] = epic.chapitre[oldIndex];
+    end
+    epic.volume, epic.livre, epic.chapitre = volume, livre, chapitre;
 
-    PatchDataSave( dataScope, settingsEpiqueFileName, PlayerEpique);
+    SavePlayerEpique();
 end
+
 ------------------------------------------------------------------------------------------
--- create or load the settings for equipment
+-- Reputations
 ------------------------------------------------------------------------------------------
 function LoadPlayerReputations()
-    PlayerReput = PatchDataLoad(dataScope, settingsReputationsFileName, PlayerReput);
+    PlayerReput = LoadCharacterFile(settingsReputationsFileName, PlayerReput);
 
-    if (PlayerReput == nil)then 
-        PlayerReput = {}; 
-    end
-    if (PlayerReput[PlayerName] == nil)then 
-        PlayerReput[PlayerName] = {};         
-    end
-
-    for i = 1, nbrFactions do
-        if (PlayerReput[PlayerName]["Reput" .. i] == nil)then 
-            PlayerReput[PlayerName]["Reput" .. i] = {}; 
-            PlayerReput[PlayerName]["Reput" .. i].name = "";
-            PlayerReput[PlayerName]["Reput" .. i].value = 0;
-            PlayerReput[PlayerName]["Reput" .. i].position = 0;
-            PlayerReput[PlayerName]["Reput" .. i].genre = 0;
+    local reputations = PlayerReput[PlayerName];
+    for index = 1, nbrFactions do
+        local key = "Reput" .. index;
+        if reputations[key] == nil then
+            reputations[key] = { name = "", value = 0, position = 0, genre = 0 };
         end
     end
 end
-------------------------------------------------------------------------------------------
--- create the save settings for equipment
-------------------------------------------------------------------------------------------
+
+-- Rank-ladder family of a faction ("genre"), used to pick the rank names and thresholds.
+-- 21-27 are the crafting guilds. The old per-call chains also listed 104-106 here, but
+-- those branches were unreachable; they have always used the standard ladder.
+local REPUTATION_GENRES = { [64] = 2, [70] = 0, [71] = 4, [79] = 5, [100] = 6 };
+
+function GetReputationGenre(index)
+    if index >= 21 and index <= 27 then return 3; end
+    return REPUTATION_GENRES[index] or 1;
+end
+
+-- Persist one faction (after a chat update) or, with no argument, every faction the
+-- player edited this session.
 function SavePlayerReputations(valueReput)
-    if ( string.sub( PlayerName, 1, 1 ) == "~" )then return end; --Ignore session play
+    if IsSessionPlay() then return; end
 
-    if(valueReput ~= nil)then
-        PlayerReput[PlayerName]["Reput" .. valueReput].name = T["reputname" .. valueReput];
-        PlayerReput[PlayerName]["Reput" .. valueReput].value = Reputations[valueReput];
-        PlayerReput[PlayerName]["Reput" .. valueReput].position = RepuPosition[valueReput];
-
-        if( valueReput ~= 21 and valueReput ~= 22 and valueReput ~= 23 and valueReput ~= 24 and valueReput ~= 25 and valueReput ~= 26 and 
-        valueReput ~= 27 and valueReput ~= 64 and valueReput ~= 70 and valueReput ~= 71 and valueReput ~= 79 and valueReput ~= 100)then
-            PlayerReput[PlayerName]["Reput" .. valueReput].genre = 1; -- toutes les autres
-        elseif(i == 64)then
-            PlayerReput[PlayerName]["Reput" .. valueReput].genre = 2; -- chasse-poulet
-        elseif(i == 70)then
-            PlayerReput[PlayerName]["Reput" .. valueReput].genre = 0; -- la companie blanche
-        elseif(i == 71)then
-            PlayerReput[PlayerName]["Reput" .. valueReput].genre = 4; -- Reclamation de minas ithil
-        elseif(i == 79 or i == 104 or i == 105)then
-            PlayerReput[PlayerName]["Reput" .. valueReput].genre = 5; -- The Gabil'akk�
-        elseif(i == 100)then
-            PlayerReput[PlayerName]["Reput" .. valueReput].genre = 6; -- The Path of Valor
-        elseif(i == 106)then
-            PlayerReput[PlayerName]["Reput" .. valueReput].genre = 7; -- Amelia's studies
-        else
-            PlayerReput[PlayerName]["Reput" .. valueReput].genre = 3; -- guilde des professions
+    local reputations = PlayerReput[PlayerName];
+    if valueReput ~= nil then
+        local record = reputations["Reput" .. valueReput];
+        if record ~= nil then
+            record.name = T["reputname" .. valueReput];
+            record.value = Reputations[valueReput];
+            record.position = RepuPosition[valueReput];
+            record.genre = GetReputationGenre(valueReput);
         end
     else
-        for i = 1, nbrFactions do
-            PlayerReput[PlayerName]["Reput" .. i].name = T["reputname" .. i];
-
-            if(PlayerReput[PlayerName]["Reput" .. i].name == RepuName[i])then
-                PlayerReput[PlayerName]["Reput" .. i].value = Reputations[i];
-                PlayerReput[PlayerName]["Reput" .. i].position = RepuPosition[i];
+        for index = 1, nbrFactions do
+            local record = reputations["Reput" .. index];
+            if record ~= nil then
+                record.name = T["reputname" .. index];
+                if record.name == RepuName[index] then
+                    record.value = Reputations[index];
+                    record.position = RepuPosition[index];
+                end
+                record.genre = GetReputationGenre(index);
             end
-
-            if( i ~= 21 and i ~= 22 and i ~= 23 and i ~= 24 and i ~= 25 and i ~= 26 and i ~= 27 and i ~= 64 and i ~= 70 and i ~= 71 and i ~= 79 and i ~= 100)then
-                PlayerReput[PlayerName]["Reput" .. i].genre = 1; -- toutes les autres
-            elseif(i == 64)then
-                PlayerReput[PlayerName]["Reput" .. i].genre = 2; -- chasse-poulet
-            elseif(i == 70)then
-                PlayerReput[PlayerName]["Reput" .. i].genre = 0; -- la companie blanche
-            elseif(i == 71)then
-                PlayerReput[PlayerName]["Reput" .. i].genre = 4; -- Reclamation de minas ithil
-            elseif(i == 79 or i == 104 or i == 105)then
-                PlayerReput[PlayerName]["Reput" .. i].genre = 5; -- The Gabil'akk�
-            elseif(i == 100)then
-                PlayerReput[PlayerName]["Reput" .. i].genre = 6; -- The Path of Valor
-            elseif(i == 106)then
-                PlayerReput[PlayerName]["Reput" .. i].genre = 7; -- Amelia's studies
-            else
-                PlayerReput[PlayerName]["Reput" .. i].genre = 3; -- guilde des professions
-            end
-
-            --Write( i .. " : namereput to update : " .. tostring(RepuName[i]) .. " : " .. tostring(Reputations[i]));
-            --Write(tostring(RepuPosition[i]) .. " : " .. PlayerReput[PlayerName]["Reput" .. i].genre);
         end
     end
 
-    PatchDataSave( dataScope, settingsReputationsFileName, PlayerReput);
+    Persist(settingsReputationsFileName, PlayerReput);
 end
+
 ------------------------------------------------------------------------------------------
--- create or load the settings for player infos
+-- Character notes
 ------------------------------------------------------------------------------------------
 function LoadPlayerInfos()
-    PlayerInfos = PatchDataLoad(dataScope, settingsInfosFileName, PlayerInfos);
-
-    if (PlayerInfos == nil)then 
-        PlayerInfos = {}; 
-    end
-
-    if (PlayerInfos[PlayerName] == nil)then 
-        PlayerInfos[PlayerName] = {}; 
-    end
+    PlayerInfos = LoadCharacterFile(settingsInfosFileName, PlayerInfos);
 end
-------------------------------------------------------------------------------------------
--- create the save settings for player datas
-------------------------------------------------------------------------------------------
+
 function SavePlayerInfos(playerName, infoText)
     PlayerInfos[playerName] = PlayerInfos[playerName] or {};
     PlayerInfos[playerName].info = infoText or "";
-    PatchDataSave(dataScope, settingsInfosFileName, PlayerInfos);
+    Persist(settingsInfosFileName, PlayerInfos);
 end
+
 ------------------------------------------------------------------------------------------
--- create or load the settings for player professions
+-- Professions
 ------------------------------------------------------------------------------------------
 function LoadPlayerProfessions()
-    PlayerProfessions = PatchDataLoad(dataScope, settingsProfessionsFileName, PlayerProfessions);
-
-    if PlayerProfessions == nil then PlayerProfessions = {}; end
-    if PlayerProfessions[PlayerName] == nil then PlayerProfessions[PlayerName] = {}; end
+    PlayerProfessions = LoadCharacterFile(settingsProfessionsFileName, PlayerProfessions);
 
     local player = PlayerProfessions[PlayerName];
-
     if player.Professions ~= nil and #player.Professions > 0 then
         -- Current format: discard duplicate legacy mirrors in memory.
         player.name = nil;
@@ -621,33 +488,76 @@ function LoadPlayerProfessions()
         if player.currentMastery == nil then player.currentMastery = {}; end
     end
 end
-------------------------------------------------------------------------------------------
--- create the save settings for player professions
-------------------------------------------------------------------------------------------
+
+local PROFESSION_FIELDS = {
+    "Key", "Name", "Icon", "ProficiencyLevel", "MasteryLevel", "ProficiencyExp",
+    "ProficiencyExpTarget", "MasteryExp", "MasteryExpTarget", "CurrentLvl", "CurrentMastery",
+};
+
+-- Returns true when something was written. Unchanged data is not re-saved, so rebuilding
+-- the main window no longer rewrites the professions file every time.
+local lastProfessionSignature = nil;
+
 function SavePlayerProfessions(professions)
-    if string.sub(PlayerName, 1, 1) == "~" then return end; -- Ignore session play
+    if IsSessionPlay() then return false; end
 
-    local saved = {
-        Version = 3,
-        Professions = {}
-    };
-
+    local saved = { Version = 3, Professions = {} };
+    local signature = {};
     for index, profession in ipairs(professions or {}) do
-        saved.Professions[index] = {
-            Key = profession.Key,
-            Name = profession.Name,
-            Icon = profession.Icon,
-            ProficiencyLevel = profession.ProficiencyLevel,
-            MasteryLevel = profession.MasteryLevel,
-            ProficiencyExp = profession.ProficiencyExp,
-            ProficiencyExpTarget = profession.ProficiencyExpTarget,
-            MasteryExp = profession.MasteryExp,
-            MasteryExpTarget = profession.MasteryExpTarget,
-            CurrentLvl = profession.CurrentLvl,
-            CurrentMastery = profession.CurrentMastery
-        };
+        local copy = {};
+        for _, field in ipairs(PROFESSION_FIELDS) do
+            copy[field] = profession[field];
+            signature[#signature + 1] = tostring(profession[field]);
+        end
+        saved.Professions[index] = copy;
     end
+    signature = table.concat(signature, "\1");
+
+    if signature == lastProfessionSignature then return false; end
 
     PlayerProfessions[PlayerName] = saved;
-    PatchDataSave(dataScope, settingsProfessionsFileName, PlayerProfessions);
+    Persist(settingsProfessionsFileName, PlayerProfessions);
+    lastProfessionSignature = signature;
+    return true;
+end
+
+------------------------------------------------------------------------------------------
+-- Deleting characters
+------------------------------------------------------------------------------------------
+-- Every per-character store, with the file it is saved in.
+local function CharacterStores()
+    return {
+        { PlayerDatas, settingsDatasFileName },
+        { PlayerBags, settingsBagFileName },
+        { PlayerVault, settingsVaultsFileName },
+        { PlayerWallet, settingsWalletFileName },
+        { PlayerEquipement, settingsEquipmentFileName },
+        { PlayerReput, settingsReputationsFileName },
+        { PlayerEpique, settingsEpiqueFileName },
+        { PlayerInfos, settingsInfosFileName },
+        { PlayerProfessions, settingsProfessionsFileName },
+    };
+end
+
+-- Remove the given characters from every store and write each file once.
+function DeleteCharacterData(names)
+    for _, store in ipairs(CharacterStores()) do
+        local data, fileName = store[1], store[2];
+        if type(data) == "table" then
+            local changed = false;
+            for _, name in ipairs(names) do
+                if data[name] ~= nil then
+                    data[name] = nil;
+                    changed = true;
+                end
+            end
+            if changed then Persist(fileName, data); end
+        end
+    end
+    for _, name in ipairs(names) do
+        PlayerXp[name] = nil;
+        PlayerSexe[name] = nil;
+        PlayerServer[name] = nil;
+        if name == PlayerName then lastProfessionSignature = nil; end
+    end
 end

@@ -38,7 +38,8 @@ function CreateUIAddNewXP(playerName)
     local xpBox = Turbine.UI.Lotro.TextBox();
     xpBox:SetParent(UIAddNewXP);
     xpBox:SetSize(150, 30);
-    xpBox:SetText("");
+    xpBox:SetText(tostring(PlayerDatas[playerName] and PlayerDatas[playerName].xp or ""));
+    xpBox:SetMultiline(false);
     xpBox:SetPosition(windowWidth / 2 - 75, windowHeight / 2 - 5);
     xpBox:SetVisible(true);
     xpBox:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);
@@ -56,13 +57,14 @@ function CreateUIAddNewXP(playerName)
     saveButton:SetMouseVisible(true);
 
     saveButton.MouseClick = function()
-        PlayerXp[playerName] = xpBox:GetText();
+        -- Saved directly on the chosen character (offline alts included); the old path
+        -- only ever persisted the logged-in character's XP.
+        SavePlayerXP(playerName, xpBox:GetText());
         UIAddNewXP:SetVisible(false);
-        SavePlayerDatas();
         settings["isXPWindowVisible"]["value"] = true;
-        CreateUIShowXP(playerName);
+        CreateUIShowXP();
         UIShowXP:SetVisible(true);
     end;
 
-    EscapeKeyHandlerForWindows(UIAddNewXP, false);
+    EscapeKeyHandlerForWindows(UIAddNewXP);
 end

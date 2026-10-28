@@ -37,10 +37,10 @@ function MinimizedIcon:Constructor(image, width, height, callback)
 	local sh = Turbine.UI.Display.GetHeight()-self:GetHeight()-1;
 	self:SetPosition(1, sh);
 	self.drag = false;
-	
+
 	self.active = false;
 	self.framesPerActiveImage = 20;
-	
+
 	-- Small on-screen help shown when hovering the AltHolic icon.
 	self.tooltip = Turbine.UI.Window();
 	self.tooltip:SetSize( 205, 44 );
@@ -59,11 +59,11 @@ function MinimizedIcon:Constructor(image, width, height, callback)
 	self.tooltipLabel:SetMouseVisible( false );
 
 	local function UpdateTooltipText()
-		local moveText = "Alt+Drag: Move";
+		local moveText = T["PluginLauncherMoveAlt"];
 		if settings ~= nil and settings["altEnable"] ~= nil and settings["altEnable"]["altEnable"] == false then
-			moveText = "Drag: Move";
+			moveText = T["PluginLauncherMove"];
 		end
-		self.tooltipLabel:SetText( "Shift+Click: Settings\n" .. moveText );
+		self.tooltipLabel:SetText(T["PluginLauncherSettings"] .. "\n" .. moveText);
 	end
 
 	local function PositionTooltip()
@@ -92,95 +92,70 @@ function MinimizedIcon:Constructor(image, width, height, callback)
 		self.tooltip:SetVisible( false );
 	end
 	local function ToggleOptionsWindow()
-		local isVisible = OptionsWindow ~= nil and OptionsWindow:IsVisible();
-		if not isVisible then
-			if OptionsWindow == nil then
-				GenerateOptionsWindow();
-			end
-			OptionsWindow:SetVisible(true);
-			AltHolicWindow:SetVisible(false);
-			settings["isWindowVisible"]["isWindowVisible"] = false;
-			settings["isOptionsWindowVisible"]["isOptionsWindowVisible"] = true;
-		else
+		if OptionsWindow ~= nil and OptionsWindow:IsVisible() then
+			-- Shift+Click controls Settings only; closing Settings never opens the main window.
 			OptionsWindow:SetVisible(false);
-			AltHolicWindow:SetVisible(true);
-			settings["isWindowVisible"]["isWindowVisible"] = true;
 			settings["isOptionsWindowVisible"]["isOptionsWindowVisible"] = false;
+			return;
 		end
+
+		if OptionsWindow == nil then GenerateOptionsWindow(); end
+
+		-- Settings and the main window are kept mutually exclusive.
+		OptionsWindow:SetVisible(true);
+		settings["isOptionsWindowVisible"]["isOptionsWindowVisible"] = true;
+		HideMainWindow();
 	end
 
-	local function ToggleMainWindow()
-		local isVisible = AltHolicWindow:IsVisible();
-		AltHolicWindow:SetVisible(not isVisible);
-		settings["isWindowVisible"]["isWindowVisible"] = not isVisible;
+	local function ToggleMainFromLauncher()
+		local opening = not (AltHolicWindow ~= nil and AltHolicWindow:IsVisible());
+		if opening and OptionsWindow ~= nil and OptionsWindow:IsVisible() then
+			OptionsWindow:SetVisible(false);
+			settings["isOptionsWindowVisible"]["isOptionsWindowVisible"] = false;
+		end
+		ToggleMainWindow();
 	end
 
 	self.trigger.MouseClick = function( sender, args )
 		if (args.Button == Turbine.UI.MouseButton.Right) then
+			-- Right-click expands/collapses the character list.
 			settings["nameAccount"]["account1"]["isVisible"] = not settings["nameAccount"]["account1"]["isVisible"];
 			UpdateMainWindow();
 			return;
 		end
 
 		if (args.Button == Turbine.UI.MouseButton.Left and not self.thresholdTrigger) then
-			-- Modifier state is a static Control API call. Do not gate Settings on
-			-- account-name data: Shift+Click should always mean Settings.
 			if Turbine.UI.Control.IsShiftKeyDown() then
 				ToggleOptionsWindow();
 			else
-				ToggleMainWindow();
+				ToggleMainFromLauncher();
 			end
 		end
 	end
 	self.trigger.MouseDown = function( sender, args )
-			self.drag = true;
-			self.thresholdTrigger = false;
-			self.mx0 = args.X;
-			self.my0 = args.Y;
+		self.drag = true;
+		self.thresholdTrigger = false;
+		self.mx0 = args.X;
+		self.my0 = args.Y;
 	end
 	self.trigger.MouseUp = function( sender, args )
 		self.drag = false;
 	end
 	self.trigger.MouseMove = function( sender, args )
-		if(settings["altEnable"]["altEnable"] == true)then
-			if self.drag and Turbine.UI.Control.IsAltKeyDown() then
-				local dx = args.X - self.mx0;
-				local dy = args.Y - self.my0;
-				-- Write("dragged "..dx.." "..dy);
-				if (self.thresholdTrigger or dx>3 or dx<-3 or dy>3 or dy<-3) then
-					self.thresholdTrigger = true;
-					local x = self:GetLeft()+dx;
-					local y = self:GetTop()+dy;
-					if x<0 then x=0 end;
-					if y<0 then y=0 end;
-					local sh = Turbine.UI.Display.GetHeight()-self:GetHeight()-1;
-					local sw = Turbine.UI.Display.GetWidth()-self:GetWidth()-1;
-					if x>sw then x=sw end;
-					if y>sh then y=sh end;
-					self:SetLeft(x);
-					self:SetTop(y);
-				end
-			end
-		else
-			if self.drag then
-				local dx = args.X - self.mx0;
-				local dy = args.Y - self.my0;
-				-- Write("dragged "..dx.." "..dy);
-				if (self.thresholdTrigger or dx>3 or dx<-3 or dy>3 or dy<-3) then
-					self.thresholdTrigger = true;
-					local x = self:GetLeft()+dx;
-					local y = self:GetTop()+dy;
-					if x<0 then x=0 end;
-					if y<0 then y=0 end;
-					local sh = Turbine.UI.Display.GetHeight()-self:GetHeight()-1;
-					local sw = Turbine.UI.Display.GetWidth()-self:GetWidth()-1;
-					if x>sw then x=sw end;
-					if y>sh then y=sh end;
-					self:SetLeft(x);
-					self:SetTop(y);
-				end
-			end
-		end
+		if not self.drag then return; end
+		-- With the "alt" option on (default) the icon only moves while Alt is held.
+		if settings["altEnable"]["altEnable"] == true and not Turbine.UI.Control.IsAltKeyDown() then return; end
+
+		local dx = args.X - self.mx0;
+		local dy = args.Y - self.my0;
+		-- Ignore tiny movements so a click is not mistaken for a drag.
+		if not (self.thresholdTrigger or dx > 3 or dx < -3 or dy > 3 or dy < -3) then return; end
+
+		self.thresholdTrigger = true;
+		local maxX = Turbine.UI.Display.GetWidth() - self:GetWidth() - 1;
+		local maxY = Turbine.UI.Display.GetHeight() - self:GetHeight() - 1;
+		self:SetLeft(math.max(0, math.min(self:GetLeft() + dx, maxX)));
+		self:SetTop(math.max(0, math.min(self:GetTop() + dy, maxY)));
 	end
 	self.Update = function(sender, args)
 		if self.active then
@@ -204,8 +179,8 @@ function MinimizedIcon:Constructor(image, width, height, callback)
 end
 
 function MinimizedIcon:SetImage(image)
-    self.passiveImage = image;
-    self.icon:SetBackground(image);
+	self.passiveImage = image;
+	self.icon:SetBackground(image);
 end
 
 function MinimizedIcon:SetDefaultOpacity(opacity)

@@ -14,7 +14,7 @@ local HELP_TOPICS = {
 
 local function GetWindowHeight()
     local requestedHeight = 500;
-    if playerAlignement == 1 then
+    if PlayerAlignement == 1 then
         local language = Turbine.Engine.GetLanguage();
         if language == Turbine.Language.German then
             requestedHeight = 780;
@@ -86,5 +86,5 @@ function GenerateHelpWindow(topicId)
 
     closeButton.MouseClick = Close;
     HelpWindow.Closing = Close;
-    EscapeKeyHandlerForWindows(HelpWindow, settings["isHelpWindowVisible"]["value"]);
+    EscapeKeyHandlerForWindows(HelpWindow, "isHelpWindowVisible", "value");
 end

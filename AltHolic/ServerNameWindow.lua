@@ -148,5 +148,5 @@ function GenerateServerNameWindow(playerName)
         settings["isServerWindowVisible"]["value"] = false;
     end;
 
-    EscapeKeyHandlerForWindows(ServerNameWindow, settings["isServerWindowVisible"]["value"]);
+    EscapeKeyHandlerForWindows(ServerNameWindow, "isServerWindowVisible", "value");
 end

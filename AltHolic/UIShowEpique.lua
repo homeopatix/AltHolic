@@ -21,25 +21,8 @@ local EPIC_VOLUME_ICONS = {
     ["5"] = 0x4113B2E7,
 };
 
-local function ShouldDisplayCharacter(name)
-    local data = PlayerDatas[name];
-    if data == nil or data.align ~= 1 then return false; end
-
-    local selectedServer = settings["serversToDisplay"]["value"];
-    return selectedServer == data.serverName
-        or selectedServer == T["ServerNamesAll"]
-        or selectedServer == "";
-end
-
 local function GetEpicCharacterNames()
-    local names = {};
-    for name in pairs(PlayerDatas) do
-        if ShouldDisplayCharacter(name) then
-            names[#names + 1] = name;
-        end
-    end
-    table.sort(names);
-    return names;
+    return AltHolicUtil.GetDisplayedCharacterNames(function(name, data) return data.align == 1; end);
 end
 
 local function GetBookCount(playerName)
@@ -127,6 +110,7 @@ local function CreateCharacterEpicRow(playerName)
 end
 
 function CreateUIShowEpique()
+    AltHolicUtil.DetachControl(UIShowEpique);
     local characterNames = GetEpicCharacterNames();
     local desiredHeight = (#characterNames * 20) + 340;
     if settings["nameAccount"]["account1"]["name"] == "" then
@@ -198,5 +182,5 @@ function CreateUIShowEpique()
     end
 
     ClosingTheWindowEpique();
-    EscapeKeyHandlerForWindows(UIShowEpique, settings["isEpiqueWindowVisible"]["isEpiqueWindowVisible"]);
+    EscapeKeyHandlerForWindows(UIShowEpique, "isEpiqueWindowVisible", "isEpiqueWindowVisible");
 end

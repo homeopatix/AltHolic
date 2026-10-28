@@ -9,33 +9,11 @@ local BASE_WINDOW_HEIGHT = 200;
 local ROW_HEIGHT = 50;
 local ROW_CONTENT_Y = 20;
 
--- Race portrait texture IDs used by AltHolic's manual gender selector. LOTRO does not
--- expose a reliable character-gender query for offline alts, so the saved manual value
--- remains authoritative for this window.
-local MALE_RACE_ICONS = {
-    [81]  = 0x4110894A,
-    [23]  = 0x41108945,
-    [65]  = 0x41108947,
-    [114] = 0x4115920D,
-    [120] = 0x411DAE7E,
-    [73]  = 0x41108946,
-    [117] = 0x411C8D6B,
-    [125] = 0x4110894A,
-};
-
-local FEMALE_RACE_ICONS = {
-    [81]  = 0x41108949,
-    [23]  = 0x4110894B,
-    [65]  = 0x41108948,
-    [114] = 0x4115920A,
-    [120] = 0x411DAE7E,
-    -- Race 73 intentionally has no female selector in the original plugin.
-    [117] = 0x411C8D6A,
-    [125] = 0x41108949,
-};
-
+-- LOTRO does not expose a character-gender query for offline alts, so the gender chosen
+-- here is saved manually. Portraits come from AltHolicUtil.RaceIcons; races marked
+-- maleOnly (dwarves) only get the male option.
 local function SupportsManualGender(raceId)
-    return MALE_RACE_ICONS[raceId] ~= nil;
+    return AltHolicUtil.RaceIcons[raceId] ~= nil;
 end
 
 local function CreateLabel(parent, width, height, left, top, text, font, alignment)
@@ -145,14 +123,14 @@ function GenerateGenderWindow()
             Turbine.UI.ContentAlignment.MiddleLeft
         );
 
-        CreatePortrait(listItem, 160, ROW_CONTENT_Y, MALE_RACE_ICONS[raceId]);
+        local raceIcons = AltHolicUtil.RaceIcons[raceId];
+        CreatePortrait(listItem, 160, ROW_CONTENT_Y, raceIcons.male);
         local maleCheckbox = CreateGenderCheckbox(
             listItem, 202, ROW_CONTENT_Y, playerData.sexe == "male"
         );
 
-        local femaleTexture = FEMALE_RACE_ICONS[raceId];
-        if femaleTexture ~= nil then
-            CreatePortrait(listItem, 265, ROW_CONTENT_Y, femaleTexture);
+        if not raceIcons.maleOnly then
+            CreatePortrait(listItem, 265, ROW_CONTENT_Y, raceIcons.female);
             local femaleCheckbox = CreateGenderCheckbox(
                 listItem, 307, ROW_CONTENT_Y, playerData.sexe == "female"
             );
@@ -207,7 +185,7 @@ function GenerateGenderWindow()
         settings["isGenderWindowVisible"]["value"] = false;
     end;
 
-    EscapeKeyHandlerForWindows(GenderWindow, settings["isGenderWindowVisible"]["value"]);
+    EscapeKeyHandlerForWindows(GenderWindow, "isGenderWindowVisible", "value");
     return GenderWindow;
 end
 

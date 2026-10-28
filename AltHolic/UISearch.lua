@@ -253,6 +253,10 @@ end
 -- create the search window
 ------------------------------------------------------------------------------------------
 function CreateUISearch(textToSearch, where, howToDisplay)
+    if UIShowSearch ~= nil then
+        AltHolicUtil.DetachControl(UIShowSearch);
+        UIShowSearch = nil;
+    end
     if textToSearch == nil or textToSearch == "" then textToSearch = "**"; end
     if where == nil or where == "" or SEARCH_SOURCE_CONFIG[where] == nil then where = "all"; end
     if howToDisplay ~= "icons" then howToDisplay = "lines"; end
@@ -313,7 +317,6 @@ function CreateUISearch(textToSearch, where, howToDisplay)
     modeIcons:SetBlendMode(Turbine.UI.BlendMode.Overlay);
 
     local function ReopenSearch(query, source, displayMode)
-        if UIShowSearch ~= nil then UIShowSearch:SetVisible(false); end
         CreateUISearch(query, source, displayMode);
         UIShowSearch:SetVisible(true);
         settings["isSearchWindowVisible"]["isSearchWindowVisible"] = true;
@@ -419,10 +422,6 @@ function CreateUISearch(textToSearch, where, howToDisplay)
     resultSummary:SetText(T["PluginSearch1"] .. tostring(totalResults) .. " " .. T["PluginSearch6"]);
 
     ClosingTheWindowSearch();
-    EscapeKeyHandlerForWindows(UIShowSearch, settings["isSearchWindowVisible"]["isSearchWindowVisible"]);
+    EscapeKeyHandlerForWindows(UIShowSearch, "isSearchWindowVisible", "isSearchWindowVisible");
 end
 
-function ToggleWindow(toggleValue)
-    if UIShowSearch ~= nil then UIShowSearch:SetVisible(toggleValue); end
-    settings["isSearchWindowVisible"]["isSearchWindowVisible"] = toggleValue;
-end

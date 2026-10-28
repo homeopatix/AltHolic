@@ -1,123 +1,102 @@
 ------------------------------------------------------------------------------------------
--- Command file
+-- Command file: /alt and /altholic
 -- Written by Homeopatix
 -- 26 january 2021
 ------------------------------------------------------------------------------------------
 AltHolicCommand = Turbine.ShellCommand();
-------------------------------------------------------------------------------------------
--- commands
-------------------------------------------------------------------------------------------
-function AltHolicCommand:Execute( command, arguments )
--- Turn arguments to lower case characters --
-	local args, value = arguments:match "(delete) (.*)";
 
-	arguments = string.lower(arguments);
-------------------------------------------------------------------------------------------
--- Help command--
-------------------------------------------------------------------------------------------
-	if ( arguments == "help" ) then
-		commandsHelp();
-------------------------------------------------------------------------------------------
--- show command--
-------------------------------------------------------------------------------------------
-	elseif ( arguments == "show" ) then
-		AltHolicWindow:SetVisible(true);
-		settings["isWindowVisible"]["isWindowVisible"] = true;
-------------------------------------------------------------------------------------------
--- hide command--
-------------------------------------------------------------------------------------------
-	elseif ( arguments == "hide" ) then
-		AltHolicWindow:SetVisible(false);
-		settings["isWindowVisible"]["isWindowVisible"] = false;
-------------------------------------------------------------------------------------------
--- options window command --
-------------------------------------------------------------------------------------------
-	elseif ( arguments == "options" ) then
-		Write(rgb["start"] .. T[ "PluginName" ] .. rgb["clear"] .. " - " .. T[ "PluginOptionShowWindow" ]);
+local function Say(textKey)
+	Write(rgb["start"] .. T["PluginName"] .. rgb["clear"] .. " - " .. T[textKey]);
+end
+
+local function ToggleSetting(group, field, onKey, offKey)
+	local enabled = not (settings[group][field] == true);
+	settings[group][field] = enabled;
+	Say(enabled and onKey or offKey);
+	return enabled;
+end
+
+local function ConfirmDelete(target)
+	if target == nil or target == "" then return; end
+	if string.lower(target) == "all" then
+		CreateToBeSurWindow("", 2);
+	else
+		CreateToBeSurWindow(target, 1);
+	end
+	ToBeSurWindow:SetVisible(true);
+	settings["isToBeSurWindowVisible"]["value"] = true;
+end
+
+local COMMANDS = {
+	help = commandsHelp,
+
+	show = ShowMainWindow,
+	hide = HideMainWindow,
+
+	toggle = function()
+		if AltHolicWindow ~= nil and AltHolicWindow:IsVisible() then
+			Say("PluginToggleOff");
+			HideMainWindow();
+		else
+			Say("PluginToggleOn");
+			ShowMainWindow();
+		end
+	end,
+
+	options = function()
+		Say("PluginOptionShowWindow");
 		GenerateOptionsWindow();
 		OptionsWindow:SetVisible(true);
-		AltHolicWindow:SetVisible(false);
-		settings["isWindowVisible"]["isWindowVisible"] = false;
 		settings["isOptionsWindowVisible"]["isOptionsWindowVisible"] = true;
-------------------------------------------------------------------------------------------
--- options window Bar command --
-------------------------------------------------------------------------------------------
-	elseif ( arguments == "optionsbar" ) then
-		Write(rgb["start"] .. T[ "PluginName" ] .. rgb["clear"] .. " - " .. T[ "PluginOptionShowWindowBar" ]);
+		HideMainWindow();
+	end,
+
+	optionsbar = function()
+		Say("PluginOptionShowWindowBar");
 		GenerateOptionsWindowBar();
 		OptionsWindowBar:SetVisible(true);
 		settings["isOptionsWindowBarVisible"]["isOptionsWindowBarVisible"] = true;
-------------------------------------------------------------------------------------------
--- esc command--
-------------------------------------------------------------------------------------------
-	elseif ( arguments == "esc" ) then
-		if(settings["escEnable"]["escEnable"] == true) then
-			Write(rgb["start"] .. T[ "PluginName" ] .. rgb["clear"] .. " - " .. T[ "PluginEscDesable" ]);
-			settings["escEnable"]["escEnable"] = false;
-		else
-			Write(rgb["start"] .. T[ "PluginName" ] .. rgb["clear"] .. " - " .. T[ "PluginEscEnable" ]);
-			settings["escEnable"]["escEnable"] = true;
-		end
-------------------------------------------------------------------------------------------
--- alt command--
-------------------------------------------------------------------------------------------
-	elseif ( arguments == "alt" ) then
-		if(settings["altEnable"]["altEnable"] == true) then
-			Write(rgb["start"] .. T[ "PluginName" ] .. rgb["clear"] .. " - " .. T[ "PluginAltDesable" ]);
-			settings["altEnable"]["altEnable"] = false;
-		else
-			Write(rgb["start"] .. T[ "PluginName" ] .. rgb["clear"] .. " - " .. T[ "PluginAltEnable" ]);
-			settings["altEnable"]["altEnable"] = true;
-		end
-------------------------------------------------------------------------------------------
--- toggle command--
-------------------------------------------------------------------------------------------
-	elseif ( arguments == "toggle" ) then
-		if (settings["isWindowVisible"]["isWindowVisible"] == true) then
-			Write(rgb["start"] .. T[ "PluginName" ] .. rgb["clear"] .. " - " .. T[ "PluginToggleOff" ]);
-			AltHolicWindow:SetVisible(false);
-			settings["isWindowVisible"]["isWindowVisible"] = false;
-		else
-			Write(rgb["start"] .. T[ "PluginName" ] .. rgb["clear"] .. " - " .. T[ "PluginToggleOn" ]);
-			AltHolicWindow:SetVisible(true);
-			settings["isWindowVisible"]["isWindowVisible"] = true;
-		end
-------------------------------------------------------------------------------------------
--- icon command--
-------------------------------------------------------------------------------------------
-	elseif ( arguments == "icon" ) then
-		if (settings["isMinimizeEnabled"]["isMinimizeEnabled"] == true) then
-			Write(rgb["start"] .. T[ "PluginName" ] .. rgb["clear"] .. " - " .. T[ "PluginEscIconOff" ]);
-			MainMinimizedIcon:SetVisible(false);
-			settings["isMinimizeEnabled"]["isMinimizeEnabled"] = false;
-		else
-			Write(rgb["start"] .. T[ "PluginName" ] .. rgb["clear"] .. " - " .. T[ "PluginEscIconOn" ]);
-			MainMinimizedIcon:SetVisible(true);
-			settings["isMinimizeEnabled"]["isMinimizeEnabled"] = true;
-		end
-------------------------------------------------------------------------------------------
--- clear command--
-------------------------------------------------------------------------------------------
-	elseif ( args == "delete" ) then
-		if(value ~= "" ) then
-			if(value == "all")then
-				CreateToBeSurWindow("", 2);
-				ToBeSurWindow:SetVisible(true);
-			else
-				CreateToBeSurWindow(value, 1);
-				ToBeSurWindow:SetVisible(true);
-			end
-		end
-------------------------------------------------------------------------------------------
--- ServerNameWindow command--
-------------------------------------------------------------------------------------------
-	elseif ( arguments == "server" ) then
+	end,
+
+	esc = function()
+		-- Messages: "Escape disabled" when it was enabled, and vice versa.
+		ToggleSetting("escEnable", "escEnable", "PluginEscEnable", "PluginEscDesable");
+	end,
+
+	alt = function()
+		ToggleSetting("altEnable", "altEnable", "PluginAltEnable", "PluginAltDesable");
+	end,
+
+	-- Show or hide the floating launcher icon (for this session).
+	icon = function()
+		ToggleSetting("isLauncherVisible", "value", "PluginEscIconOn", "PluginEscIconOff");
+		UpdateMinimizedIcon();
+	end,
+
+	server = function()
 		GenerateServerNameWindow(PlayerName);
 		settings["isServerWindowVisible"]["value"] = true;
 		ServerNameWindow:SetVisible(true);
+	end,
+};
+
 ------------------------------------------------------------------------------------------
--- default if nothing is right command--
+-- commands
 ------------------------------------------------------------------------------------------
+function AltHolicCommand:Execute(command, arguments)
+	arguments = arguments or "";
+
+	-- "/alt delete Name" and "/alt clear Name" (the help text has always said "clear").
+	-- The character name keeps its original case.
+	local verb, target = string.match(arguments, "^%s*(%a+)%s+(.-)%s*$");
+	if verb ~= nil and (string.lower(verb) == "delete" or string.lower(verb) == "clear") then
+		ConfirmDelete(target);
+		return;
+	end
+
+	local handler = COMMANDS[string.lower(string.match(arguments, "^%s*(.-)%s*$"))];
+	if handler ~= nil then
+		handler();
 	else
 		-- Unknown or empty command: display help.
 		commandsHelp();
@@ -126,4 +105,4 @@ end
 ------------------------------------------------------------------------------------------
 -- Add command line --
 ------------------------------------------------------------------------------------------
-Turbine.Shell.AddCommand( "Alt;AltHolic", AltHolicCommand );
+Turbine.Shell.AddCommand("Alt;AltHolic", AltHolicCommand);
