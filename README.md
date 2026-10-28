@@ -1,25 +1,23 @@
 # AltHolic
 
-<sub>LOTRO alt tracking plugin for The Lord of the Rings Online</sub>
+<p align="center">
+  <sub>LOTRO alt tracking plugin for The Lord of the Rings Online</sub>
+</p>
 
-![Lua](https://img.shields.io/badge/Lua-Plugin-blue)
-![LOTRO](https://img.shields.io/badge/Game-LOTRO-darkgreen)
-![Status](https://img.shields.io/badge/status-active-success)
-![License](https://img.shields.io/badge/license-MIT-green)
+<p align="center">
+  <img alt="Lua" src="https://img.shields.io/badge/Lua-Plugin-blue" />
+  <img alt="LOTRO" src="https://img.shields.io/badge/Game-LOTRO-darkgreen" />
+  <img alt="Status" src="https://img.shields.io/badge/status-active-success" />
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-green" />
+</p>
 
 AltHolic is a Lua plugin for The Lord of the Rings Online (LOTRO) designed to keep a centralized, fast overview of your alts across characters, servers, and shared account data.
 
-It focuses on tracking:
-- inventories and backpacks
-- vault storage and shared storage
-- equipment and stat summaries
-- currencies and wallet data
-- reputations
-- epic quest progress
-- character search and filtering
-- account-wide information in one place
+## Overview
 
-## Features
+The plugin helps you track your account in one place, with a direct view of your alts, shared resources, progression, and personal data without constantly switching between characters.
+
+### Highlights
 
 - Multi-character overview
 - Multi-server support
@@ -32,6 +30,18 @@ It focuses on tracking:
 - Epic quest tracking
 - Global search and filtering
 - Automatic persistence of saved data
+
+## Features
+
+- Centralized account overview
+- Inventory and backpack tracking
+- Vault and shared storage tracking
+- Equipment and stat summaries
+- Currencies and wallet data
+- Reputation tracking
+- Epic quest progress tracking
+- Character search and filtering
+- Persistent account state across sessions
 
 ## Chat commands
 
@@ -53,7 +63,7 @@ It focuses on tracking:
 | Action | Shortcut |
 | --- | --- |
 | Move icon | `ALT` (when enabled) |
-| Open options | `SHIFT + click on the icon` |
+| Open options | `SHIFT + click` on the icon |
 
 ## Installation
 
@@ -61,28 +71,35 @@ It focuses on tracking:
 2. Extract the plugin folder.
 3. Copy the `AltHolic` folder into your LOTRO plugin directory:
 
-   `Documents\The Lord of the Rings Online\Plugins\Homeopatix`
+```text
+Documents\The Lord of the Rings Online\Plugins\Homeopatix
+```
 
 4. In-game, load the plugin:
 
-   `/plugins load AltHolic`
+```text
+/plugins load AltHolic
+```
 
 ## Data and synchronization
 
-AltHolic stores data locally in the LOTRO PluginData folder. The plugin automatically saves and reloads data when characters log in or out, and persists character/account state for later viewing.
+AltHolic stores data locally in the LOTRO `PluginData` folder. The plugin automatically saves and reloads data when characters log in or out, and persists character/account state for later viewing.
 
 Typical save location:
 
-`Documents\The Lord of the Rings Online\PluginData\<Account>\<Server>\<Character>`
+```text
+Documents\The Lord of the Rings Online\PluginData\<Account>\<Server>\<Character>
+```
 
 ## Project structure
 
 The repository is organized around the `AltHolic/` Lua source directory, with modules for:
-- core utility functions
+
+- core utilities
 - UI and window creation
 - data loading and persistence
 - character and account tracking
-- inventory/vault/equipment views
+- inventory, vault, and equipment views
 - search and display helpers
 
 ## Requirements
@@ -95,6 +112,10 @@ You need the Turbine package installed.
 
 This plugin is intended for recent LOTRO client builds and is designed around the standard LOTRO plugin APIs and Turbine UI controls.
 
+## Support
+
+If you encounter a bug, missing data, or a usability problem, please open an issue with a clear description and, when possible, a screenshot.
+
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.
@@ -103,6 +124,8 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 
 Homeopatix
 
-## Notes
+---
 
-This project is a gameplay utility plugin for LOTRO and is intended to improve the organization and overview of alts and account data while playing.
+<p align="center">
+  <sub>AltHolic • LOTRO • Lua • Account overview plugin</sub>
+</p>
