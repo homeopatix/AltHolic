@@ -297,7 +297,7 @@ local function BuildFreePeoplesStats(window, playerName, data)
 	end
 
 	-- Cap colour legend.
-	posy = posy + 15;
+	posy = posy + 45;
 	for _, entry in ipairs(CAP_LEGEND) do
 		CreateStatsLabel(window, T[entry[1]], window:GetWidth() / 2 - 200, posy, 400, {
 				align = Turbine.UI.ContentAlignment.MiddleCenter,
