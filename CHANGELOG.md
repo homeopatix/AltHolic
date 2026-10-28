@@ -2,6 +2,17 @@
 
 > Languages: 🇫🇷 Français • 🇬🇧 English • 🇩🇪 Deutsch
 
+## UPDATE Major New version V5.06
+
+### 🇫🇷 Français
+Enorme travail de mise à jour et de refactoring fait par xruptor
+
+### 🇬🇧 English
+Extensive update and refactoring work carried out by xruptor
+
+### 🇩🇪 Deutsch
+Enormer Aufwand für Aktualisierungen und Refactoring durch xruptor
+
 ## V4.92 - Mise à jour Majeur
 
 ### 🇫🇷 Français
