@@ -4,7 +4,145 @@
 -- Reworked for AltHolic 5.06.
 ------------------------------------------------------------------------------------------
 
-local ROW_HEIGHT = 45;
+local ROW_HEIGHT = 45;        -- hauteur d'une ligne (minimum 40)
+local LIST_WIDTH = 380;       -- largeur de la liste (sans la barre de défilement)
+local LIST_HEIGHT = 320;      -- hauteur visible de la liste
+local SCROLLBAR_WIDTH = 10;
+
+local CollectionWindows = {
+    mounts = nil,
+    pets = nil
+};
+
+local function AddCollectionRow(parent, labelText, iconID, ownersText)
+    local row = Turbine.UI.Control();
+    row:SetParent(parent);
+    row:SetSize(LIST_WIDTH, ROW_HEIGHT);
+
+    -- Icône 32x32 centrée verticalement dans la ligne
+    local icon = Turbine.UI.Label();
+    icon:SetParent(row);
+    icon:SetPosition(8, math.floor((ROW_HEIGHT - 32) / 2));
+    icon:SetSize(32, 32);
+    icon:SetBackground(iconID);
+    icon:SetBlendMode(Turbine.UI.BlendMode.Overlay);
+    icon:SetMouseVisible(false);
+
+    -- Colonnes : [icône 8..40] [nom centré 48..OWNER_X-8] [joueur aligné à droite OWNER_X..LIST_WIDTH-5]
+    local OWNER_WIDTH = 100;
+    local OWNER_X = LIST_WIDTH - OWNER_WIDTH - 5;
+    local NAME_X = 48;
+
+    -- Nom : centré horizontalement et verticalement dans sa colonne
+    local nameLabel = Turbine.UI.Label();
+    nameLabel:SetParent(row);
+    nameLabel:SetPosition(NAME_X, 0);
+    nameLabel:SetSize(OWNER_X - NAME_X - 8, ROW_HEIGHT);
+    nameLabel:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);
+    nameLabel:SetFont(Turbine.UI.Lotro.Font.BookAntiquaBold18);
+    nameLabel:SetForeColor(Turbine.UI.Color.Gold);
+    nameLabel:SetText(labelText);
+    nameLabel:SetMouseVisible(false);
+
+    -- Propriétaire(s) : collé au bord droit de la ligne
+    local ownerLabel = Turbine.UI.Label();
+    ownerLabel:SetParent(row);
+    ownerLabel:SetPosition(OWNER_X, 0);
+    ownerLabel:SetSize(OWNER_WIDTH, ROW_HEIGHT);
+    ownerLabel:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleRight);
+    ownerLabel:SetFont(Turbine.UI.Lotro.Font.Verdana14);
+    ownerLabel:SetForeColor(Turbine.UI.Color.White);
+    ownerLabel:SetText(ownersText or "");
+    ownerLabel:SetMouseVisible(false);
+
+    return row;
+end
+
+local function CreateCollectionWindow(kind, title)
+    local window = Turbine.UI.Lotro.GoldWindow();
+    window:SetSize(430, 420);
+    window:SetText(title);
+    window:SetPosition(
+        (Turbine.UI.Display:GetWidth() - window:GetWidth()) / 2,
+        (Turbine.UI.Display:GetHeight() - window:GetHeight()) / 2
+    );
+    window:SetZOrder(10);
+    window:SetWantsKeyEvents(true);
+    window:SetVisible(false);
+
+    local listbox = Turbine.UI.ListBox();
+    listbox:SetParent(window);
+    listbox:SetPosition(10, 40);
+    listbox:SetSize(LIST_WIDTH, LIST_HEIGHT);
+    listbox:SetOrientation(Turbine.UI.Orientation.Vertical);
+
+    -- Barre de défilement verticale à droite de la liste
+    local scrollBar = Turbine.UI.Lotro.ScrollBar();
+    scrollBar:SetParent(window);
+    scrollBar:SetOrientation(Turbine.UI.Orientation.Vertical);
+    scrollBar:SetPosition(10 + LIST_WIDTH + 5, 40);
+    scrollBar:SetSize(SCROLLBAR_WIDTH, LIST_HEIGHT);
+    listbox:SetVerticalScrollBar(scrollBar);
+
+    local rows = {};
+    local seen = {};
+
+    local function AddEntry(entryName, entryIcon, ownerName)
+        local key = entryName .. "|" .. tostring(entryIcon);
+        if seen[key] then
+            return;
+        end
+        seen[key] = true;
+        rows[#rows + 1] = {
+            name = entryName,
+            icon = entryIcon,
+            owner = ownerName
+        };
+    end
+
+    for _, playerName in ipairs(AltHolicUtil.GetDisplayedCharacterNames()) do
+        local data = PlayerDatas[playerName] or {};
+        local items = data[kind] or {};
+        for _, item in ipairs(items) do
+            local name = tostring(item.n or "");
+            local icon = tonumber(item.i) or 0;
+            if name ~= "" then
+                AddEntry(name, icon, playerName);
+            end
+        end
+    end
+
+    table.sort(rows, function(a, b)
+        return string.lower(a.name) < string.lower(b.name);
+    end);
+
+    for _, row in ipairs(rows) do
+        local ctrl = AddCollectionRow(listbox, row.name, row.icon, row.owner);
+        listbox:AddItem(ctrl);
+    end
+
+    local closeButton = Turbine.UI.Lotro.GoldButton();
+    closeButton:SetParent(window);
+    closeButton:SetPosition(65, 372);
+    closeButton:SetSize(300, 20);
+    closeButton:SetFont(Turbine.UI.Lotro.Font.Verdana16);
+    closeButton:SetText(T["PluginCloseButton"]);
+    closeButton:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);
+    closeButton.MouseClick = function()
+        window:SetVisible(false);
+    end
+
+    return window;
+end
+
+local function ToggleCollectionWindow(kind)
+    --local title = (kind == "mounts") and "AltHolic - Montures" or "AltHolic - Familiers";
+	local title = "AltHolic - " .. ((kind == "mounts") and T["PluginMountureTitre"] or T["PluginFamilierTitre"]);
+    if CollectionWindows[kind] == nil then
+        CollectionWindows[kind] = CreateCollectionWindow(kind, title);
+    end
+    CollectionWindows[kind]:SetVisible(not CollectionWindows[kind]:IsVisible());
+end
 
 local function IsAccountNamed()
 	return settings["nameAccount"]["account1"]["name"] ~= "";
@@ -79,6 +217,11 @@ function CreateMainWindow(widthWind, heightWind)
 	DisplayInfosWindow(widthWind / 2 - 75, heightWind - 18);
 
 	Birthday();
+
+	if AltHolicCollection ~= nil and AltHolicCollection.Poll ~= nil then
+        AltHolicCollection.Poll();
+    end
+
 	UpdaterFromChat();
 
 	if not IsAccountNamed() then
@@ -223,7 +366,10 @@ function UpdateChecker()
 		settings["nameAccount"]["account1"]["nbrAlt"] = tablelength(PlayerDatas);
 		UpdateLvl();
 		UpdateCash();
-		FlushPlayerDatas();
+        if AltHolicCollection ~= nil and AltHolicCollection.Poll ~= nil then
+            AltHolicCollection.Poll();
+        end
+        FlushPlayerDatas();
 	end
 end
 
@@ -294,6 +440,29 @@ local function PopulateHeader(posx, posy, valToAdd)
 			function() CreateUISearch("**", "all", "lines"); end, "isSearchWindowVisible", "isSearchWindowVisible");
 	end
 	DisplayLabelCadreForSearch(posx + 325 + valToAdd, posy - 10, searchButton, searchIcon);
+
+	    -- Collection (mounts / pets)
+    local mountsButton = Turbine.UI.Lotro.GoldButton();
+    mountsButton:SetParent(AltHolicWindow);
+    mountsButton:SetPosition(posx + 360 + valToAdd, posy - 10);
+    mountsButton:SetSize(70, 20);
+    mountsButton:SetFont(Turbine.UI.Lotro.Font.Verdana14);
+    mountsButton:SetText(T[ "PluginMountureTitre" ]);
+    mountsButton:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);
+    mountsButton.MouseClick = function()
+        ToggleCollectionWindow("mounts");
+    end
+
+    local petsButton = Turbine.UI.Lotro.GoldButton();
+    petsButton:SetParent(AltHolicWindow);
+    petsButton:SetPosition(posx + 435 + valToAdd, posy - 10);
+    petsButton:SetSize(70, 20);
+    petsButton:SetFont(Turbine.UI.Lotro.Font.Verdana14);
+    petsButton:SetText(T[ "PluginFamilierTitre" ]);
+    petsButton:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);
+    petsButton.MouseClick = function()
+        ToggleCollectionWindow("pets");
+    end
 end
 
 local function PopulateCharacterRow(name, posx, posy, valToAdd)

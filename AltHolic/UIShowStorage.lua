@@ -4,36 +4,46 @@
 -- AltHolic 5.06. Lines mode lists items with names, icons mode shows a 9-wide grid.
 ------------------------------------------------------------------------------------------
 
-local WINDOW_WIDTH = 400;
-local ROW_HEIGHT = 38;
-local ICONS_PER_ROW = 9;
-local MAX_LIST_HEIGHT = 535;
-local MAX_CONTENT_HEIGHT = 600;
+local WINDOW_WIDTH = 430;
+local ROW_HEIGHT = 60;
+local ICON_SIZE = 56;
+local ICON_GAP = 18;
+local ICONS_PER_ROW = 5;
+local MAX_LIST_HEIGHT = 540;
+local MAX_CONTENT_HEIGHT = 640;
 
 local NAME_BACK_COLOR = Turbine.UI.Color(0.9, 0.3, 0.3, 0.3);
 
 local function CreateSlot(parent, item, x, y)
 	local slot = Turbine.UI.Control();
 	slot:SetParent(parent);
-	slot:SetSize(32, 32);
+	slot:SetSize(ICON_SIZE + 8, ICON_SIZE + 8);
 	slot:SetPosition(x, y);
 	slot:SetVisible(true);
-	slot:SetBackground(0x41000001); -- grey slot background
+	slot:SetBackground(0x41000001);
+
 	local icon = AltHolicUtil.CreateStoredItemIcon(slot, item, 1, 1);
+	if icon ~= nil then
+		icon:SetSize(ICON_SIZE, ICON_SIZE);
+		icon:SetPosition(4, 4);
+		icon:SetBlendMode(Turbine.UI.BlendMode.Overlay);
+		icon:SetVisible(true);
+	end
+
 	return slot, icon;
 end
 
 local function CreateLineRow(listbox, item)
 	local row = Turbine.UI.Control();
-	row:SetSize(WINDOW_WIDTH - 45, ROW_HEIGHT);
+	row:SetSize(WINDOW_WIDTH - 55, ROW_HEIGHT);
 	row:SetMouseVisible(true);
 
-	CreateSlot(row, item, 20, 5);
+	CreateSlot(row, item, 12, 6);
 
 	local namePanel = Turbine.UI.Control();
 	namePanel:SetParent(row);
 	namePanel:SetSize(300, 32);
-	namePanel:SetPosition(65, 5);
+	namePanel:SetPosition(70, 8);
 	namePanel:SetBackColor(NAME_BACK_COLOR);
 
 	local nameLabel = Turbine.UI.Label();
@@ -48,13 +58,25 @@ local function CreateLineRow(listbox, item)
 	listbox:AddItem(row);
 end
 
-local function AddScrollBar(window, x, y, height)
+local function AddScrollBar(window, x, y, height, contentControl, contentHeight)
 	local scrollbar = Turbine.UI.Lotro.ScrollBar();
 	scrollbar:SetParent(window);
 	scrollbar:SetOrientation(Turbine.UI.Orientation.Vertical);
 	scrollbar:SetPosition(x, y);
 	scrollbar:SetSize(10, height);
 	scrollbar:SetBackColor(Turbine.UI.Color(.1, .1, .2));
+	scrollbar:SetMinimum(0);
+
+	local maxValue = math.max(0, contentHeight - height);
+	scrollbar:SetMaximum(maxValue);
+	scrollbar:SetValue(0);
+	scrollbar:SetVisible(true);
+	scrollbar:SetEnabled(maxValue > 0);
+
+	scrollbar.ValueChanged = function()
+		contentControl:SetTop(-scrollbar:GetValue());
+	end
+
 	return scrollbar;
 end
 
@@ -75,11 +97,12 @@ local function BuildStorageWindow(spec)
 	local slots = AltHolicUtil.SortedItemSlots(items);
 	local count = #slots;
 	local iconMode = settings["displayIcon"]["value"] == true;
+
 	local rows = iconMode and math.ceil(count / ICONS_PER_ROW) or count;
-	local contentHeight = rows * ROW_HEIGHT;
+	local contentHeight = rows * (ICON_SIZE + ICON_GAP) + 12;
 	local viewHeight = math.min(contentHeight + 10, MAX_LIST_HEIGHT);
 
-	local windowHeight = math.min(contentHeight + 80, MAX_CONTENT_HEIGHT) + 110;
+	local windowHeight = math.min(contentHeight + 90, MAX_CONTENT_HEIGHT) + 110;
 	windowHeight = math.min(windowHeight, Turbine.UI.Display:GetHeight() - 50);
 
 	local window = Turbine.UI.Lotro.GoldWindow();
@@ -126,7 +149,7 @@ local function BuildStorageWindow(spec)
 	if not iconMode then
 		local listbox = Turbine.UI.ListBox();
 		listbox:SetParent(window);
-		listbox:SetSize(WINDOW_WIDTH - 45, viewHeight);
+		listbox:SetSize(WINDOW_WIDTH - 55, viewHeight);
 		listbox:SetPosition(10, 80);
 		listbox:SetMouseVisible(true);
 		listbox:SetZOrder(20);
@@ -135,9 +158,8 @@ local function BuildStorageWindow(spec)
 			CreateLineRow(listbox, items[key]);
 		end
 
-		if contentHeight + 10 > viewHeight then
-			listbox:SetVerticalScrollBar(AddScrollBar(window, WINDOW_WIDTH - 20, 80, viewHeight));
-		end
+		local scrollbar = AddScrollBar(window, WINDOW_WIDTH - 23, 80, viewHeight, listbox, contentHeight + 10);
+		listbox:SetVerticalScrollBar(scrollbar);
 	else
 		local viewport = Turbine.UI.Control();
 		viewport:SetParent(window);
@@ -146,28 +168,23 @@ local function BuildStorageWindow(spec)
 
 		local map = Turbine.UI.Control();
 		map:SetParent(viewport);
-		map:SetSize(WINDOW_WIDTH - 45, contentHeight + 10);
+		map:SetSize(WINDOW_WIDTH - 45, contentHeight + 20);
 		map:SetPosition(0, 0);
 
 		for index, key in ipairs(slots) do
 			local item = items[key];
 			local column = (index - 1) % ICONS_PER_ROW;
 			local row = math.floor((index - 1) / ICONS_PER_ROW);
-			local x, y = 20 + column * ROW_HEIGHT, 5 + row * ROW_HEIGHT;
+
+			local x = 18 + column * (ICON_SIZE + ICON_GAP);
+			local y = 8 + row * (ICON_SIZE + ICON_GAP);
+
 			local _, icon = CreateSlot(map, item, x, y);
 			DisplayLabelForIcons(index, x, y, window, icon, item.QUA, item.N);
 		end
 
-		-- Large vaults used to run past the bottom of the window in icon mode.
-		if contentHeight + 10 > viewHeight then
-			local scrollbar = AddScrollBar(window, WINDOW_WIDTH - 20, 70, viewHeight);
-			scrollbar:SetMinimum(0);
-			scrollbar:SetMaximum(contentHeight + 10 - viewHeight);
-			scrollbar:SetValue(0);
-			scrollbar.ValueChanged = function()
-				map:SetTop(-scrollbar:GetValue());
-			end
-		end
+		local scrollbar = AddScrollBar(window, WINDOW_WIDTH - 23, 70, viewHeight, map, contentHeight + 20);
+		map:SetTop(0);
 	end
 
 	window.Closing = function()

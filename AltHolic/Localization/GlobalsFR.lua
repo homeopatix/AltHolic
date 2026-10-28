@@ -26,15 +26,17 @@ T[ "Version" ] = Plugins[T[ "PluginName" ]]:GetVersion();
 T[ "PluginReleaseAlias" ] = "/Alt toggle";
 T[ "PluginReleaseAliasTokens" ] = "/Tokens toggle";
 T[ "PluginCalcStatVersionText" ] = "CalcStat de Giseldah";
-T[ "PluginCalcStatVersion" ] = "2.5.5p";
+T[ "PluginCalcStatVersion" ] = "2.5.6";
 T[ "PluginLangUpdateFR" ] = "FR : Homeo";
 T[ "PluginLangUpdateDE" ] = "DE : Farothhen";
 T[ "PluginLangUpdateEN" ] = "EN : Homeo";
 T[ "PluginTranslators" ] = "Traducteurs";
 T[ "PluginLatestUpdate" ] = "Derni\195\168re mise \195\160 jour";
-T[ "PluginDateUpdate" ] = "03.10.2026";
+T[ "PluginDateUpdate" ] = "28.10.2026";
 T[ "PluginRefactored" ] = "Refactorisation et Nettoyage";
 T[ "PluginRefactoredBy" ] = "xruptor";
+T[ "PluginMountureTitre" ] = "Montures";
+T[ "PluginFamilierTitre" ] = "Famili\195\169s";
 ------------------------------------------------------------------------------------------
 -- ServerName window --
 ------------------------------------------------------------------------------------------
