@@ -16,10 +16,10 @@ dataScope = Turbine.DataScope.Account;
 ------------------------------------------------------------------------------------------
 -- dataScope = Turbine.DataScope.Server;
 
--- (Français)
--- décommentez la ligne datascope au dessus  en enlevant le 2 -- au début pour stocker les données uniquement par serveur
--- et n'oubliez pas de commenter... en ajoutant 2 -- au début de la ligne du datascope
--- pour le compte, enregistrez puis déchargez et rechargez le plugin pour que le changement prenne effet
+-- (FranÃ§ais)
+-- dÃ©commentez la ligne datascope au dessus  en enlevant le 2 -- au dÃ©but pour stocker les donnÃ©es uniquement par serveur
+-- et n'oubliez pas de commenter... en ajoutant 2 -- au dÃ©but de la ligne du datascope
+-- pour le compte, enregistrez puis dÃ©chargez et rechargez le plugin pour que le changement prenne effet
 
 -- (English)
 -- uncomment the line datascope upper from here by removing the 2 -- at the beggining to store the datas only by server
@@ -28,8 +28,8 @@ dataScope = Turbine.DataScope.Account;
 
 -- (German)
 -- Entkommentieren Sie die Datascope-Zeile oben, indem Sie die 2 entfernen -- am Anfang, um die Daten nur vom Server zu speichern
--- und vergessen Sie nicht zu kommentieren ... fügen Sie 2 hinzu -- am Anfang der Zeile des Datascope
--- für das Konto speichern, dann entladen und das Plugin neu laden, damit die Änderung wirksam wird
+-- und vergessen Sie nicht zu kommentieren ... fÃ¼gen Sie 2 hinzu -- am Anfang der Zeile des Datascope
+-- fÃ¼r das Konto speichern, dann entladen und das Plugin neu laden, damit die Ã„nderung wirksam wird
 ------------------------------------------------------------------------------------------
 -- File names --
 ------------------------------------------------------------------------------------------
@@ -256,7 +256,9 @@ settings = {
 -- values into these defaults instead of rebuilding the entire settings table for each
 -- historical schema revision.
 DefaultSettings = settings;
-SettingsSchemaVersion = 6;
+-- 5.07: bump the settings schema so old save files are re-merged cleanly after the
+-- stability pass.
+SettingsSchemaVersion = 7;
 ------------------------------------------------------------------------------------------
 -- Resources settings --
 ------------------------------------------------------------------------------------------

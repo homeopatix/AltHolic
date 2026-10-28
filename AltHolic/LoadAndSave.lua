@@ -4,6 +4,7 @@
 -- 26 january 2021
 -- Refactored for AltHolic 5.06: plain-table snapshots, persist-only helpers and
 -- a single place for each file's load/save logic.
+-- 5.07 cleanup: hardened nil guards for per-character state and save paths.
 ------------------------------------------------------------------------------------------
 
 local function IsSessionPlay()
@@ -363,6 +364,10 @@ end
 function LoadPlayerEpique()
     PlayerEpique = LoadCharacterFile(settingsEpiqueFileName, PlayerEpique);
     local epic = PlayerEpique[PlayerName];
+    if epic == nil then
+        epic = {};
+        PlayerEpique[PlayerName] = epic;
+    end
     epic.volume = epic.volume or {};
     epic.livre = epic.livre or {};
     epic.chapitre = epic.chapitre or {};
@@ -379,6 +384,7 @@ end
 -- (The previous implementation kept only entry #1 and silently dropped the rest.)
 function SavePlayerEpiqueDelete()
     local epic = PlayerEpique[PlayerName];
+    if epic == nil then return; end
     local indices = {};
     for key, value in pairs(epic.volume or {}) do
         local index = tonumber(key);
@@ -404,6 +410,10 @@ function LoadPlayerReputations()
     PlayerReput = LoadCharacterFile(settingsReputationsFileName, PlayerReput);
 
     local reputations = PlayerReput[PlayerName];
+    if reputations == nil then
+        reputations = {};
+        PlayerReput[PlayerName] = reputations;
+    end
     for index = 1, nbrFactions do
         local key = "Reput" .. index;
         if reputations[key] == nil then
@@ -427,7 +437,8 @@ end
 function SavePlayerReputations(valueReput)
     if IsSessionPlay() then return; end
 
-    local reputations = PlayerReput[PlayerName];
+    local reputations = PlayerReput[PlayerName] or {};
+    PlayerReput[PlayerName] = reputations;
     if valueReput ~= nil then
         local record = reputations["Reput" .. valueReput];
         if record ~= nil then
@@ -461,7 +472,9 @@ function LoadPlayerInfos()
 end
 
 function SavePlayerInfos(playerName, infoText)
-    PlayerInfos[playerName] = PlayerInfos[playerName] or {};
+    if PlayerInfos[playerName] == nil then
+        PlayerInfos[playerName] = {};
+    end
     PlayerInfos[playerName].info = infoText or "";
     Persist(settingsInfosFileName, PlayerInfos);
 end
@@ -473,6 +486,10 @@ function LoadPlayerProfessions()
     PlayerProfessions = LoadCharacterFile(settingsProfessionsFileName, PlayerProfessions);
 
     local player = PlayerProfessions[PlayerName];
+    if player == nil then
+        player = {};
+        PlayerProfessions[PlayerName] = player;
+    end
     if player.Professions ~= nil and #player.Professions > 0 then
         -- Current format: discard duplicate legacy mirrors in memory.
         player.name = nil;
@@ -561,3 +578,122 @@ function DeleteCharacterData(names)
         if name == PlayerName then lastProfessionSignature = nil; end
     end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
