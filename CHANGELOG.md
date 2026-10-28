@@ -59,7 +59,6 @@ V5.06 – Major refactor and stability update
 
 Français
 
-* Refonte majeure du code par xruptor.
 * Consolidation de la logique de sauvegarde et de chargement.
 * Nettoyage des fenêtres et des fonctions utilitaires partagées.
 * Correction des erreurs liées aux sauvegardes et aux données par personnage.
@@ -68,7 +67,6 @@ Français
 
 English
 
-* Major code refactor by xruptor.
 * Consolidated save and loading logic.
 * Cleaned up shared helpers and UI code.
 * Fixed issues with saves and per-character data.
@@ -77,7 +75,6 @@ English
 
 Deutsch
 
-* Umfassende Überarbeitung des Codes durch xruptor.
 * Speicher- und Ladelogik zusammengeführt.
 * Fenster und gemeinsame Hilfsfunktionen bereinigt.
 * Fehler bei Speicherungen und charakterbezogenen Daten behoben.
