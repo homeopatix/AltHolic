@@ -1,6 +1,8 @@
-https://github.com/user-attachments/assets/1b3f50fe-a4c1-4d38-9215-a1f839d7a76b
-
 # AltHolic
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/1b3f50fe-a4c1-4d38-9215-a1f839d7a76b" alt="Voyage plugin hero banner" width="1200" />
+</p>
 
 <p align="center">
   <sub>LOTRO alt tracking plugin for The Lord of the Rings Online</sub>
