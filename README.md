@@ -1,131 +1,108 @@
+# AltHolic
 
-<img width="1536" height="1024" alt="homeo_plugins" src="https://github.com/user-attachments/assets/435fdf91-b616-46ca-be02-105f250d0e4c" />
-
-
-# 👥 AltHolic -- LOTRO Plugin
+<sub>LOTRO alt tracking plugin for The Lord of the Rings Online</sub>
 
 ![Lua](https://img.shields.io/badge/Lua-Plugin-blue)
 ![LOTRO](https://img.shields.io/badge/Game-LOTRO-darkgreen)
 ![Status](https://img.shields.io/badge/status-active-success)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-AltHolic est un plugin **Lua pour The Lord of the Rings Online
-(LOTRO)**\
-permettant d'avoir une **vue centralisée et rapide de tous vos
-personnages (alts)** : inventaires, équipements, coffre, stockage
-partagé, statistiques, réputations et quêtes épiques.
+AltHolic is a Lua plugin for The Lord of the Rings Online (LOTRO) designed to keep a centralized, fast overview of your alts across characters, servers, and shared account data.
 
-------------------------------------------------------------------------
+It focuses on tracking:
+- inventories and backpacks
+- vault storage and shared storage
+- equipment and stat summaries
+- currencies and wallet data
+- reputations
+- epic quest progress
+- character search and filtering
+- account-wide information in one place
 
-# 🚀 Fonctionnalités
+## Features
 
-✔️ Vue multi-personnages\
-✔️ Gestion multi-serveurs\
-✔️ Porte-monnaie\
-✔️ Inventaire (sac)\
-✔️ Coffre personnel\
-✔️ Stockage partagé\
-✔️ Équipement\
-✔️ Statistiques\
-✔️ Réputations\
-✔️ Quêtes épiques\
-✔️ Recherche globale\
-✔️ Synchronisation automatique
+- Multi-character overview
+- Multi-server support
+- Wallet and currency tracking
+- Backpack and vault tracking
+- Shared storage tracking
+- Equipment monitoring
+- Character statistics dashboard
+- Reputation tracking
+- Epic quest tracking
+- Global search and filtering
+- Automatic persistence of saved data
 
-------------------------------------------------------------------------
+## Chat commands
 
-# 🎮 Commandes & Raccourcis
+| Command | Description |
+| --- | --- |
+| `/Alt show` | Shows the main window |
+| `/Alt hide` | Hides the main window |
+| `/Alt toggle` | Toggles the main window |
+| `/Alt esc` | Enables or disables the Esc key |
+| `/Alt options` | Opens the options window |
+| `/Alt optionsbar` | Opens the options bar window |
+| `/Alt icon` | Shows or hides the icon |
+| `/Alt alt` | Enables or disables ALT movement for the icon |
+| `/Alt delete all` | Deletes all saved entries |
+| `/Alt delete NameOfCharacter` | Deletes the specified character record |
 
-## 📌 Commandes Chat
+## Shortcuts
 
-  Commande                   Description\
-  -------------------------- ---------------------------------------------------------\
-  `/Alt show`                Montre la fenêtre principale\
-  `/Alt hide`                Cache la fenêtre principale\
-  `/Alt toggle`              Bascule l'affichage de la fenêtre\
-  `/Alt esc`                 Active ou désactive la touche Escape\
-  `/Alt options`             Affiche la fenêtre d'options\
-  `/Alt optionsbar`          Affiche la fenêtre d'options de la barre\
-  `/Alt icon`                Affiche ou masque l'icône\
-  `/Alt alt`                 Active ou désactive la touche ALT pour déplacer l'icône\
-  `/Alt delete all`          Efface toutes les entrées\
-  `/Alt delete NomDuPerso`   Efface le personnage spécifié\
+| Action | Shortcut |
+| --- | --- |
+| Move icon | `ALT` (when enabled) |
+| Open options | `SHIFT + click on the icon` |
 
-------------------------------------------------------------------------------------
+## Installation
 
-## 🎹 Raccourcis
+1. Download the ZIP from GitHub or from LOTROInterface.
+2. Extract the plugin folder.
+3. Copy the `AltHolic` folder into your LOTRO plugin directory:
 
-  Action               Touche\
-  -------------------- ----------------------------\
-  Déplacer l'icône     `ALT` (si activé)\
-  Ouvrir les options   `SHIFT + clic sur l’icône`
+   `Documents\The Lord of the Rings Online\Plugins\Homeopatix`
 
-------------------------------------------------------------------------
+4. In-game, load the plugin:
 
-# 🧩 Installation
+   `/plugins load AltHolic`
 
-1.  Télécharger le ZIP depuis GitHub ou LOTROInterface.
-2.  Extraire le dossier.
-3.  Copier le dossier `AltHolic` dans :
+## Data and synchronization
 
-    Documents\The Lord of the Rings Online\Plugins\Homeopatix
+AltHolic stores data locally in the LOTRO PluginData folder. The plugin automatically saves and reloads data when characters log in or out, and persists character/account state for later viewing.
 
-4.  En jeu :
-    
-    /plugins load AltHolic
+Typical save location:
 
-------------------------------------------------------------------------
+`Documents\The Lord of the Rings Online\PluginData\<Account>\<Server>\<Character>`
 
-# 💾 Données & Synchronisation
+## Project structure
 
-Les paramètres sont sauvegardés automatiquement à chaque
-connexion/déconnexion.
+The repository is organized around the `AltHolic/` Lua source directory, with modules for:
+- core utility functions
+- UI and window creation
+- data loading and persistence
+- character and account tracking
+- inventory/vault/equipment views
+- search and display helpers
 
-Les fichiers sont enregistrés dans :
+## Requirements
 
-    Documents\The Lord of the Rings Online\PluginData\<Compte>\<Serveur>\<Personnage>
+You need the Turbine package installed.
 
-------------------------------------------------------------------------
+- Official LOTROInterface download: https://www.lotrointerface.com/downloads/info1064-TurbineUtilities.html
 
-# 🏗️ Architecture
+## Compatibility
 
--   Langage : **Lua**
--   Type : Plugin LOTRO
--   Stockage : Données locales (PluginData)
--   Compatibilité : Toutes versions LOTRO récentes
+This plugin is intended for recent LOTRO client builds and is designed around the standard LOTRO plugin APIs and Turbine UI controls.
 
-------------------------------------------------------------------------
+## License
 
-# ❗ Requirements / Besoins / Bedürfnisse
+This project is licensed under the MIT License. See the `LICENSE` file for details.
 
-## 🇫🇷 !!! Besoins !!!
-
-Vous devez avoir installé le package **Turbine**.\
-Vous pouvez le télécharger à cette adresse : **[ICI](https://www.lotrointerface.com/downloads/info1064-TurbineUtilities.html)**
-
-------------------------------------------------------------------------
-
-## 🇬🇧 !!! Needs !!!
-
-You need to have the **Turbine package** installed.\
-You can download it at this address: **[HERE](https://www.lotrointerface.com/downloads/info1064-TurbineUtilities.html)**
-
-------------------------------------------------------------------------
-
-## 🇩🇪 !!! Bedürfnisse !!!
-
-Sie müssen das **Turbine-Paket** installiert haben.\
-Sie können es unter dieser Adresse herunterladen: **[HIER](https://www.lotrointerface.com/downloads/info1064-TurbineUtilities.html)**
-
-------------------------------------------------------------------------
-
-# 📜 License
-
-This project is licensed under the MIT License -- see the LICENSE file
-for details.
-
-------------------------------------------------------------------------
-
-# 👤 Auteur
+## Author
 
 Homeopatix
+
+## Notes
+
+This project is a gameplay utility plugin for LOTRO and is intended to improve the organization and overview of alts and account data while playing.
