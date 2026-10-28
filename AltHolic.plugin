@@ -3,10 +3,10 @@
 	<Information>
 		<Name>AltHolic</Name>
 		<Author>Homeopatix</Author>
-		<Version>4.92</Version>
+		<Version>5.07</Version>
 		<Description>
 DESCRIPTION (Francais)
-¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 AltHolic est un petit plugin pour avoir une vision rapide de vos alts
 Affiche l'equipement, le porte-monnaie, le coffre, le sac a dos et le stockage partage de vos alts
 Vous devez pressez la touche alt pour deplacer l'icone
@@ -28,7 +28,7 @@ Drucken Sie die Umschalttaste auf dem Symbol, um die Optionen anzuzeigen
 
 LIST OF ALL COMMANDS
 ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
-(French)
+(Français)
 /Alt show -- montre l aide
 (English)
 /Alt show - show the help
