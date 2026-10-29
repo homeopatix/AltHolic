@@ -80,3 +80,8 @@ import "Homeopatix.AltHolic.UIAddNewXP";
 -- Import Commands --
 ------------------------------------------------------------------------------------------
 import "Homeopatix.AltHolic.Commands";
+------------------------------------------------------------------------------------------
+-- Import Collection for Mounts & Pets --
+------------------------------------------------------------------------------------------
+import "Homeopatix.AltHolic.CollectionData";
+import "Homeopatix.AltHolic.Collection";
